@@ -6,7 +6,7 @@
 <title>How mature is your measurement? — Thibodeau Consulting</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
 <style>
 :root{
   --navy:#0F2A43; --teal:#1F7A8C; --accent:#B9822F; --bg:#FBFAF7;
@@ -49,12 +49,19 @@ h1{font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:2.5rem;line-
 footer{padding:1rem 0 4rem;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
 footer a{color:var(--teal)}
 </style>
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
+<header class="tc-header"><div class="tc-nav">
+  <a href="../index.html" class="tc-wordmark">Thibodeau Consulting, LLC</a>
+  <nav class="tc-navlinks">
+    <a href="index.html" class="hideable">All demos</a>
+    <a href="../index.html#work" class="hideable">Services</a>
+    <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener" class="tc-btn">Book a call</a>
+  </nav>
+</div></header>
 <div class="wrap">
-  <nav style="padding:1.1rem 0 0"><a href="index.html" style="color:#1F7A8C;text-decoration:none;font-weight:600;font-size:.85rem">← Thibodeau Consulting · all demos</a></nav>
   <header class="hero">
-    <p class="wordmark">Thibodeau Consulting</p>
     <p class="eyebrow">2-minute diagnostic · Fractional &amp; advisory</p>
     <h1>How mature is your measurement?</h1>
     <p class="lede">Before you hire — or before you spend another quarter guessing — it helps to see where you actually stand. Rate your team on five dimensions and get an honest read: your stage, your biggest gaps, and where a fractional measurement lead would start. Nothing is sent anywhere; this runs entirely in your browser.</p>
@@ -191,5 +198,15 @@ function update(){drawRadar();renderLadder();renderGaps();}
 renderDims();update();
 window.addEventListener("resize",()=>setTimeout(drawRadar,80));
 </script>
+
+<footer class="tc-footer"><div class="tc-foot">
+  <div><a href="../index.html" class="tc-wordmark">Thibodeau Consulting, LLC</a><div class="tc-fine">Scientific rigor · Industry speed</div></div>
+  <nav class="tc-links">
+    <a href="../index.html">Home</a>
+    <a href="index.html">All demos</a>
+    <a href="https://www.linkedin.com/in/paulhthibodeau/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener">Book a call</a>
+  </nav>
+</div></footer>
 </body>
 </html>

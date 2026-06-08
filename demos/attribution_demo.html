@@ -6,7 +6,7 @@
 <title>Why last-click lies: causal attribution — Thibodeau Consulting</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
 <style>
 :root{
   --navy:#0F2A43; --teal:#1F7A8C; --accent:#B9822F; --bg:#FBFAF7;
@@ -53,12 +53,19 @@ footer{padding:2.6rem 0 4rem;color:var(--muted);font-size:.9rem}
 footer a{color:var(--teal)}
 @media(max-width:640px){h1{font-size:2rem}.step h2{font-size:1.4rem}.control{min-width:100%}}
 </style>
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
+<header class="tc-header"><div class="tc-nav">
+  <a href="../index.html" class="tc-wordmark">Thibodeau Consulting, LLC</a>
+  <nav class="tc-navlinks">
+    <a href="index.html" class="hideable">All demos</a>
+    <a href="../index.html#work" class="hideable">Services</a>
+    <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener" class="tc-btn">Book a call</a>
+  </nav>
+</div></header>
 <div class="wrap">
-  <nav style="padding:1.1rem 0 0"><a href="index.html" style="color:#1F7A8C;text-decoration:none;font-weight:600;font-size:.85rem">← Thibodeau Consulting · all demos</a></nav>
   <header class="hero">
-    <p class="wordmark">Thibodeau Consulting</p>
     <p class="eyebrow">Interactive demo</p>
     <h1>Why last-click lies — and how to measure what your ads <em>actually</em> caused</h1>
     <p class="lede">Most attribution credits whoever was clicked last. But the channel clicked last is often just standing where demand was already heading. This walks through the trap, the hidden cause, and the experiment that fixes it. The data comes from a known "true" model — so you can see exactly how far last-click drifts from the truth.</p>
@@ -376,5 +383,15 @@ function drawAll(){drawRules();drawDag();drawDecomp();drawExp();drawRoas();}
 window.addEventListener("resize",()=>{clearTimeout(window._rt);window._rt=setTimeout(drawAll,120);});
 drawAll();
 </script>
+
+<footer class="tc-footer"><div class="tc-foot">
+  <div><a href="../index.html" class="tc-wordmark">Thibodeau Consulting, LLC</a><div class="tc-fine">Scientific rigor · Industry speed</div></div>
+  <nav class="tc-links">
+    <a href="../index.html">Home</a>
+    <a href="index.html">All demos</a>
+    <a href="https://www.linkedin.com/in/paulhthibodeau/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener">Book a call</a>
+  </nav>
+</div></footer>
 </body>
 </html>

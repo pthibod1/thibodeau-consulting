@@ -6,7 +6,7 @@
 <title>Did the metaphor cause the choice? A causal-inference demo — Thibodeau Consulting</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
 <style>
 :root{
   --navy:#0F2A43; --teal:#1F7A8C; --accent:#B9822F; --bg:#FBFAF7;
@@ -63,12 +63,19 @@ footer{padding:2.6rem 0 4rem;color:var(--muted);font-size:.9rem}
 footer a{color:var(--teal)}
 @media(max-width:640px){h1{font-size:1.85rem}.step h2{font-size:1.3rem}.control{min-width:100%}table.po{font-size:.8rem}}
 </style>
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
+<header class="tc-header"><div class="tc-nav">
+  <a href="../index.html" class="tc-wordmark">Thibodeau Consulting, LLC</a>
+  <nav class="tc-navlinks">
+    <a href="index.html" class="hideable">All demos</a>
+    <a href="../index.html#work" class="hideable">Services</a>
+    <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener" class="tc-btn">Book a call</a>
+  </nav>
+</div></header>
 <div class="wrap">
-  <nav style="padding:1.1rem 0 0"><a href="index.html" style="color:#1F7A8C;text-decoration:none;font-weight:600;font-size:.85rem">← Thibodeau Consulting · all demos</a></nav>
   <header class="hero">
-    <p class="wordmark">Thibodeau Consulting</p>
     <p class="eyebrow">Interactive demo · Behavioral &amp; survey research</p>
     <h1>Did the metaphor <em>cause</em> the choice — or just go along with it?</h1>
     <p class="lede">Years ago I ran an experiment: people read about crime in a city described either as a <span class="tag beast">beast</span> preying on it or a <span class="tag virus">virus</span> infecting it, then chose how to respond. The wording shifted their policy choices. But "shifted" is a causal claim — and causal claims are hard. This walks through how you actually earn one.</p>
@@ -361,5 +368,15 @@ function drawAll(){drawTable();drawConf();drawRand();drawEffect();}
 window.addEventListener("resize",()=>{clearTimeout(window._rt);window._rt=setTimeout(drawAll,120);});
 drawAll();
 </script>
+
+<footer class="tc-footer"><div class="tc-foot">
+  <div><a href="../index.html" class="tc-wordmark">Thibodeau Consulting, LLC</a><div class="tc-fine">Scientific rigor · Industry speed</div></div>
+  <nav class="tc-links">
+    <a href="../index.html">Home</a>
+    <a href="index.html">All demos</a>
+    <a href="https://www.linkedin.com/in/paulhthibodeau/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener">Book a call</a>
+  </nav>
+</div></footer>
 </body>
 </html>
