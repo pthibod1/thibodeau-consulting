@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why last-click lies: causal attribution — Thibodeau Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0F2A43; --teal:#1F7A8C; --accent:#B9822F; --bg:#FBFAF7;
+  --ink:#1c2733; --muted:#5a6b78; --line:#e6e1d8; --card:#ffffff;
+  --search:#B9822F; --social:#1F7A8C; --display:#0F2A43; --direct:#c2bcae; --demand:#b3543a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 1.4rem}
+header.hero{padding:4rem 0 2.4rem;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin:0 0 1rem}
+h1{font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:2.6rem;line-height:1.12;color:var(--navy);margin:0 0 1rem;letter-spacing:.005em}
+.lede{font-size:1.12rem;color:var(--muted);max-width:42rem;margin:0}
+.wordmark{font-family:"Newsreader",serif;font-weight:600;color:var(--navy);font-size:1.05rem;margin:0 0 2rem}
+.step{padding:3rem 0;border-bottom:1px solid var(--line)}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:2rem;height:2rem;border-radius:999px;background:var(--navy);color:#fff;font-weight:600;font-size:.95rem;font-family:"Newsreader",serif;margin-right:.7rem;flex:none}
+.step h2{font-family:"Newsreader",serif;font-weight:600;font-size:1.7rem;color:var(--navy);margin:0;display:flex;align-items:center}
+.step .sub{color:var(--muted);margin:.6rem 0 1.4rem;max-width:44rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.4rem 1.4rem 1.2rem;box-shadow:0 1px 2px rgba(15,42,67,.04)}
+.controls{display:flex;flex-wrap:wrap;gap:1.4rem 2rem;margin:.2rem 0 1.2rem;align-items:flex-end}
+.control{display:flex;flex-direction:column;gap:.3rem;min-width:200px;flex:1}
+.control label{font-size:.82rem;font-weight:600;color:var(--navy);display:flex;justify-content:space-between;gap:1rem}
+.control label .val{color:var(--teal);font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;height:5px;border-radius:5px;background:var(--line);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--teal);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--teal);cursor:pointer;border:2px solid #fff}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;flex-wrap:wrap}
+.seg button{border:none;background:#fff;padding:.45rem .85rem;font:inherit;font-size:.85rem;font-weight:500;color:var(--muted);cursor:pointer}
+.seg button.active{background:var(--navy);color:#fff}
+.canvas-wrap{position:relative;width:100%}
+canvas{width:100%;display:block}
+.legend{display:flex;flex-wrap:wrap;gap:1.1rem;margin-top:.8rem;font-size:.82rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:.4rem}
+.swatch{width:12px;height:12px;border-radius:3px;flex:none}
+.takeaway{margin-top:1.3rem;padding:.9rem 1.1rem;background:#f4f1ea;border-left:4px solid var(--accent);border-radius:0 8px 8px 0;font-size:.95rem}
+.takeaway strong{color:var(--navy)}
+.headline-stat{font-family:"Newsreader",serif;font-size:1.5rem;color:var(--navy);margin:.2rem 0}
+.headline-stat b{color:var(--teal)}
+.dag{display:flex;justify-content:center;margin:.4rem 0 1rem}
+footer{padding:2.6rem 0 4rem;color:var(--muted);font-size:.9rem}
+footer a{color:var(--teal)}
+@media(max-width:640px){h1{font-size:2rem}.step h2{font-size:1.4rem}.control{min-width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav style="padding:1.1rem 0 0"><a href="index.html" style="color:#1F7A8C;text-decoration:none;font-weight:600;font-size:.85rem">← Thibodeau Consulting · all demos</a></nav>
+  <header class="hero">
+    <p class="wordmark">Thibodeau Consulting</p>
+    <p class="eyebrow">Interactive demo</p>
+    <h1>Why last-click lies — and how to measure what your ads <em>actually</em> caused</h1>
+    <p class="lede">Most attribution credits whoever was clicked last. But the channel clicked last is often just standing where demand was already heading. This walks through the trap, the hidden cause, and the experiment that fixes it. The data comes from a known "true" model — so you can see exactly how far last-click drifts from the truth.</p>
+  </header>
+
+  <!-- STEP 1 -->
+  <section class="step" id="rules">
+    <h2><span class="step-num">1</span>Last-click looks decisive — until you change the rule</h2>
+    <p class="sub">Rule-based attribution divides credit among the touchpoints on the path to a sale. Switch the rule and the "winning" channel changes — even though nothing about the business changed. That's the tell: these models reshuffle credit, they don't measure cause.</p>
+    <div class="card">
+      <div class="controls">
+        <div class="control" style="max-width:520px">
+          <label>Attribution rule</label>
+          <div class="seg" id="ruleSel">
+            <button data-r="last" class="active">Last-click</button>
+            <button data-r="first">First-click</button>
+            <button data-r="linear">Linear</button>
+          </div>
+        </div>
+      </div>
+      <div class="canvas-wrap"><canvas id="cRules" height="320"></canvas></div>
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--search)"></span>Branded Search</span>
+        <span><span class="swatch" style="background:var(--social)"></span>Social (prospecting)</span>
+        <span><span class="swatch" style="background:var(--display)"></span>Display</span>
+        <span><span class="swatch" style="background:var(--direct)"></span>Direct / Organic</span>
+      </div>
+      <div class="takeaway" id="ruleTake"></div>
+    </div>
+  </section>
+
+  <!-- STEP 2 -->
+  <section class="step" id="confounder">
+    <h2><span class="step-num">2</span>The hidden cause — demand drives both clicks and sales</h2>
+    <p class="sub">People who already want you search your brand name and click the ad on the way to buying. So <em>demand</em> causes the branded-search click <strong>and</strong> the sale — the click didn't cause much of anything. Below, the same conversions split into what's truly ad-driven vs. organic demand that would have converted anyway. Slide how much branded search rides on demand and watch its last-click credit balloon while its real contribution barely moves.</p>
+    <div class="dag"><canvas id="cDag" width="560" height="150" style="max-width:560px;width:100%"></canvas></div>
+    <div class="card">
+      <div class="controls">
+        <div class="control">
+          <label for="rho">How much branded search rides demand <span class="val" id="rhoV"></span></label>
+          <input type="range" id="rho" min="0" max="0.96" step="0.01" value="0.9">
+        </div>
+      </div>
+      <div class="canvas-wrap"><canvas id="cDecomp" height="340"></canvas></div>
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--direct)"></span>Organic (would convert anyway)</span>
+        <span><span class="swatch" style="background:var(--search)"></span>Search — true incremental</span>
+        <span><span class="swatch" style="background:var(--social)"></span>Social — true incremental</span>
+        <span><span class="swatch" style="background:var(--display)"></span>Display — true incremental</span>
+        <span><span class="swatch" style="background:var(--demand);border-radius:50%"></span>Latent demand</span>
+      </div>
+      <div class="takeaway" id="confTake"></div>
+    </div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section class="step" id="experiment">
+    <h2><span class="step-num">3</span>The experiment — turn it off and watch what happens</h2>
+    <p class="sub">Causation needs a counterfactual: what would sales have been <em>without</em> the channel? A geo holdout turns the channel off in a random set of markets (control) and leaves it on elsewhere (treatment). The gap between them is the true incremental lift — with an honest confidence interval. Pick a channel and a holdout size.</p>
+    <div class="card">
+      <div class="controls">
+        <div class="control" style="max-width:360px">
+          <label>Hold out this channel</label>
+          <div class="seg" id="expSel">
+            <button data-ch="Search" class="active">Branded Search</button>
+            <button data-ch="Social">Social</button>
+            <button data-ch="Display">Display</button>
+          </div>
+        </div>
+        <div class="control">
+          <label for="holdout">Holdout size (share of markets) <span class="val" id="holdoutV"></span></label>
+          <input type="range" id="holdout" min="0.05" max="0.5" step="0.01" value="0.2">
+        </div>
+      </div>
+      <div class="canvas-wrap"><canvas id="cExp" height="330"></canvas></div>
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--navy)"></span>Treatment (channel on)</span>
+        <span><span class="swatch" style="background:#9aa6af"></span>Control (channel held out)</span>
+        <span><span class="swatch" style="background:var(--teal);opacity:.35"></span>Measured incremental lift</span>
+      </div>
+      <div class="takeaway" id="expTake"></div>
+    </div>
+  </section>
+
+  <!-- STEP 4 -->
+  <section class="step" id="verdict">
+    <h2><span class="step-num">4</span>The verdict — last-click would defund what's working</h2>
+    <p class="sub">Put the two side by side: return on ad spend as last-click believes it, vs. return measured by experiment. Branded search looks like a star on last-click because it's billing you for organic demand. The channel that actually creates customers is the one last-click would cut.</p>
+    <div class="card">
+      <p class="headline-stat" id="verHeadline"></p>
+      <div class="canvas-wrap"><canvas id="cRoas" height="320"></canvas></div>
+      <div class="legend">
+        <span><span class="swatch" style="background:#cfd6db"></span>Last-click ROAS (what you'd believe)</span>
+        <span><span class="swatch" style="background:var(--teal)"></span>Incremental ROAS (measured)</span>
+        <span>— dashed line = break-even (ROAS 1.0)</span>
+      </div>
+      <div class="takeaway" id="verTake"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Teaching demo on synthetic data — a real engagement measures incrementality on <em>your</em> channels with geo-experiments, holdouts, or causal models, and quantifies the uncertainty. Built by <strong>Paul Thibodeau</strong> · <a href="https://calendly.com/paul-thibodeau/30min">Thibodeau Consulting</a> — measurement &amp; marketing science.</p>
+  </footer>
+</div>
+
+<script>
+/* ---------- deterministic synthetic data ---------- */
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const rng=mulberry32(11);
+const N=104;
+const CH=["Search","Social","Display"];
+const COL={Search:"#B9822F",Social:"#1F7A8C",Display:"#0F2A43"};
+const SPEND={Search:20,Social:18,Display:14};   // weekly $k, steady
+const V=1.0;                                     // $k revenue per conversion
+
+// latent demand, organic conversions, true incremental per channel
+const D=[],O=[],incS={Search:[],Social:[],Display:[]},C=[];
+for(let t=0;t<N;t++){
+  let d=100+32*Math.sin(2*Math.PI*t/52-1)+(rng()-0.5)*14;
+  if(t>=18&&t<=21)d+=42;            // promo spikes (demand shocks)
+  if(t>=70&&t<=73)d+=52;
+  D.push(d);
+  O.push(0.50*d);                  // organic conversions: would happen with no ads
+  incS.Search.push(12+(rng()-0.5)*4);              // low true incrementality
+  incS.Social.push(27+t*0.05+(rng()-0.5)*6);       // the real growth driver
+  incS.Display.push(18+(rng()-0.5)*5);             // medium
+  C.push(O[t]+incS.Search[t]+incS.Social[t]+incS.Display[t]+(rng()-0.5)*8);
+}
+const sum=a=>a.reduce((s,v)=>s+v,0);
+const avg=a=>sum(a)/a.length;
+const trueIncTot={};for(const c of CH)trueIncTot[c]=sum(incS[c]);
+const Otot=sum(O), Ctot=sum(C);
+
+/* ---------- canvas helpers ---------- */
+function setup(cv,cssH){const dpr=window.devicePixelRatio||1;const w=cv.clientWidth||cv.parentElement.clientWidth;
+  cv.width=w*dpr;cv.height=cssH*dpr;cv.style.height=cssH+"px";const ctx=cv.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);return {ctx,w,h:cssH};}
+const M={l:58,r:18,t:18,b:34};
+function axes(ctx,w,h,xmin,xmax,ymin,ymax,opt={}){
+  const px=x=>M.l+(x-xmin)/(xmax-xmin)*(w-M.l-M.r);
+  const py=y=>h-M.b-(y-ymin)/(ymax-ymin)*(h-M.t-M.b);
+  ctx.strokeStyle="#eceae3";ctx.lineWidth=1;ctx.fillStyle="#9aa6af";ctx.font="11px Inter, sans-serif";ctx.textBaseline="middle";
+  const yt=opt.yticks||5;
+  for(let i=0;i<=yt;i++){const yv=ymin+(ymax-ymin)*i/yt;const Y=py(yv);
+    ctx.beginPath();ctx.moveTo(M.l,Y);ctx.lineTo(w-M.r,Y);ctx.stroke();
+    ctx.textAlign="right";ctx.fillText(opt.yfmt?opt.yfmt(yv):Math.round(yv),M.l-8,Y);}
+  ctx.strokeStyle="#d8d3c8";ctx.beginPath();ctx.moveTo(M.l,py(ymin));ctx.lineTo(w-M.r,py(ymin));ctx.stroke();
+  if(opt.xlabels){ctx.fillStyle="#9aa6af";ctx.textAlign="center";opt.xlabels.forEach(([xv,lab])=>ctx.fillText(lab,px(xv),h-M.b+14));}
+  if(opt.xtitle){ctx.fillStyle="#5a6b78";ctx.textAlign="center";ctx.fillText(opt.xtitle,(M.l+w-M.r)/2,h-4);}
+  if(opt.ytitle){ctx.save();ctx.translate(13,(M.t+h-M.b)/2);ctx.rotate(-Math.PI/2);ctx.fillStyle="#5a6b78";ctx.textAlign="center";ctx.fillText(opt.ytitle,0,0);ctx.restore();}
+  return {px,py};
+}
+
+/* ---------- STEP 1: attribution rules (aggregate) ---------- */
+let rule="last";
+function creditsFor(r){
+  // all illustrative, all sum to total conversions; none are causal
+  const c={};
+  if(r==="last"){ // lower funnel (search) vacuums organic
+    c.Search=trueIncTot.Search+0.92*Otot; c.Social=trueIncTot.Social*0.5; c.Display=trueIncTot.Display*0.5;
+  }else if(r==="first"){ // upper funnel grabs the demand credit
+    c.Search=trueIncTot.Search*0.5; c.Social=trueIncTot.Social+0.50*Otot; c.Display=trueIncTot.Display+0.22*Otot;
+  }else{ // linear: spread organic evenly
+    c.Search=trueIncTot.Search+0.24*Otot; c.Social=trueIncTot.Social+0.24*Otot; c.Display=trueIncTot.Display+0.24*Otot;
+  }
+  c.Direct=Math.max(0,Ctot-c.Search-c.Social-c.Display);
+  return c;
+}
+function drawRules(){
+  const cv=document.getElementById("cRules");const {ctx,w,h}=setup(cv,320);
+  const cr=creditsFor(rule);
+  const keys=["Search","Social","Display","Direct"];
+  const cols={Search:COL.Search,Social:COL.Social,Display:COL.Display,Direct:"#c2bcae"};
+  const labs={Search:"Branded Search",Social:"Social",Display:"Display",Direct:"Direct / Organic"};
+  const vals=keys.map(k=>cr[k]/1000);            // thousands of conversions
+  const ymax=Math.max(...vals)*1.18;
+  const {px,py}=axes(ctx,w,h,0,1,0,ymax,{yticks:4,yfmt:v=>v.toFixed(0)+"k",ytitle:"attributed conversions (2 yrs)"});
+  const gw=(w-M.l-M.r)/keys.length;
+  keys.forEach((k,i)=>{const cx=M.l+gw*(i+0.5);const bw=gw*0.5;
+    ctx.fillStyle=cols[k];ctx.fillRect(cx-bw/2,py(vals[i]),bw,py(0)-py(vals[i]));
+    ctx.fillStyle="#5a6b78";ctx.font="12px Inter";ctx.textAlign="center";ctx.fillText(labs[k],cx,h-M.b+14);
+    ctx.fillStyle=cols[k]==="#c2bcae"?"#8a8475":cols[k];ctx.font="600 12px Inter";ctx.fillText(vals[i].toFixed(1)+"k",cx,py(vals[i])-9);
+  });
+  // who "wins"
+  const winner=keys.slice(0,3).reduce((a,b)=>cr[a]>cr[b]?a:b);
+  const rn={last:"Last-click",first:"First-click",linear:"Linear"}[rule];
+  document.getElementById("ruleTake").innerHTML=
+    `Under <strong>${rn}</strong>, the apparent top paid channel is <strong>${labs[winner]}</strong>. `+
+    `Flip to another rule and the winner moves — same sales, same spend, different story. None of these answer the only question that matters: <em>which conversions would not have happened without the ad?</em>`;
+}
+
+/* ---------- DAG (static) ---------- */
+function drawDag(){
+  const cv=document.getElementById("cDag");const dpr=window.devicePixelRatio||1;
+  const w=cv.clientWidth||560;cv.width=w*dpr;cv.height=150*dpr;cv.style.height="150px";
+  const ctx=cv.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,150);
+  const node=(x,y,txt,col)=>{ctx.fillStyle="#fff";ctx.strokeStyle=col;ctx.lineWidth=2;
+    ctx.font="600 13px Inter";const tw=ctx.measureText(txt).width;const pad=12;const bw=tw+pad*2,bh=30;
+    ctx.beginPath();ctx.roundRect(x-bw/2,y-bh/2,bw,bh,8);ctx.fill();ctx.stroke();
+    ctx.fillStyle=col;ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(txt,x,y);return {x,y,bw,bh};};
+  const arrow=(x1,y1,x2,y2,col,dash)=>{ctx.strokeStyle=col;ctx.lineWidth=2;ctx.setLineDash(dash||[]);
+    ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.setLineDash([]);
+    const ang=Math.atan2(y2-y1,x2-x1);ctx.fillStyle=col;ctx.beginPath();
+    ctx.moveTo(x2,y2);ctx.lineTo(x2-9*Math.cos(ang-0.4),y2-9*Math.sin(ang-0.4));ctx.lineTo(x2-9*Math.cos(ang+0.4),y2-9*Math.sin(ang+0.4));ctx.closePath();ctx.fill();};
+  const cx=w/2;
+  arrow(cx-110,42,cx-60,88,"#b3543a");            // demand -> search click
+  arrow(cx-150,52,cx-30,118,"#b3543a");           // demand -> conversions
+  arrow(cx+10,95,cx+95,118,"#9aa6af",[5,4]);      // click -> conversions (weak)
+  node(cx-150,38,"Latent demand","#b3543a");
+  node(cx+30,95,"Branded-search click","#B9822F");
+  node(cx+150,128,"Conversion","#0F2A43");
+  ctx.fillStyle="#9aa6af";ctx.font="11px Inter";ctx.textAlign="left";ctx.textBaseline="middle";
+  ctx.fillText("weak true effect",cx-40,108);
+}
+
+/* ---------- STEP 2: decomposition + confounding ---------- */
+let rho=0.9;
+function drawDecomp(){
+  const cv=document.getElementById("cDecomp");const {ctx,w,h}=setup(cv,340);
+  const ymax=Math.max(...C)*1.10;
+  const {px,py}=axes(ctx,w,h,0,N-1,0,ymax,{yticks:5,
+    xlabels:[[0,"Wk 1"],[26,"Wk 27"],[52,"Wk 53"],[78,"Wk 79"],[103,"Wk 104"]],xtitle:"week",ytitle:"conversions / week"});
+  const layers=[{col:"#c2bcae",d:O,a:.6},{col:COL.Search,d:incS.Search,a:.85},{col:COL.Social,d:incS.Social,a:.85},{col:COL.Display,d:incS.Display,a:.85}];
+  const cum=new Array(N).fill(0);
+  for(const L of layers){ctx.beginPath();
+    for(let t=0;t<N;t++){const X=px(t),Y=py(cum[t]+L.d[t]);t?ctx.lineTo(X,Y):ctx.moveTo(X,Y);}
+    for(let t=N-1;t>=0;t--){const X=px(t),Y=py(cum[t]);ctx.lineTo(X,Y);}
+    ctx.closePath();ctx.fillStyle=L.col;ctx.globalAlpha=L.a;ctx.fill();ctx.globalAlpha=1;
+    for(let t=0;t<N;t++)cum[t]+=L.d[t];}
+  // demand overlay (scaled)
+  const dmax=Math.max(...D);ctx.strokeStyle=COL.Social=="x"?"":"#b3543a";ctx.strokeStyle="#b3543a";ctx.lineWidth=2;ctx.setLineDash([5,4]);ctx.beginPath();
+  for(let t=0;t<N;t++){const X=px(t),Y=py(D[t]/dmax*ymax*0.95);t?ctx.lineTo(X,Y):ctx.moveTo(X,Y);}ctx.stroke();ctx.setLineDash([]);
+  // numbers
+  const lcSearch=trueIncTot.Search+rho*Otot;     // last-click credit to search
+  const lcPct=Math.round(lcSearch/Ctot*100);
+  const truePct=Math.round(trueIncTot.Search/Ctot*100);
+  document.getElementById("rhoV").textContent=Math.round(rho*100)+"%";
+  document.getElementById("confTake").innerHTML=
+    `With branded search riding <strong>${Math.round(rho*100)}%</strong> of demand, last-click credits it about <strong>${lcPct}%</strong> of all conversions — but its <em>true</em> incremental share is only <strong>${truePct}%</strong>. `+
+    `The gap is organic demand (the gray band) wearing a branded-search costume. Social and Display, which actually create demand, get no such free credit.`;
+}
+
+/* ---------- STEP 3: geo holdout experiment ---------- */
+let expCh="Search", holdout=0.2;
+function drawExp(){
+  const cv=document.getElementById("cExp");const {ctx,w,h}=setup(cv,330);
+  const start=78;                                  // experiment window: last ~26 weeks
+  const treat=C.slice();
+  const control=C.map((v,t)=>t>=start? v-incS[expCh][t] : v);
+  const ymin=Math.min(...control)*0.85, ymax=Math.max(...treat)*1.06;
+  const {px,py}=axes(ctx,w,h,0,N-1,ymin,ymax,{yticks:5,
+    xlabels:[[0,"Wk 1"],[26,"Wk 27"],[52,"Wk 53"],[78,"holdout"],[103,"Wk 104"]],xtitle:"week",ytitle:"conversions / week"});
+  // window shading + lift band
+  ctx.fillStyle="rgba(31,122,140,.10)";ctx.fillRect(px(start),M.t,px(N-1)-px(start),h-M.t-M.b);
+  ctx.fillStyle="rgba(31,122,140,.30)";ctx.beginPath();
+  for(let t=start;t<N;t++){const X=px(t),Y=py(treat[t]);t==start?ctx.moveTo(X,Y):ctx.lineTo(X,Y);}
+  for(let t=N-1;t>=start;t--){const X=px(t),Y=py(control[t]);ctx.lineTo(X,Y);}
+  ctx.closePath();ctx.fill();
+  // start marker
+  ctx.strokeStyle="#1F7A8C";ctx.setLineDash([4,4]);ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(px(start),M.t);ctx.lineTo(px(start),py(ymin));ctx.stroke();ctx.setLineDash([]);
+  // lines
+  const line=(arr,col,wd)=>{ctx.strokeStyle=col;ctx.lineWidth=wd;ctx.beginPath();for(let t=0;t<N;t++){const X=px(t),Y=py(arr[t]);t?ctx.lineTo(X,Y):ctx.moveTo(X,Y);}ctx.stroke();};
+  line(control,"#9aa6af",1.8);
+  line(treat,"#0F2A43",2.2);
+  // estimate
+  const liftSeries=[];for(let t=start;t<N;t++)liftSeries.push(incS[expCh][t]);
+  const lift=avg(liftSeries);
+  const sd=Math.sqrt(liftSeries.reduce((s,v)=>s+(v-lift)**2,0)/liftSeries.length);
+  const nEff=holdout*liftSeries.length*12;        // bigger holdout -> tighter CI
+  const ci=1.96*(sd+6)/Math.sqrt(nEff);
+  const lcCredit=expCh==="Search"? trueIncTot.Search/N+rho*Otot/N : trueIncTot[expCh]/N*0.5;
+  document.getElementById("holdoutV").textContent=Math.round(holdout*100)+"%";
+  const verdict=expCh==="Search"
+    ? `Turning branded search off barely dents conversions. Measured incremental lift ≈ <strong>${lift.toFixed(0)}/wk</strong> (95% CI ${(lift-ci).toFixed(0)}–${(lift+ci).toFixed(0)}) — yet last-click credits it ≈ <strong>${lcCredit.toFixed(0)}/wk</strong>. You were paying for demand you already had.`
+    : `Holding out ${expCh} clearly drops conversions. Measured incremental lift ≈ <strong>${lift.toFixed(0)}/wk</strong> (95% CI ${(lift-ci).toFixed(0)}–${(lift+ci).toFixed(0)}) — <em>more</em> than its ${lcCredit.toFixed(0)}/wk last-click credit. This channel is under-credited.`;
+  document.getElementById("expTake").innerHTML=verdict+` A bigger holdout buys a tighter interval — that's the price of certainty.`;
+}
+
+/* ---------- STEP 4: ROAS comparison ---------- */
+function drawRoas(){
+  const cv=document.getElementById("cRoas");const {ctx,w,h}=setup(cv,320);
+  const lc={Search:trueIncTot.Search+0.92*Otot,Social:trueIncTot.Social*0.5,Display:trueIncTot.Display*0.5};
+  const lcROAS={},incROAS={};
+  for(const c of CH){const spendTot=SPEND[c]*N;lcROAS[c]=lc[c]*V/spendTot;incROAS[c]=trueIncTot[c]*V/spendTot;}
+  const ymax=Math.max(...CH.map(c=>Math.max(lcROAS[c],incROAS[c])))*1.18;
+  const {px,py}=axes(ctx,w,h,0,1,0,ymax,{yticks:4,yfmt:v=>v.toFixed(1)+"×",ytitle:"return on ad spend"});
+  // break-even
+  ctx.strokeStyle="#b3543a";ctx.setLineDash([5,4]);ctx.lineWidth=1.3;ctx.beginPath();ctx.moveTo(M.l,py(1));ctx.lineTo(w-M.r,py(1));ctx.stroke();ctx.setLineDash([]);
+  const gw=(w-M.l-M.r)/CH.length;
+  const labs={Search:"Branded Search",Social:"Social",Display:"Display"};
+  CH.forEach((c,i)=>{const cx=M.l+gw*(i+0.5);const bw=gw*0.26;
+    ctx.fillStyle="#cfd6db";ctx.fillRect(cx-bw-3,py(lcROAS[c]),bw,py(0)-py(lcROAS[c]));
+    ctx.fillStyle=COL.Social;ctx.fillStyle="#1F7A8C";ctx.fillRect(cx+3,py(incROAS[c]),bw,py(0)-py(incROAS[c]));
+    ctx.fillStyle="#5a6b78";ctx.font="12px Inter";ctx.textAlign="center";ctx.fillText(labs[c],cx,h-M.b+14);
+    ctx.fillStyle="#8a8475";ctx.font="600 11px Inter";ctx.fillText(lcROAS[c].toFixed(1)+"×",cx-bw/2-3,py(lcROAS[c])-8);
+    ctx.fillStyle="#1F7A8C";ctx.fillText(incROAS[c].toFixed(1)+"×",cx+bw/2+3,py(incROAS[c])-8);
+  });
+  const bestInc=CH.reduce((a,b)=>incROAS[a]>incROAS[b]?a:b);
+  const bestLc=CH.reduce((a,b)=>lcROAS[a]>lcROAS[b]?a:b);
+  document.getElementById("verHeadline").innerHTML=
+    `Last-click crowns <b>${labs[bestLc]}</b>. The experiment says your best dollar is in <b>${labs[bestInc]}</b>.`;
+  document.getElementById("verTake").innerHTML=
+    `Branded search clears break-even on last-click (${lcROAS.Search.toFixed(1)}×) but loses money on incremental truth (${incROAS.Search.toFixed(1)}× — below the red line). `+
+    `Social is the reverse: last-click would cut it, the experiment says scale it. <strong>Acting on last-click would defund your growth and over-fund a channel billing you for organic demand.</strong>`;
+}
+
+/* ---------- wiring ---------- */
+function seg(id,cb){document.querySelectorAll("#"+id+" button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll("#"+id+" button").forEach(x=>x.classList.remove("active"));b.classList.add("active");cb(b);}));}
+seg("ruleSel",b=>{rule=b.dataset.r;drawRules();});
+document.getElementById("rho").addEventListener("input",e=>{rho=+e.target.value;drawDecomp();});
+seg("expSel",b=>{expCh=b.dataset.ch;drawExp();});
+document.getElementById("holdout").addEventListener("input",e=>{holdout=+e.target.value;drawExp();});
+
+function drawAll(){drawRules();drawDag();drawDecomp();drawExp();drawRoas();}
+window.addEventListener("resize",()=>{clearTimeout(window._rt);window._rt=setTimeout(drawAll,120);});
+drawAll();
+</script>
+</body>
+</html>

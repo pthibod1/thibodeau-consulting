@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Did the metaphor cause the choice? A causal-inference demo — Thibodeau Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0F2A43; --teal:#1F7A8C; --accent:#B9822F; --bg:#FBFAF7;
+  --ink:#1c2733; --muted:#5a6b78; --line:#e6e1d8; --card:#ffffff;
+  --beast:#B9822F; --virus:#1F7A8C; --con:#8c4a3f; --lib:#3a6b8c; --bad:#b3543a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 1.4rem}
+header.hero{padding:4rem 0 2.4rem;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin:0 0 1rem}
+h1{font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:2.5rem;line-height:1.14;color:var(--navy);margin:0 0 1rem;letter-spacing:.005em}
+.lede{font-size:1.12rem;color:var(--muted);max-width:43rem;margin:0}
+.wordmark{font-family:"Newsreader",serif;font-weight:600;color:var(--navy);font-size:1.05rem;margin:0 0 2rem}
+.cite{font-size:.86rem;color:var(--muted);margin:1.1rem 0 0;font-style:italic}
+.step{padding:3rem 0;border-bottom:1px solid var(--line)}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:2rem;height:2rem;border-radius:999px;background:var(--navy);color:#fff;font-weight:600;font-size:.95rem;font-family:"Newsreader",serif;margin-right:.7rem;flex:none}
+.step h2{font-family:"Newsreader",serif;font-weight:600;font-size:1.6rem;color:var(--navy);margin:0;display:flex;align-items:center}
+.step .sub{color:var(--muted);margin:.6rem 0 1.4rem;max-width:45rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.4rem 1.4rem 1.2rem;box-shadow:0 1px 2px rgba(15,42,67,.04)}
+.controls{display:flex;flex-wrap:wrap;gap:1.4rem 2rem;margin:.2rem 0 1.2rem;align-items:flex-end}
+.control{display:flex;flex-direction:column;gap:.3rem;min-width:200px;flex:1}
+.control label{font-size:.82rem;font-weight:600;color:var(--navy);display:flex;justify-content:space-between;gap:1rem}
+.control label .val{color:var(--teal);font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;height:5px;border-radius:5px;background:var(--line);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--teal);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--teal);cursor:pointer;border:2px solid #fff}
+.btn{border:1px solid var(--navy);background:var(--navy);color:#fff;font:inherit;font-weight:600;font-size:.88rem;padding:.5rem 1rem;border-radius:8px;cursor:pointer}
+.btn.ghost{background:#fff;color:var(--navy)}
+.canvas-wrap{position:relative;width:100%}
+canvas{width:100%;display:block}
+.legend{display:flex;flex-wrap:wrap;gap:1.1rem;margin-top:.8rem;font-size:.82rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:.4rem}
+.swatch{width:12px;height:12px;border-radius:3px;flex:none}
+.takeaway{margin-top:1.3rem;padding:.9rem 1.1rem;background:#f4f1ea;border-left:4px solid var(--accent);border-radius:0 8px 8px 0;font-size:.95rem}
+.takeaway strong{color:var(--navy)}
+.headline-stat{font-family:"Newsreader",serif;font-size:1.45rem;color:var(--navy);margin:.2rem 0}
+.headline-stat b{color:var(--teal)}
+.dag{display:flex;justify-content:center;margin:.2rem 0 1.2rem}
+/* potential-outcomes table */
+table.po{border-collapse:collapse;width:100%;font-size:.92rem;margin-top:.4rem}
+table.po th,table.po td{border:1px solid var(--line);padding:.55rem .6rem;text-align:center}
+table.po th{background:var(--navy);color:#fff;font-weight:600}
+table.po td.obs{font-weight:600}
+table.po td.enf{background:#f3e7d6;color:#8a5a16}
+table.po td.ref{background:#e3eef0;color:#1a5563}
+table.po td.hidden{color:#b9b3a6;background:#faf8f3;font-style:italic}
+.tag{display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.12rem .45rem;border-radius:5px}
+.tag.beast{background:#f3e7d6;color:#8a5a16}
+.tag.virus{background:#e3eef0;color:#1a5563}
+footer{padding:2.6rem 0 4rem;color:var(--muted);font-size:.9rem}
+footer a{color:var(--teal)}
+@media(max-width:640px){h1{font-size:1.85rem}.step h2{font-size:1.3rem}.control{min-width:100%}table.po{font-size:.8rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav style="padding:1.1rem 0 0"><a href="index.html" style="color:#1F7A8C;text-decoration:none;font-weight:600;font-size:.85rem">← Thibodeau Consulting · all demos</a></nav>
+  <header class="hero">
+    <p class="wordmark">Thibodeau Consulting</p>
+    <p class="eyebrow">Interactive demo · Behavioral &amp; survey research</p>
+    <h1>Did the metaphor <em>cause</em> the choice — or just go along with it?</h1>
+    <p class="lede">Years ago I ran an experiment: people read about crime in a city described either as a <span class="tag beast">beast</span> preying on it or a <span class="tag virus">virus</span> infecting it, then chose how to respond. The wording shifted their policy choices. But "shifted" is a causal claim — and causal claims are hard. This walks through how you actually earn one.</p>
+    <p class="cite">Inspired by Thibodeau &amp; Boroditsky (2011), "Metaphors We Think With," <em>PLoS ONE</em>. Numbers here are illustrative — the method is the point.</p>
+  </header>
+
+  <!-- STEP 1 -->
+  <section class="step" id="potential">
+    <h2><span class="step-num">1</span>The fundamental problem — you only see one outcome</h2>
+    <p class="sub">Every person has two <em>potential outcomes</em>: what they'd choose under "beast" and what they'd choose under "virus." Causation is the difference between them. The trouble: each person reads only one version, so one of those two is forever unobserved. Reveal the hidden column to see the counterfactual we never get in real life.</p>
+    <div class="card">
+      <div class="controls">
+        <div class="control" style="max-width:none;flex:none">
+          <button class="btn" id="reveal">Reveal the hidden counterfactual</button>
+        </div>
+      </div>
+      <div id="poTable"></div>
+      <div class="takeaway" id="poTake">Each person was randomly shown one frame. The <strong>colored</strong> cell is what we observed; the other is what they <em>would</em> have done under the other frame — invisible in reality. Causal inference is the science of estimating that missing column for a whole population.</div>
+    </div>
+  </section>
+
+  <!-- STEP 2 -->
+  <section class="step" id="confound">
+    <h2><span class="step-num">2</span>Why you can't just compare the groups you find</h2>
+    <p class="sub">Suppose you skipped the experiment and compared people who <em>naturally</em> talk about crime as a beast vs. a virus. Political leaning drives both which metaphor someone favors <strong>and</strong> how punitive they are — so the difference you measure is part metaphor, part politics. That's confounding. Slide how lopsided the groups are by party.</p>
+    <div class="dag"><canvas id="cDag2" width="540" height="150" style="max-width:540px;width:100%"></canvas></div>
+    <div class="card">
+      <div class="controls">
+        <div class="control">
+          <label for="skew">Party imbalance between the groups <span class="val" id="skewV"></span></label>
+          <input type="range" id="skew" min="0.5" max="0.92" step="0.01" value="0.82">
+        </div>
+      </div>
+      <div class="canvas-wrap"><canvas id="cConf" height="300"></canvas></div>
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--con)"></span>Conservatives</span>
+        <span><span class="swatch" style="background:var(--lib)"></span>Liberals</span>
+        <span>— dashed = true causal effect (+18 pts)</span>
+      </div>
+      <div class="takeaway" id="confTake"></div>
+    </div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section class="step" id="randomize">
+    <h2><span class="step-num">3</span>Randomization — the move that earns the claim</h2>
+    <p class="sub">Assign the frame by a coin flip and the confounder loses its grip: liberals and conservatives end up split roughly evenly across both arms, so the two groups are alike in every way <em>except</em> the metaphor. Now any difference in their choices is caused by the wording. Randomize the sample and watch the party mix balance out — and steady as the sample grows.</p>
+    <div class="dag"><canvas id="cDag3" width="540" height="150" style="max-width:540px;width:100%"></canvas></div>
+    <div class="card">
+      <div class="controls">
+        <div class="control">
+          <label for="nRand">Sample size <span class="val" id="nRandV"></span></label>
+          <input type="range" id="nRand" min="40" max="2000" step="20" value="240">
+        </div>
+        <div class="control" style="max-width:none;flex:none">
+          <button class="btn ghost" id="reshuffle">↺ Re-randomize</button>
+        </div>
+      </div>
+      <div class="canvas-wrap"><canvas id="cRand" height="280"></canvas></div>
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--con)"></span>Conservatives</span>
+        <span><span class="swatch" style="background:var(--lib)"></span>Liberals</span>
+      </div>
+      <div class="takeaway" id="randTake"></div>
+    </div>
+  </section>
+
+  <!-- STEP 4 -->
+  <section class="step" id="effect">
+    <h2><span class="step-num">4</span>The effect — and how sure we are</h2>
+    <p class="sub">With a clean randomized comparison, the estimate is just the difference in the share choosing enforcement: beast minus virus. But an estimate without uncertainty is a guess in a lab coat. The 95% confidence interval shows the range consistent with the data — and it tightens as the sample grows. The red line is "no effect"; the gray marker is the partisan gap, for scale.</p>
+    <div class="card">
+      <div class="controls">
+        <div class="control">
+          <label for="nEff">Sample size <span class="val" id="nEffV"></span></label>
+          <input type="range" id="nEff" min="40" max="3000" step="20" value="300">
+        </div>
+      </div>
+      <p class="headline-stat" id="effHeadline"></p>
+      <div class="canvas-wrap"><canvas id="cEffect" height="220"></canvas></div>
+      <div class="takeaway" id="effTake"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>The same logic scales from a metaphor study to a marketing test or a product change: define the counterfactual, beat back confounding (by design when you can, by modeling when you can't), and report the effect <em>with</em> its uncertainty. Built by <strong>Paul Thibodeau</strong> · <a href="https://calendly.com/paul-thibodeau/30min">Thibodeau Consulting</a> — measurement &amp; behavioral science.</p>
+  </footer>
+</div>
+
+<script>
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+
+/* ---- ground truth ---- */
+// P(choose enforcement) by party and frame
+const BASE={con:0.55, lib:0.25};        // under "virus"
+const FRAME=0.18;                        // "beast" adds +18 pts (the true causal effect)
+const PARTYGAP=BASE.con-BASE.lib;        // 0.30
+function pEnf(party,frame){return BASE[party]+(frame==="beast"?FRAME:0);}
+
+/* ---- canvas helpers ---- */
+function setup(cv,cssH){const dpr=window.devicePixelRatio||1;const w=cv.clientWidth||cv.parentElement.clientWidth;
+  cv.width=w*dpr;cv.height=cssH*dpr;cv.style.height=cssH+"px";const ctx=cv.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);return {ctx,w,h:cssH};}
+const M={l:54,r:18,t:18,b:34};
+function axes(ctx,w,h,xmin,xmax,ymin,ymax,opt={}){
+  const px=x=>M.l+(x-xmin)/(xmax-xmin)*(w-M.l-M.r);
+  const py=y=>h-M.b-(y-ymin)/(ymax-ymin)*(h-M.t-M.b);
+  ctx.strokeStyle="#eceae3";ctx.lineWidth=1;ctx.fillStyle="#9aa6af";ctx.font="11px Inter, sans-serif";ctx.textBaseline="middle";
+  const yt=opt.yticks||5;
+  for(let i=0;i<=yt;i++){const yv=ymin+(ymax-ymin)*i/yt;const Y=py(yv);
+    ctx.beginPath();ctx.moveTo(M.l,Y);ctx.lineTo(w-M.r,Y);ctx.stroke();
+    ctx.textAlign="right";ctx.fillText(opt.yfmt?opt.yfmt(yv):Math.round(yv),M.l-8,Y);}
+  ctx.strokeStyle="#d8d3c8";ctx.beginPath();ctx.moveTo(M.l,py(ymin));ctx.lineTo(w-M.r,py(ymin));ctx.stroke();
+  if(opt.ytitle){ctx.save();ctx.translate(13,(M.t+h-M.b)/2);ctx.rotate(-Math.PI/2);ctx.fillStyle="#5a6b78";ctx.textAlign="center";ctx.fillText(opt.ytitle,0,0);ctx.restore();}
+  return {px,py};
+}
+const pct=v=>Math.round(v*100)+"%";
+
+/* ---- shared DAG drawing ---- */
+function dag(cv,cut){
+  const dpr=window.devicePixelRatio||1;const w=cv.clientWidth||540;cv.width=w*dpr;cv.height=150*dpr;cv.style.height="150px";
+  const ctx=cv.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,150);
+  const node=(x,y,txt,col)=>{ctx.font="600 13px Inter";const tw=ctx.measureText(txt).width;const bw=tw+24,bh=30;
+    ctx.fillStyle="#fff";ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();ctx.roundRect(x-bw/2,y-bh/2,bw,bh,8);ctx.fill();ctx.stroke();
+    ctx.fillStyle=col;ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(txt,x,y);};
+  const arrow=(x1,y1,x2,y2,col,dash)=>{ctx.strokeStyle=col;ctx.lineWidth=2;ctx.setLineDash(dash||[]);
+    ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();ctx.setLineDash([]);
+    const a=Math.atan2(y2-y1,x2-x1);ctx.fillStyle=col;ctx.beginPath();ctx.moveTo(x2,y2);
+    ctx.lineTo(x2-9*Math.cos(a-0.4),y2-9*Math.sin(a-0.4));ctx.lineTo(x2-9*Math.cos(a+0.4),y2-9*Math.sin(a+0.4));ctx.closePath();ctx.fill();};
+  const cx=w/2;
+  // Party (top center), Frame (bottom left), Policy (bottom right)
+  arrow(cx-150,118,cx+120,118,"#0F2A43");                       // frame -> policy (the causal path)
+  arrow(cx-10,55,cx+120,103,"#0F2A43");                         // party -> policy
+  if(cut){ // randomization removes party->frame
+    ctx.strokeStyle="#c9c3b6";ctx.setLineDash([5,4]);ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(cx-30,55);ctx.lineTo(cx-150,103);ctx.stroke();ctx.setLineDash([]);
+    // scissors mark
+    ctx.fillStyle="#b3543a";ctx.font="16px Inter";ctx.textAlign="center";ctx.fillText("✂",(cx-90),72);
+  }else{
+    arrow(cx-30,55,cx-150,103,"#b3543a");                       // party -> frame (confounding)
+  }
+  node(cx-30,40,"Political leaning","#8c4a3f");
+  node(cx-150,118,"Metaphor frame", cut?"#1F7A8C":"#B9822F");
+  node(cx+150,118,"Policy choice","#0F2A43");
+  ctx.fillStyle="#9aa6af";ctx.font="11px Inter";ctx.textAlign="center";ctx.textBaseline="middle";
+  ctx.fillText(cut?"random assignment cuts this link":"confounding",cx-95,(cut?92:78));
+}
+
+/* ---- STEP 1: potential outcomes table ---- */
+const r1=mulberry32(5);
+const people=[];
+const names=["Dana","Marcus","Priya","Tom","Lena","Carlos"];
+for(let i=0;i<names.length;i++){
+  const party=r1()<0.5?"con":"lib";
+  const frame=r1()<0.5?"beast":"virus";
+  const yBeast=r1()<pEnf(party,"beast")?"Enforce":"Reform";
+  const yVirus=r1()<pEnf(party,"virus")?"Enforce":"Reform";
+  people.push({name:names[i],party,frame,yBeast,yVirus});
+}
+let revealed=false;
+function cellHTML(person,which){
+  const val=which==="beast"?person.yBeast:person.yVirus;
+  const observed=person.frame===which;
+  const cls=val==="Enforce"?"enf":"ref";
+  if(observed) return `<td class="obs ${cls}">${val}</td>`;
+  if(revealed) return `<td class="hidden">${val}</td>`;
+  return `<td class="hidden">?</td>`;
+}
+function drawTable(){
+  let h=`<table class="po"><thead><tr><th>Person</th><th>Leaning</th><th>Shown</th>
+    <th>Choice under <span class="tag beast">beast</span></th>
+    <th>Choice under <span class="tag virus">virus</span></th></tr></thead><tbody>`;
+  for(const p of people){
+    h+=`<tr><td>${p.name}</td><td>${p.party==="con"?"Conservative":"Liberal"}</td>
+      <td><span class="tag ${p.frame}">${p.frame}</span></td>${cellHTML(p,"beast")}${cellHTML(p,"virus")}</tr>`;
+  }
+  h+="</tbody></table>";
+  document.getElementById("poTable").innerHTML=h;
+}
+
+/* ---- STEP 2: confounded comparison ---- */
+let skew=0.82;
+function drawConf(){
+  dag(document.getElementById("cDag2"),false);
+  const cv=document.getElementById("cConf");const {ctx,w,h}=setup(cv,300);
+  // beast group: skew share conservative; virus group: skew share liberal
+  const beastCon=skew, beastLib=1-skew, virusLib=skew, virusCon=1-skew;
+  const beastMean=beastCon*pEnf("con","beast")+beastLib*pEnf("lib","beast");
+  const virusMean=virusCon*pEnf("con","virus")+virusLib*pEnf("lib","virus");
+  const naive=beastMean-virusMean;
+  const {px,py}=axes(ctx,w,h,0,1,0,1,{yticks:5,yfmt:pct,ytitle:"% choosing enforcement"});
+  const groups=[{lab:"\"Beast\" group",mean:beastMean,con:beastCon,frame:"beast"},
+                {lab:"\"Virus\" group",mean:virusMean,con:virusCon,frame:"virus"}];
+  const gw=(w-M.l-M.r)/2;
+  groups.forEach((g,i)=>{const cx=M.l+gw*(i+0.5);const bw=gw*0.42;
+    // stacked: conservative part then liberal part of the enforcement bar (illustrative split)
+    const conPart=g.con*pEnf("con",g.frame), libPart=(1-g.con)*pEnf("lib",g.frame);
+    ctx.fillStyle="#8c4a3f";ctx.fillRect(cx-bw/2,py(conPart),bw,py(0)-py(conPart));
+    ctx.fillStyle="#3a6b8c";ctx.fillRect(cx-bw/2,py(conPart+libPart),bw,py(conPart)-py(conPart+libPart));
+    ctx.fillStyle="#0F2A43";ctx.font="600 13px Inter";ctx.textAlign="center";ctx.fillText(pct(g.mean),cx,py(g.mean)-10);
+    ctx.fillStyle="#5a6b78";ctx.font="12px Inter";ctx.fillText(g.lab,cx,h-M.b+14);
+  });
+  // true effect reference: place a dashed bracket showing 18pp above virus mean
+  document.getElementById("skewV").textContent=Math.round(skew*100)+"% vs "+Math.round((1-skew)*100)+"%";
+  document.getElementById("confTake").innerHTML=
+    `Naive difference = <strong>${Math.round(naive*100)} pts</strong>, but the true causal effect is only <strong>+18 pts</strong>. `+
+    (naive>0.22?`The extra ${Math.round((naive-0.18)*100)} pts is politics, not metaphor — the beast group is simply more conservative.`
+              :`With the groups balanced by party, the naive number lands near the truth — but you got there by luck, not design.`);
+}
+
+/* ---- STEP 3: randomization balance ---- */
+let nRand=240, randSeed=3;
+function drawRand(){
+  dag(document.getElementById("cDag3"),true);
+  const cv=document.getElementById("cRand");const {ctx,w,h}=setup(cv,280);
+  const rg=mulberry32(randSeed);
+  let bC=0,bL=0,vC=0,vL=0;
+  for(let i=0;i<nRand;i++){
+    const con=rg()<0.5;                       // party (50/50 population)
+    const beast=rg()<0.5;                     // RANDOM frame, independent of party
+    if(beast){con?bC++:bL++;}else{con?vC++:vL++;}
+  }
+  const nB=bC+bL,nV=vC+vL;
+  const conB=nB?bC/nB:0, conV=nV?vC/nV:0;
+  const {px,py}=axes(ctx,w,h,0,1,0,1,{yticks:5,yfmt:pct,ytitle:"party mix within arm"});
+  const arms=[{lab:"Beast arm",con:conB},{lab:"Virus arm",con:conV}];
+  const gw=(w-M.l-M.r)/2;
+  arms.forEach((a,i)=>{const cx=M.l+gw*(i+0.5);const bw=gw*0.42;
+    ctx.fillStyle="#8c4a3f";ctx.fillRect(cx-bw/2,py(a.con),bw,py(0)-py(a.con));
+    ctx.fillStyle="#3a6b8c";ctx.fillRect(cx-bw/2,py(1),bw,py(a.con)-py(1));
+    ctx.fillStyle="#fff";ctx.font="600 12px Inter";ctx.textAlign="center";
+    ctx.fillText(pct(a.con)+" con",cx,py(a.con/2));ctx.fillText(pct(1-a.con)+" lib",cx,py((a.con+1)/2));
+    ctx.fillStyle="#5a6b78";ctx.fillText(a.lab,cx,h-M.b+14);
+  });
+  // 50% reference
+  ctx.strokeStyle="#b3543a";ctx.setLineDash([5,4]);ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(M.l,py(0.5));ctx.lineTo(w-M.r,py(0.5));ctx.stroke();ctx.setLineDash([]);
+  document.getElementById("nRandV").textContent=nRand;
+  const gap=Math.abs(conB-conV)*100;
+  document.getElementById("randTake").innerHTML=
+    `The beast arm is ${pct(conB)} conservative; the virus arm ${pct(conV)} — a gap of just <strong>${gap.toFixed(0)} pts</strong>. `+
+    (nRand<120?`At this size the coin flip is still a bit lumpy — small samples balance imperfectly.`
+              :`Random assignment balanced party (and everything else, measured or not) across the arms. That's what makes the comparison causal.`);
+}
+
+/* ---- STEP 4: effect + CI ---- */
+let nEff=300;
+function drawEffect(){
+  const cv=document.getElementById("cEffect");const {ctx,w,h}=setup(cv,220);
+  const p1=( pEnf("con","beast")+pEnf("lib","beast") )/2;  // beast arm expected (50/50 party)
+  const p0=( pEnf("con","virus")+pEnf("lib","virus") )/2;  // virus arm
+  const est=p1-p0;                                          // ~0.18
+  const nArm=nEff/2;
+  const se=Math.sqrt(p1*(1-p1)/nArm + p0*(1-p0)/nArm);
+  const ci=1.96*se;
+  // horizontal number line
+  const xmin=-0.05,xmax=0.45;
+  const L=M.l,R=w-M.r,Y=120;
+  const X=v=>L+(v-xmin)/(xmax-xmin)*(R-L);
+  ctx.strokeStyle="#d8d3c8";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(L,Y);ctx.lineTo(R,Y);ctx.stroke();
+  ctx.fillStyle="#9aa6af";ctx.font="11px Inter";ctx.textAlign="center";ctx.textBaseline="top";
+  for(let v=0;v<=0.4;v+=0.1){const xx=X(v);ctx.strokeStyle="#eceae3";ctx.beginPath();ctx.moveTo(xx,Y-6);ctx.lineTo(xx,Y+6);ctx.stroke();ctx.fillStyle="#9aa6af";ctx.fillText(Math.round(v*100)+" pts",xx,Y+12);}
+  // zero (no effect)
+  ctx.strokeStyle="#b3543a";ctx.setLineDash([5,4]);ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(X(0),Y-46);ctx.lineTo(X(0),Y+30);ctx.stroke();ctx.setLineDash([]);
+  ctx.fillStyle="#b3543a";ctx.textBaseline="bottom";ctx.fillText("no effect",X(0),Y-48);
+  // party gap reference
+  ctx.fillStyle="#9aa6af";ctx.beginPath();ctx.arc(X(PARTYGAP),Y,4,0,7);ctx.fill();
+  ctx.fillText("partisan gap",X(PARTYGAP),Y-10);
+  // CI bar
+  ctx.strokeStyle="#1F7A8C";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(X(est-ci),Y);ctx.lineTo(X(est+ci),Y);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(X(est-ci),Y-8);ctx.lineTo(X(est-ci),Y+8);ctx.moveTo(X(est+ci),Y-8);ctx.lineTo(X(est+ci),Y+8);ctx.stroke();
+  // point estimate
+  ctx.fillStyle="#0F2A43";ctx.beginPath();ctx.arc(X(est),Y,7,0,7);ctx.fill();ctx.strokeStyle="#fff";ctx.lineWidth=2;ctx.stroke();
+  const sig=(est-ci)>0;
+  document.getElementById("nEffV").textContent=nEff;
+  document.getElementById("effHeadline").innerHTML=
+    `Reading "beast" instead of "virus" raised enforcement support by <b>+${Math.round(est*100)} pts</b> (95% CI ${Math.round((est-ci)*100)}–${Math.round((est+ci)*100)} pts).`;
+  document.getElementById("effTake").innerHTML=
+    (sig?`The interval clears zero, so the effect is statistically distinguishable from "no effect" at this sample size. `
+        :`At n = ${nEff} the interval still touches zero — too few people to be sure. Grow the sample and watch it separate from the red line. `)+
+    `Notice the metaphor effect is real and sizable, yet smaller than the raw partisan gap (gray) — and, unlike that gap, we know it's <strong>caused</strong> by the wording, because randomization held politics constant.`;
+}
+
+/* ---- wiring ---- */
+document.getElementById("reveal").addEventListener("click",e=>{revealed=!revealed;e.target.textContent=revealed?"Hide the counterfactual":"Reveal the hidden counterfactual";drawTable();});
+document.getElementById("skew").addEventListener("input",e=>{skew=+e.target.value;drawConf();});
+document.getElementById("nRand").addEventListener("input",e=>{nRand=+e.target.value;drawRand();});
+document.getElementById("reshuffle").addEventListener("click",()=>{randSeed=(randSeed*7+13)%100000;drawRand();});
+document.getElementById("nEff").addEventListener("input",e=>{nEff=+e.target.value;drawEffect();});
+
+function drawAll(){drawTable();drawConf();drawRand();drawEffect();}
+window.addEventListener("resize",()=>{clearTimeout(window._rt);window._rt=setTimeout(drawAll,120);});
+drawAll();
+</script>
+</body>
+</html>

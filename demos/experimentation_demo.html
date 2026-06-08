@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Run an A/B test that won't fool you — Thibodeau Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0F2A43; --teal:#1F7A8C; --accent:#B9822F; --bg:#FBFAF7;
+  --ink:#1c2733; --muted:#5a6b78; --line:#e6e1d8; --card:#ffffff;
+  --good:#1F7A8C; --bad:#b3543a; --warn:#B9822F;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 1.4rem}
+header.hero{padding:4rem 0 2.4rem;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin:0 0 1rem}
+h1{font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:2.5rem;line-height:1.14;color:var(--navy);margin:0 0 1rem;letter-spacing:.005em}
+.lede{font-size:1.12rem;color:var(--muted);max-width:43rem;margin:0}
+.wordmark{font-family:"Newsreader",serif;font-weight:600;color:var(--navy);font-size:1.05rem;margin:0 0 2rem}
+.step{padding:3rem 0;border-bottom:1px solid var(--line)}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:2rem;height:2rem;border-radius:999px;background:var(--navy);color:#fff;font-weight:600;font-size:.95rem;font-family:"Newsreader",serif;margin-right:.7rem;flex:none}
+.step h2{font-family:"Newsreader",serif;font-weight:600;font-size:1.6rem;color:var(--navy);margin:0;display:flex;align-items:center}
+.step .sub{color:var(--muted);margin:.6rem 0 1.4rem;max-width:45rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.4rem 1.4rem 1.2rem;box-shadow:0 1px 2px rgba(15,42,67,.04)}
+.controls{display:flex;flex-wrap:wrap;gap:1.4rem 2rem;margin:.2rem 0 1.2rem;align-items:flex-end}
+.control{display:flex;flex-direction:column;gap:.3rem;min-width:200px;flex:1}
+.control label{font-size:.82rem;font-weight:600;color:var(--navy);display:flex;justify-content:space-between;gap:1rem}
+.control label .val{color:var(--teal);font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;height:5px;border-radius:5px;background:var(--line);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--teal);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--teal);cursor:pointer;border:2px solid #fff}
+.canvas-wrap{position:relative;width:100%}
+canvas{width:100%;display:block}
+.legend{display:flex;flex-wrap:wrap;gap:1.1rem;margin-top:.8rem;font-size:.82rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:.4rem}
+.swatch{width:12px;height:12px;border-radius:3px;flex:none}
+.takeaway{margin-top:1.3rem;padding:.9rem 1.1rem;background:#f4f1ea;border-left:4px solid var(--accent);border-radius:0 8px 8px 0;font-size:.95rem}
+.takeaway strong{color:var(--navy)}
+.headline-stat{font-family:"Newsreader",serif;font-size:1.45rem;color:var(--navy);margin:.2rem 0 1rem}
+.headline-stat b{color:var(--teal)}
+.statgrid{display:flex;flex-wrap:wrap;gap:1rem;margin:.4rem 0 1rem}
+.stat{flex:1;min-width:150px;background:#f7f5ef;border:1px solid var(--line);border-radius:10px;padding:.8rem 1rem}
+.stat .k{font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.stat .v{font-family:"Newsreader",serif;font-size:1.7rem;color:var(--navy);line-height:1.2;margin-top:.15rem}
+.verdict{display:inline-block;font-weight:700;padding:.5rem .9rem;border-radius:8px;font-size:.95rem;margin-top:.2rem}
+.verdict.ship{background:#e3eef0;color:#155e6b}
+.verdict.wait{background:#f3e7d6;color:#8a5a16}
+.verdict.stop{background:#f6e0da;color:#8f3a2a}
+footer{padding:2.6rem 0 4rem;color:var(--muted);font-size:.9rem}
+footer a{color:var(--teal)}
+@media(max-width:640px){h1{font-size:1.85rem}.step h2{font-size:1.3rem}.control{min-width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav style="padding:1.1rem 0 0"><a href="index.html" style="color:#1F7A8C;text-decoration:none;font-weight:600;font-size:.85rem">← Thibodeau Consulting · all demos</a></nav>
+  <header class="hero">
+    <p class="wordmark">Thibodeau Consulting</p>
+    <p class="eyebrow">Interactive demo · Causal inference &amp; experimentation</p>
+    <h1>Run an A/B test that won't fool you</h1>
+    <p class="lede">Your team ships a new onboarding flow and the test shows <em>+12% signups on day three</em>. Do you roll it out? Most product A/B tests are read wrong — stopped too early, under-powered, or shipped on a "win" too small to matter. Here's the discipline that turns a test into a decision you can defend, on a flow with a 12% baseline signup rate.</p>
+  </header>
+
+  <!-- STEP 1 -->
+  <section class="step" id="design">
+    <h2><span class="step-num">1</span>Design it first — how long must it run?</h2>
+    <p class="sub">You can't decide duration after you peek; you commit before. The smaller the effect you want to catch, the more traffic you need — and it grows with the <em>square</em> of how small. Pick the minimum lift worth shipping and your traffic; the test tells you the sample size and runtime (80% power, 5% false-positive rate).</p>
+    <div class="card">
+      <div class="controls">
+        <div class="control">
+          <label for="mde">Smallest lift worth detecting <span class="val" id="mdeV"></span></label>
+          <input type="range" id="mde" min="2" max="40" step="1" value="10">
+        </div>
+        <div class="control">
+          <label for="traffic">Visitors per day (both arms) <span class="val" id="trafficV"></span></label>
+          <input type="range" id="traffic" min="200" max="8000" step="100" value="1600">
+        </div>
+      </div>
+      <div class="statgrid">
+        <div class="stat"><div class="k">Sample / arm</div><div class="v" id="nArmOut">—</div></div>
+        <div class="stat"><div class="k">Total visitors</div><div class="v" id="nTotOut">—</div></div>
+        <div class="stat"><div class="k">Run time</div><div class="v" id="daysOut">—</div></div>
+      </div>
+      <div class="canvas-wrap"><canvas id="cPower" height="280"></canvas></div>
+      <div class="legend"><span><span class="swatch" style="background:var(--teal)"></span>Sample/arm needed vs. effect size</span><span>● your current target</span></div>
+      <div class="takeaway" id="designTake"></div>
+    </div>
+  </section>
+
+  <!-- STEP 2 -->
+  <section class="step" id="peeking">
+    <h2><span class="step-num">2</span>Don't peek — early "significance" is mostly noise</h2>
+    <p class="sub">Here's the trap that ruins more product tests than any other. These are <strong>A/A tests</strong> — both arms are identical, so the true effect is <em>zero</em>. Yet if you check every day and ship the moment p &lt; 0.05, you'll declare a fake winner shockingly often. Each line is one A/A test's running p-value; the more times you look, the more chances to get unlucky.</p>
+    <div class="card">
+      <div class="controls">
+        <div class="control">
+          <label for="peeks">Times you check the results <span class="val" id="peeksV"></span></label>
+          <input type="range" id="peeks" min="1" max="28" step="1" value="14">
+        </div>
+      </div>
+      <p class="headline-stat" id="peekHeadline"></p>
+      <div class="canvas-wrap"><canvas id="cPeek" height="300"></canvas></div>
+      <div class="legend"><span>— gray lines = running p-value of A/A tests (true effect = 0)</span><span><span class="swatch" style="background:var(--bad)"></span>p = 0.05 "significance" line</span></div>
+      <div class="takeaway" id="peekTake"></div>
+    </div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section class="step" id="read">
+    <h2><span class="step-num">3</span>Read it right — "significant" isn't "worth shipping"</h2>
+    <p class="sub">A test answers two different questions. <em>Is the effect real?</em> (does the interval clear zero?) and <em>is it big enough to matter?</em> (does it clear your ship bar?). A tiny, certain win and a huge, uncertain one are different decisions. Move the true effect and the sample size and watch the verdict change.</p>
+    <div class="card">
+      <div class="controls">
+        <div class="control">
+          <label for="trueLift">True lift <span class="val" id="trueLiftV"></span></label>
+          <input type="range" id="trueLift" min="0" max="30" step="1" value="9">
+        </div>
+        <div class="control">
+          <label for="nRead">Sample / arm <span class="val" id="nReadV"></span></label>
+          <input type="range" id="nRead" min="500" max="40000" step="500" value="8000">
+        </div>
+      </div>
+      <div class="canvas-wrap"><canvas id="cRead" height="210"></canvas></div>
+      <div class="legend"><span><span class="swatch" style="background:var(--bad)"></span>no effect</span><span><span class="swatch" style="background:#9aa6af"></span>ship bar (+5% rel)</span><span><span class="swatch" style="background:var(--navy)"></span>measured lift ± 95% CI</span></div>
+      <div class="takeaway" id="readTake"></div>
+    </div>
+  </section>
+
+  <!-- STEP 4 -->
+  <section class="step" id="decide">
+    <h2><span class="step-num">4</span>From result to decision — size the bet</h2>
+    <p class="sub">The last mile is business, not statistics: translate the lift (and its uncertainty) into the outcome leadership cares about, then make the call. Same test result as above; set how much traffic hits this flow in a year.</p>
+    <div class="card">
+      <div class="controls">
+        <div class="control">
+          <label for="annual">Annual visitors to this flow <span class="val" id="annualV"></span></label>
+          <input type="range" id="annual" min="100000" max="5000000" step="100000" value="1200000">
+        </div>
+      </div>
+      <p class="headline-stat" id="decHeadline"></p>
+      <div id="decVerdict"></div>
+      <div class="canvas-wrap"><canvas id="cDecide" height="180"></canvas></div>
+      <div class="legend"><span><span class="swatch" style="background:var(--teal)"></span>projected extra signups / year (95% CI)</span></div>
+      <div class="takeaway" id="decTake"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Same rigor, whether it's an onboarding flow, a pricing change, or a marketing creative: power the test, pre-commit the stopping rule, separate "real" from "worth it," and size the bet with its uncertainty. Built by <strong>Paul Thibodeau</strong> · <a href="https://calendly.com/paul-thibodeau/30min">Thibodeau Consulting</a> — measurement &amp; experimentation.</p>
+  </footer>
+</div>
+
+<script>
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+/* stats */
+function erf(x){const t=1/(1+0.3275911*Math.abs(x));
+  const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);
+  return x>=0?y:-y;}
+const SQRT2=Math.SQRT2;
+function normcdf(z){return 0.5*(1+erf(z/SQRT2));}
+function twoSidedP(z){return 2*(1-normcdf(Math.abs(z)));}
+const ZA=1.959964, ZB=0.841621;           // alpha .05 two-sided, power .80
+const P0=0.12;                              // baseline signup rate
+function nPerArm(p0,rel){const p1=p0*(1+rel);const d=p1-p0;if(d<=0)return Infinity;
+  return Math.ceil((ZA+ZB)**2*(p0*(1-p0)+p1*(1-p1))/(d*d));}
+
+/* canvas helpers */
+function setup(cv,cssH){const dpr=window.devicePixelRatio||1;const w=cv.clientWidth||cv.parentElement.clientWidth;
+  cv.width=w*dpr;cv.height=cssH*dpr;cv.style.height=cssH+"px";const ctx=cv.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);return {ctx,w,h:cssH};}
+const M={l:62,r:18,t:18,b:36};
+function axes(ctx,w,h,xmin,xmax,ymin,ymax,opt={}){
+  const px=x=>M.l+(x-xmin)/(xmax-xmin)*(w-M.l-M.r);
+  const py=y=>h-M.b-(y-ymin)/(ymax-ymin)*(h-M.t-M.b);
+  ctx.strokeStyle="#eceae3";ctx.lineWidth=1;ctx.fillStyle="#9aa6af";ctx.font="11px Inter, sans-serif";ctx.textBaseline="middle";
+  const yt=opt.yticks||5;
+  for(let i=0;i<=yt;i++){const yv=ymin+(ymax-ymin)*i/yt;const Y=py(yv);
+    ctx.beginPath();ctx.moveTo(M.l,Y);ctx.lineTo(w-M.r,Y);ctx.stroke();
+    ctx.textAlign="right";ctx.fillText(opt.yfmt?opt.yfmt(yv):Math.round(yv),M.l-8,Y);}
+  ctx.strokeStyle="#d8d3c8";ctx.beginPath();ctx.moveTo(M.l,py(ymin));ctx.lineTo(w-M.r,py(ymin));ctx.stroke();
+  if(opt.xticks){ctx.fillStyle="#9aa6af";ctx.textAlign="center";opt.xticks.forEach(([xv,lab])=>ctx.fillText(lab,px(xv),h-M.b+14));}
+  if(opt.xtitle){ctx.fillStyle="#5a6b78";ctx.textAlign="center";ctx.fillText(opt.xtitle,(M.l+w-M.r)/2,h-3);}
+  if(opt.ytitle){ctx.save();ctx.translate(14,(M.t+h-M.b)/2);ctx.rotate(-Math.PI/2);ctx.fillStyle="#5a6b78";ctx.textAlign="center";ctx.fillText(opt.ytitle,0,0);ctx.restore();}
+  return {px,py};
+}
+const kfmt=v=>v>=1000?(v/1000).toFixed(v>=10000?0:1)+"k":Math.round(v);
+
+/* ---- STEP 1: power / sample size ---- */
+let mde=0.10, traffic=1600;
+function drawPower(){
+  const cv=document.getElementById("cPower");const {ctx,w,h}=setup(cv,280);
+  const xmin=0.02,xmax=0.40;
+  const ymax=nPerArm(P0,xmin)*1.05;          // biggest n (smallest mde) sets scale
+  const {px,py}=axes(ctx,w,h,xmin,xmax,0,ymax,{yticks:5,yfmt:kfmt,
+    xticks:[[0.05,"5%"],[0.1,"10%"],[0.2,"20%"],[0.3,"30%"],[0.4,"40%"]],xtitle:"relative lift you want to detect",ytitle:"sample / arm"});
+  ctx.strokeStyle="#1F7A8C";ctx.lineWidth=2.6;ctx.beginPath();
+  for(let i=0;i<=160;i++){const x=xmin+(xmax-xmin)*i/160;const yv=Math.min(nPerArm(P0,x),ymax);
+    const X=px(x),Y=py(yv);i?ctx.lineTo(X,Y):ctx.moveTo(X,Y);}ctx.stroke();
+  // current point
+  const n=nPerArm(P0,mde);
+  ctx.strokeStyle="#d8d3c8";ctx.setLineDash([4,4]);ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(px(mde),py(0));ctx.lineTo(px(mde),py(Math.min(n,ymax)));ctx.lineTo(M.l,py(Math.min(n,ymax)));ctx.stroke();ctx.setLineDash([]);
+  ctx.fillStyle="#0F2A43";ctx.beginPath();ctx.arc(px(mde),py(Math.min(n,ymax)),6,0,7);ctx.fill();ctx.strokeStyle="#fff";ctx.lineWidth=2;ctx.stroke();
+  const days=Math.ceil(2*n/traffic);
+  document.getElementById("mdeV").textContent="+"+Math.round(mde*100)+"% ("+(P0*mde*100).toFixed(1)+" pts)";
+  document.getElementById("trafficV").textContent=kfmt(traffic)+"/day";
+  document.getElementById("nArmOut").textContent=kfmt(n);
+  document.getElementById("nTotOut").textContent=kfmt(2*n);
+  document.getElementById("daysOut").textContent=days+(days===1?" day":" days");
+  const half=nPerArm(P0,mde/2);
+  document.getElementById("designTake").innerHTML=
+    `To catch a <strong>+${Math.round(mde*100)}%</strong> lift you need <strong>${kfmt(n)}/arm</strong> (~${days} days at this traffic). `+
+    `Halving the target to +${Math.round(mde*50)}% would need <strong>${kfmt(half)}/arm</strong> — about ${(half/n).toFixed(1)}× as much. Chasing tiny effects is expensive; decide what's worth detecting before you start.`;
+}
+
+/* ---- STEP 2: peeking / A/A ---- */
+let peeks=14;
+const HORIZON=28, PERDAY=350, NTRAJ=300;
+let pmatrix=null, displayPaths=null;
+function buildAA(){
+  pmatrix=[];                                  // [traj][day] = p-value
+  for(let tr=0;tr<NTRAJ;tr++){
+    const rg=mulberry32(1000+tr*97);
+    let sA=0,sB=0,nA=0,nB=0;const row=[];
+    for(let d=0;d<HORIZON;d++){
+      for(let i=0;i<PERDAY;i++){if(rg()<P0)sA++;nA++;}
+      for(let i=0;i<PERDAY;i++){if(rg()<P0)sB++;nB++;}
+      const pa=sA/nA,pb=sB/nB,pp=(sA+sB)/(nA+nB);
+      const se=Math.sqrt(pp*(1-pp)*(1/nA+1/nB))||1e-9;
+      row.push(twoSidedP((pa-pb)/se));
+    }
+    pmatrix.push(row);
+  }
+  displayPaths=[1,2,3,4,5,6].map(i=>pmatrix[i*40]);
+}
+function peekDays(k){const days=[];for(let i=1;i<=k;i++)days.push(Math.min(HORIZON-1,Math.round(i*HORIZON/k)-1));return [...new Set(days)];}
+function fpRate(k){const days=peekDays(k);let hit=0;
+  for(const row of pmatrix){if(days.some(d=>row[d]<0.05))hit++;}return hit/NTRAJ;}
+function drawPeek(){
+  if(!pmatrix)buildAA();
+  const cv=document.getElementById("cPeek");const {ctx,w,h}=setup(cv,300);
+  const {px,py}=axes(ctx,w,h,1,HORIZON,0,1,{yticks:5,yfmt:v=>v.toFixed(2),
+    xticks:[[1,"day 1"],[7,"7"],[14,"14"],[21,"21"],[28,"28"]],xtitle:"day of test",ytitle:"p-value"});
+  // 0.05 line
+  ctx.strokeStyle="#b3543a";ctx.setLineDash([5,4]);ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(M.l,py(0.05));ctx.lineTo(w-M.r,py(0.05));ctx.stroke();ctx.setLineDash([]);
+  // peek day markers
+  const days=peekDays(peeks);
+  ctx.strokeStyle="rgba(31,122,140,.18)";ctx.lineWidth=1;
+  days.forEach(d=>{ctx.beginPath();ctx.moveTo(px(d+1),M.t);ctx.lineTo(px(d+1),h-M.b);ctx.stroke();});
+  // sample paths
+  displayPaths.forEach((row,idx)=>{
+    const crosses=days.some(d=>row[d]<0.05);
+    ctx.strokeStyle=crosses?"rgba(179,84,58,.65)":"rgba(90,107,120,.5)";ctx.lineWidth=crosses?1.8:1.3;
+    ctx.beginPath();row.forEach((p,d)=>{const X=px(d+1),Y=py(p);d?ctx.lineTo(X,Y):ctx.moveTo(X,Y);});ctx.stroke();
+  });
+  const fp=fpRate(peeks), fp1=fpRate(1);
+  document.getElementById("peeksV").textContent=peeks+(peeks===1?" (only at the end)":"× over the run");
+  document.getElementById("peekHeadline").innerHTML=
+    `Checking <b>${peeks}×</b> turns a 5% false-alarm rate into <b>${Math.round(fp*100)}%</b>.`;
+  document.getElementById("peekTake").innerHTML=
+    `With ${peeks} look${peeks>1?"s":""}, <strong>${Math.round(fp*100)}%</strong> of these zero-effect tests cross "significance" at some point — vs the <strong>${Math.round(fp1*100)}%</strong> you signed up for by checking once at the planned end. `+
+    `The fix isn't "never look" — it's pre-committing the sample size (Step 1) or using a sequential test designed for peeking.`;
+}
+
+/* ---- shared result state for steps 3 & 4 ---- */
+let trueLift=0.09, nRead=8000, annual=1200000;
+const SHIP_REL=0.05;                            // practical ship bar: +5% relative
+function estCI(rel,n){
+  const p1=P0*(1+rel);const est=p1-P0;          // pp
+  const se=Math.sqrt(P0*(1-P0)/n + p1*(1-p1)/n);
+  return {est,lo:est-1.959964*se,hi:est+1.959964*se};
+}
+function verdict(rel,n){
+  const {est,lo}=estCI(rel,n);const shipPP=P0*SHIP_REL;
+  if(lo<=0) return {key:"wait",label:"⏳ Inconclusive — keep running"};
+  if(est<shipPP) return {key:"stop",label:"✕ Real, but too small to ship"};
+  return {key:"ship",label:"✓ Ship it"};
+}
+
+/* ---- STEP 3: significance vs practical ---- */
+function drawRead(){
+  const cv=document.getElementById("cRead");const {ctx,w,h}=setup(cv,210);
+  const {est,lo,hi}=estCI(trueLift,nRead);const shipPP=P0*SHIP_REL;
+  const xmin=-0.005,xmax=Math.max(0.05,hi*1.25,shipPP*1.4);
+  const L=M.l,R=w-M.r,Y=110;const X=v=>L+(v-xmin)/(xmax-xmin)*(R-L);
+  ctx.strokeStyle="#d8d3c8";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(L,Y);ctx.lineTo(R,Y);ctx.stroke();
+  ctx.fillStyle="#9aa6af";ctx.font="11px Inter";ctx.textAlign="center";ctx.textBaseline="top";
+  for(let v=0;v<=xmax;v+=0.01){const xx=X(v);ctx.strokeStyle="#eceae3";ctx.beginPath();ctx.moveTo(xx,Y-6);ctx.lineTo(xx,Y+6);ctx.stroke();ctx.fillStyle="#9aa6af";ctx.fillText((v*100).toFixed(0)+" pts",xx,Y+12);}
+  // zero
+  ctx.strokeStyle="#b3543a";ctx.setLineDash([5,4]);ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(X(0),Y-50);ctx.lineTo(X(0),Y+28);ctx.stroke();
+  // ship bar
+  ctx.strokeStyle="#9aa6af";ctx.beginPath();ctx.moveTo(X(shipPP),Y-50);ctx.lineTo(X(shipPP),Y+28);ctx.stroke();ctx.setLineDash([]);
+  ctx.fillStyle="#b3543a";ctx.textBaseline="bottom";ctx.fillText("no effect",X(0),Y-52);
+  ctx.fillStyle="#8a8475";ctx.fillText("ship bar",X(shipPP),Y-52);
+  // CI
+  ctx.strokeStyle="#1F7A8C";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(X(Math.max(lo,xmin)),Y);ctx.lineTo(X(hi),Y);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(X(Math.max(lo,xmin)),Y-8);ctx.lineTo(X(Math.max(lo,xmin)),Y+8);ctx.moveTo(X(hi),Y-8);ctx.lineTo(X(hi),Y+8);ctx.stroke();
+  ctx.fillStyle="#0F2A43";ctx.beginPath();ctx.arc(X(est),Y,7,0,7);ctx.fill();ctx.strokeStyle="#fff";ctx.lineWidth=2;ctx.stroke();
+  const v=verdict(trueLift,nRead);
+  document.getElementById("trueLiftV").textContent="+"+Math.round(trueLift*100)+"%";
+  document.getElementById("nReadV").textContent=kfmt(nRead);
+  document.getElementById("readTake").innerHTML=
+    `<span class="verdict ${v.key}">${v.label}</span><br><br>`+
+    `Measured lift ≈ <strong>${(est*100).toFixed(1)} pts</strong> (95% CI ${(lo*100).toFixed(1)}–${(hi*100).toFixed(1)}). `+
+    (v.key==="wait"?`The interval still touches zero — you can't rule out "no effect." Bigger sample, or accept the uncertainty.`
+    :v.key==="stop"?`It clears zero (real) but sits below the ship bar — shipping costs effort for a win too small to matter.`
+    :`It clears both zero and the ship bar — a real effect big enough to act on.`);
+}
+
+/* ---- STEP 4: decision / impact ---- */
+function drawDecide(){
+  const cv=document.getElementById("cDecide");const {ctx,w,h}=setup(cv,180);
+  const {est,lo,hi}=estCI(trueLift,nRead);
+  const addMid=est*annual, addLo=lo*annual, addHi=hi*annual;
+  const xmin=Math.min(0,addLo*1.15),xmax=addHi*1.15;
+  const L=M.l,R=w-M.r,Y=92;const X=v=>L+(v-xmin)/(xmax-xmin)*(R-L);
+  ctx.strokeStyle="#d8d3c8";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(L,Y);ctx.lineTo(R,Y);ctx.stroke();
+  ctx.fillStyle="#9aa6af";ctx.font="11px Inter";ctx.textAlign="center";ctx.textBaseline="top";
+  for(let i=0;i<=4;i++){const v=xmin+(xmax-xmin)*i/4;const xx=X(v);ctx.fillText(kfmt(v),xx,Y+12);}
+  // zero
+  ctx.strokeStyle="#b3543a";ctx.setLineDash([5,4]);ctx.lineWidth=1.3;ctx.beginPath();ctx.moveTo(X(0),Y-40);ctx.lineTo(X(0),Y+26);ctx.stroke();ctx.setLineDash([]);
+  // CI band
+  ctx.fillStyle="rgba(31,122,140,.18)";ctx.fillRect(X(addLo),Y-22,X(addHi)-X(addLo),44);
+  ctx.strokeStyle="#1F7A8C";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(X(addLo),Y);ctx.lineTo(X(addHi),Y);ctx.stroke();
+  ctx.fillStyle="#0F2A43";ctx.beginPath();ctx.arc(X(addMid),Y,7,0,7);ctx.fill();ctx.strokeStyle="#fff";ctx.lineWidth=2;ctx.stroke();
+  const v=verdict(trueLift,nRead);
+  document.getElementById("annualV").textContent=kfmt(annual);
+  document.getElementById("decHeadline").innerHTML=
+    `Projected impact: <b>${kfmt(Math.round(addMid))}</b> extra signups/year (95% CI ${kfmt(Math.round(addLo))}–${kfmt(Math.round(addHi))}).`;
+  document.getElementById("decVerdict").innerHTML=`<span class="verdict ${v.key}">${v.label}</span>`;
+  document.getElementById("decTake").innerHTML=
+    (v.key==="ship"?`A defensible bet: even the pessimistic end of the interval (${kfmt(Math.round(addLo))}/yr) is clearly positive. Ship, and keep monitoring.`
+    :v.key==="stop"?`Statistically real, but the upside is modest — weigh it against the engineering and risk cost before committing.`
+    :`The interval spans zero, so the annual impact could be nothing. Don't bet roadmap on it yet — extend the test or move on.`)+
+    ` This is the translation that gets experimentation taken seriously: a number, an interval, and a recommendation.`;
+}
+
+/* wiring */
+const $=id=>document.getElementById(id);
+$("mde").addEventListener("input",e=>{mde=+e.target.value/100;drawPower();});
+$("traffic").addEventListener("input",e=>{traffic=+e.target.value;drawPower();});
+$("peeks").addEventListener("input",e=>{peeks=+e.target.value;drawPeek();});
+$("trueLift").addEventListener("input",e=>{trueLift=+e.target.value/100;drawRead();drawDecide();});
+$("nRead").addEventListener("input",e=>{nRead=+e.target.value;drawRead();drawDecide();});
+$("annual").addEventListener("input",e=>{annual=+e.target.value;drawDecide();});
+function drawAll(){drawPower();drawPeek();drawRead();drawDecide();}
+window.addEventListener("resize",()=>{clearTimeout(window._rt);window._rt=setTimeout(drawAll,120);});
+drawAll();
+</script>
+</body>
+</html>

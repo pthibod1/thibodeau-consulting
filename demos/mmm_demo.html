@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How a Marketing-Mix Model Works — Thibodeau Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0F2A43; --teal:#1F7A8C; --accent:#B9822F; --bg:#FBFAF7;
+  --ink:#1c2733; --muted:#5a6b78; --line:#e6e1d8; --card:#ffffff;
+  --tv:#1F7A8C; --search:#B9822F; --social:#0F2A43; --baseline:#c2bcae;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 1.4rem}
+header.hero{padding:4rem 0 2.4rem;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin:0 0 1rem}
+h1{font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:2.6rem;line-height:1.12;color:var(--navy);margin:0 0 1rem;letter-spacing:.005em}
+.lede{font-size:1.12rem;color:var(--muted);max-width:42rem;margin:0}
+.wordmark{font-family:"Newsreader",serif;font-weight:600;color:var(--navy);font-size:1.05rem;margin:0 0 2rem}
+.step{padding:3rem 0;border-bottom:1px solid var(--line)}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:2rem;height:2rem;border-radius:999px;background:var(--navy);color:#fff;font-weight:600;font-size:.95rem;font-family:"Newsreader",serif;margin-right:.7rem;flex:none}
+.step h2{font-family:"Newsreader",serif;font-weight:600;font-size:1.7rem;color:var(--navy);margin:0;display:flex;align-items:center}
+.step .sub{color:var(--muted);margin:.6rem 0 1.4rem;max-width:44rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.4rem 1.4rem 1.2rem;box-shadow:0 1px 2px rgba(15,42,67,.04)}
+.controls{display:flex;flex-wrap:wrap;gap:1.4rem 2rem;margin:.2rem 0 1.2rem;align-items:flex-end}
+.control{display:flex;flex-direction:column;gap:.3rem;min-width:200px;flex:1}
+.control label{font-size:.82rem;font-weight:600;color:var(--navy);display:flex;justify-content:space-between;gap:1rem}
+.control label .val{color:var(--teal);font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;height:5px;border-radius:5px;background:var(--line);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--teal);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--teal);cursor:pointer;border:2px solid #fff}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{border:none;background:#fff;padding:.45rem .85rem;font:inherit;font-size:.85rem;font-weight:500;color:var(--muted);cursor:pointer}
+.seg button.active{background:var(--navy);color:#fff}
+.canvas-wrap{position:relative;width:100%}
+canvas{width:100%;display:block}
+.legend{display:flex;flex-wrap:wrap;gap:1.1rem;margin-top:.8rem;font-size:.82rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:.4rem}
+.swatch{width:12px;height:12px;border-radius:3px;flex:none}
+.takeaway{margin-top:1.3rem;padding:.9rem 1.1rem;background:#f4f1ea;border-left:4px solid var(--accent);border-radius:0 8px 8px 0;font-size:.95rem}
+.takeaway strong{color:var(--navy)}
+.headline-stat{font-family:"Newsreader",serif;font-size:1.5rem;color:var(--navy);margin:.2rem 0}
+.headline-stat b{color:var(--teal)}
+.eq{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:.86rem;background:#f0ece3;padding:.15em .45em;border-radius:5px;color:var(--navy);white-space:nowrap}
+footer{padding:2.6rem 0 4rem;color:var(--muted);font-size:.9rem}
+footer a{color:var(--teal)}
+@media(max-width:640px){h1{font-size:2rem}.step h2{font-size:1.4rem}.control{min-width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav style="padding:1.1rem 0 0"><a href="index.html" style="color:#1F7A8C;text-decoration:none;font-weight:600;font-size:.85rem">← Thibodeau Consulting · all demos</a></nav>
+  <header class="hero">
+    <p class="wordmark">Thibodeau Consulting</p>
+    <p class="eyebrow">Interactive demo</p>
+    <h1>What a marketing-mix model actually does</h1>
+    <p class="lede">Marketing-mix modeling (MMM) explains your sales using your spend — privacy-durable, no cookies, no user tracking. It rests on four ideas. Play with each one below; the data comes from a known "true" model, so you can watch the method recover the answer.</p>
+  </header>
+
+  <!-- STEP 1 — ADSTOCK -->
+  <section class="step" id="adstock">
+    <h2><span class="step-num">1</span>Adstock — advertising keeps working after you stop paying</h2>
+    <p class="sub">A burst of spend doesn't all convert the week you pay for it. Awareness lingers and decays. Adstock smears each week's spend forward: <span class="eq">aₜ = xₜ + λ·aₜ₋₁</span>. Slide the carryover λ and watch the bars (raw spend) turn into the curve (effective, remembered media).</p>
+    <div class="card">
+      <div class="controls">
+        <div class="control" style="max-width:340px">
+          <label for="adChan">Channel</label>
+          <div class="seg" id="adChan">
+            <button data-ch="TV" class="active">TV</button>
+            <button data-ch="Search">Search</button>
+            <button data-ch="Social">Social</button>
+          </div>
+        </div>
+        <div class="control">
+          <label for="adLambda">Carryover λ <span class="val" id="adLambdaV">0.60</span></label>
+          <input type="range" id="adLambda" min="0" max="0.9" step="0.01" value="0.6">
+        </div>
+      </div>
+      <div class="canvas-wrap"><canvas id="cAdstock" height="320"></canvas></div>
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--line)"></span>Weekly spend (what you paid)</span>
+        <span><span class="swatch" style="background:var(--teal)"></span>Adstocked media (what's still working)</span>
+      </div>
+      <div class="takeaway" id="adTake"></div>
+    </div>
+  </section>
+
+  <!-- STEP 2 — SATURATION -->
+  <section class="step" id="saturation">
+    <h2><span class="step-num">2</span>Diminishing returns — the 10th impression is worth less than the 1st</h2>
+    <p class="sub">Doubling spend never doubles sales. Each channel has a response curve that bends over as it saturates (a Hill curve: <span class="eq">f(a) = aᵃ / (aᵃ + κᵃ)</span>). The half-saturation point κ is where you've "used up" half the channel's potential. The dot marks where this channel currently operates.</p>
+    <div class="card">
+      <div class="controls">
+        <div class="control" style="max-width:340px">
+          <label>Channel</label>
+          <div class="seg" id="satChan">
+            <button data-ch="TV" class="active">TV</button>
+            <button data-ch="Search">Search</button>
+            <button data-ch="Social">Social</button>
+          </div>
+        </div>
+        <div class="control">
+          <label for="satK">Half-saturation κ <span class="val" id="satKV"></span></label>
+          <input type="range" id="satK" min="10" max="120" step="1" value="40">
+        </div>
+      </div>
+      <div class="canvas-wrap"><canvas id="cSat" height="320"></canvas></div>
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--teal)"></span>Response curve (sales lift per $)</span>
+        <span><span class="swatch" style="background:var(--navy)"></span>Current operating point</span>
+      </div>
+      <div class="takeaway" id="satTake"></div>
+    </div>
+  </section>
+
+  <!-- STEP 3 — DECOMPOSITION -->
+  <section class="step" id="decomp">
+    <h2><span class="step-num">3</span>Decomposition — splitting sales into baseline + each channel</h2>
+    <p class="sub">Put adstock and saturation together for every channel, add a baseline (what you'd sell with no marketing), and you can decompose observed sales into its drivers: <span class="eq">salesₜ = baseₜ + Σ βc·f(adstock(spend))</span>. The shaded bands show each channel's contribution; the dots are actual sales. Toggle channels to see what each is really worth.</p>
+    <div class="card">
+      <div class="controls">
+        <div class="control" style="max-width:520px">
+          <label>Show contributions</label>
+          <div class="seg" id="decToggle">
+            <button data-k="baseline" class="active">Baseline</button>
+            <button data-k="TV" class="active">TV</button>
+            <button data-k="Search" class="active">Search</button>
+            <button data-k="Social" class="active">Social</button>
+          </div>
+        </div>
+      </div>
+      <div class="canvas-wrap"><canvas id="cDecomp" height="360"></canvas></div>
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--baseline)"></span>Baseline</span>
+        <span><span class="swatch" style="background:var(--tv)"></span>TV</span>
+        <span><span class="swatch" style="background:var(--search)"></span>Search</span>
+        <span><span class="swatch" style="background:var(--social)"></span>Social</span>
+        <span><span class="swatch" style="background:#111;border-radius:50%"></span>Actual sales</span>
+      </div>
+      <div class="takeaway" id="decTake"></div>
+    </div>
+  </section>
+
+  <!-- STEP 4 — BUDGET -->
+  <section class="step" id="budget">
+    <h2><span class="step-num">4</span>Budget attribution — where should the next dollar go?</h2>
+    <p class="sub">Because every channel saturates, the best plan equalizes the <em>marginal</em> return across channels — pour into channels with headroom, pull back from saturated ones. Below, the model reallocates your weekly budget to maximize sales. Slide the total budget and compare your current split (left bars) to the model's recommendation (right bars).</p>
+    <div class="card">
+      <div class="controls">
+        <div class="control">
+          <label for="budTotal">Weekly budget <span class="val" id="budTotalV"></span></label>
+          <input type="range" id="budTotal" min="40" max="240" step="2" value="100">
+        </div>
+      </div>
+      <p class="headline-stat" id="budHeadline"></p>
+      <div class="canvas-wrap"><canvas id="cBudget" height="300"></canvas></div>
+      <div class="legend">
+        <span><span class="swatch" style="background:#cfd6db"></span>Current allocation</span>
+        <span><span class="swatch" style="background:var(--teal)"></span>Recommended allocation</span>
+      </div>
+      <div class="takeaway" id="budTake"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>This is a teaching demo on synthetic data — a real engagement fits these curves to <em>your</em> sales and spend, with uncertainty intervals and validation. Built by <strong>Paul Thibodeau</strong> · <a href="https://calendly.com/paul-thibodeau/30min">Thibodeau Consulting</a> — measurement &amp; marketing science.</p>
+  </footer>
+</div>
+
+<script>
+/* ---------- deterministic synthetic data ---------- */
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const rng=mulberry32(7);
+const N=104;                       // weeks (~2 years)
+const CH=["TV","Search","Social"];
+const COL={TV:"#1F7A8C",Search:"#B9822F",Social:"#0F2A43"};
+
+// "true" parameters the demo will recover
+const TRUE={
+  TV:    {decay:0.60, kappa:38, alpha:1.4, beta:120},   // big, high carryover, saturates early
+  Search:{decay:0.10, kappa:70, alpha:1.2, beta:95},    // responsive, lots of headroom
+  Social:{decay:0.40, kappa:34, alpha:1.5, beta:70}
+};
+
+// weekly spend series ($k)
+const spend={TV:[],Search:[],Social:[]};
+for(let t=0;t<N;t++){
+  // TV: flighted bursts
+  const burst = (t%13<3)? 60+rng()*40 : 8+rng()*10;
+  spend.TV.push(burst);
+  // Search: steady with slow growth + small noise
+  spend.Search.push(22 + t*0.12 + (rng()-0.5)*6);
+  // Social: ramps up over time, choppy
+  spend.Social.push(6 + t*0.22 + Math.max(0,(rng()-0.5)*14));
+}
+
+// transforms
+function adstockSeries(x,decay){const a=[];let prev=x[0];a.push(prev);for(let t=1;t<x.length;t++){prev=x[t]+decay*prev;a.push(prev)}return a}
+function hill(a,k,al){const ax=Math.pow(Math.max(a,0),al);return ax/(ax+Math.pow(k,al))}
+
+// true contributions + baseline + sales (generated once)
+const trueAdstock={},contrib={};
+for(const c of CH){
+  trueAdstock[c]=adstockSeries(spend[c],TRUE[c].decay);
+  contrib[c]=trueAdstock[c].map(a=>TRUE[c].beta*hill(a,TRUE[c].kappa,TRUE[c].alpha));
+}
+const baseline=[],sales=[];
+for(let t=0;t<N;t++){
+  const trend=180+t*0.6;
+  const seasonal=28*Math.sin(2*Math.PI*t/52 - 1.2);
+  const b=trend+seasonal;
+  baseline.push(b);
+  let s=b; for(const c of CH) s+=contrib[c][t];
+  s+= (rng()-0.5)*26;            // noise
+  sales.push(s);
+}
+
+/* ---------- canvas plotting helpers ---------- */
+function setup(cv,cssH){
+  const dpr=window.devicePixelRatio||1;
+  const w=cv.clientWidth||cv.parentElement.clientWidth;
+  cv.width=w*dpr; cv.height=cssH*dpr;
+  cv.style.height=cssH+"px";
+  const ctx=cv.getContext("2d"); ctx.setTransform(dpr,0,0,dpr,0,0);
+  return {ctx,w,h:cssH};
+}
+const M={l:54,r:18,t:18,b:34};
+function axes(ctx,w,h,xmin,xmax,ymin,ymax,opt={}){
+  const px=x=>M.l+(x-xmin)/(xmax-xmin)*(w-M.l-M.r);
+  const py=y=>h-M.b-(y-ymin)/(ymax-ymin)*(h-M.t-M.b);
+  ctx.strokeStyle="#eceae3";ctx.lineWidth=1;ctx.fillStyle="#9aa6af";
+  ctx.font="11px Inter, sans-serif";ctx.textBaseline="middle";
+  const yt=opt.yticks||5;
+  for(let i=0;i<=yt;i++){const yv=ymin+(ymax-ymin)*i/yt;const Y=py(yv);
+    ctx.beginPath();ctx.moveTo(M.l,Y);ctx.lineTo(w-M.r,Y);ctx.stroke();
+    ctx.textAlign="right";ctx.fillText(opt.yfmt?opt.yfmt(yv):Math.round(yv),M.l-8,Y);}
+  // x baseline
+  ctx.strokeStyle="#d8d3c8";ctx.beginPath();ctx.moveTo(M.l,py(ymin));ctx.lineTo(w-M.r,py(ymin));ctx.stroke();
+  if(opt.xlabels){ctx.fillStyle="#9aa6af";ctx.textAlign="center";
+    opt.xlabels.forEach(([xv,lab])=>ctx.fillText(lab,px(xv),h-M.b+14));}
+  if(opt.xtitle){ctx.fillStyle="#5a6b78";ctx.textAlign="center";ctx.font="11px Inter";ctx.fillText(opt.xtitle,(M.l+w-M.r)/2,h-4);}
+  if(opt.ytitle){ctx.save();ctx.translate(13,(M.t+h-M.b)/2);ctx.rotate(-Math.PI/2);ctx.fillStyle="#5a6b78";ctx.textAlign="center";ctx.fillText(opt.ytitle,0,0);ctx.restore();}
+  return {px,py};
+}
+const fmtK=v=>"$"+Math.round(v)+"k";
+
+/* ---------- STEP 1: adstock ---------- */
+let adState={ch:"TV",lambda:0.6};
+function drawAdstock(){
+  const cv=document.getElementById("cAdstock");const {ctx,w,h}=setup(cv,320);
+  const x=spend[adState.ch];const a=adstockSeries(x,adState.lambda);
+  const ymax=Math.max(...x,...a)*1.1;
+  const {px,py}=axes(ctx,w,h,0,N-1,0,ymax,{yticks:4,yfmt:fmtK,
+    xlabels:[[0,"Wk 1"],[26,"Wk 27"],[52,"Wk 53"],[78,"Wk 79"],[103,"Wk 104"]],
+    xtitle:"week", ytitle:"media ($k)"});
+  // spend bars
+  const bw=Math.max(1,(w-M.l-M.r)/N*0.6);
+  ctx.fillStyle="#ddd8cd";
+  for(let t=0;t<N;t++){const X=px(t);ctx.fillRect(X-bw/2,py(x[t]),bw,py(0)-py(x[t]));}
+  // adstock line
+  ctx.strokeStyle=COL[adState.ch];ctx.lineWidth=2.4;ctx.beginPath();
+  for(let t=0;t<N;t++){const X=px(t),Y=py(a[t]);t?ctx.lineTo(X,Y):ctx.moveTo(X,Y);}ctx.stroke();
+  // takeaway: half-life
+  const hl=adState.lambda<=0?0:Math.log(0.5)/Math.log(adState.lambda);
+  const pctNextWeek=Math.round(adState.lambda*100);
+  document.getElementById("adTake").innerHTML=
+    `At λ = <strong>${adState.lambda.toFixed(2)}</strong>, <strong>${pctNextWeek}%</strong> of this week's effect carries into next week. `+
+    (hl>0?`Half of a burst's impact is gone after about <strong>${hl.toFixed(1)} weeks</strong>. `:`With λ = 0 there's no carryover — spend works only the week you pay. `)+
+    `TV typically carries far longer than Search.`;
+}
+
+/* ---------- STEP 2: saturation ---------- */
+let satState={ch:"TV",k:TRUE.TV.kappa};
+function drawSat(){
+  const cv=document.getElementById("cSat");const {ctx,w,h}=setup(cv,320);
+  const c=satState.ch;const al=TRUE[c].alpha;const beta=TRUE[c].beta;
+  const avgAd=trueAdstock[c].reduce((s,v)=>s+v,0)/N;      // operating point
+  const xmax=Math.max(avgAd*2.2, satState.k*2.2);
+  const ymax=beta*1.02;
+  const {px,py}=axes(ctx,w,h,0,xmax,0,ymax,{yticks:4,yfmt:fmtK,
+    xlabels:[[0,"$0k"],[xmax/2,fmtK(xmax/2)],[xmax,fmtK(xmax)]],
+    xtitle:"adstocked media in a week ($k)", ytitle:"sales lift ($k)"});
+  // curve
+  ctx.strokeStyle=COL[c];ctx.lineWidth=2.6;ctx.beginPath();
+  for(let i=0;i<=200;i++){const xv=xmax*i/200;const yv=beta*hill(xv,satState.k,al);
+    const X=px(xv),Y=py(yv);i?ctx.lineTo(X,Y):ctx.moveTo(X,Y);}ctx.stroke();
+  // half-sat marker
+  ctx.strokeStyle="#d8d3c8";ctx.setLineDash([4,4]);ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(px(satState.k),py(0));ctx.lineTo(px(satState.k),py(beta*hill(satState.k,satState.k,al)));ctx.stroke();ctx.setLineDash([]);
+  ctx.fillStyle="#9aa6af";ctx.font="10px Inter";ctx.textAlign="center";ctx.fillText("κ",px(satState.k),py(0)-6);
+  // operating point
+  const oy=beta*hill(avgAd,satState.k,al);
+  ctx.fillStyle=COL.Social=="#0F2A43"?"#0F2A43":"#0F2A43";
+  ctx.beginPath();ctx.arc(px(avgAd),py(oy),6,0,7);ctx.fill();
+  ctx.strokeStyle="#fff";ctx.lineWidth=2;ctx.stroke();
+  // marginal return at operating point (slope, per $1k)
+  const dx=0.5;const slope=(beta*hill(avgAd+dx,satState.k,al)-beta*hill(avgAd-dx,satState.k,al))/(2*dx);
+  const usedPct=Math.round(hill(avgAd,satState.k,al)*100);
+  document.getElementById("satKV").textContent=fmtK(satState.k);
+  document.getElementById("satTake").innerHTML=
+    `${c} is currently operating at <strong>${usedPct}%</strong> of its ceiling. The next $1k of ${c} returns about <strong>$${slope.toFixed(2)}k</strong> in sales right now. `+
+    (usedPct>65?`It's deep in diminishing returns — extra budget here mostly wastes.`:`There's real headroom — this channel can absorb more spend efficiently.`);
+}
+
+/* ---------- STEP 3: decomposition (stacked area) ---------- */
+let decShow={baseline:true,TV:true,Search:true,Social:true};
+function drawDecomp(){
+  const cv=document.getElementById("cDecomp");const {ctx,w,h}=setup(cv,360);
+  const ymax=Math.max(...sales)*1.08;
+  const {px,py}=axes(ctx,w,h,0,N-1,0,ymax,{yticks:5,yfmt:fmtK,
+    xlabels:[[0,"Wk 1"],[26,"Wk 27"],[52,"Wk 53"],[78,"Wk 79"],[103,"Wk 104"]],
+    xtitle:"week", ytitle:"sales ($k)"});
+  const layers=[];
+  if(decShow.baseline) layers.push({k:"baseline",col:"#c2bcae",data:baseline});
+  for(const c of CH) if(decShow[c]) layers.push({k:c,col:COL[c],data:contrib[c]});
+  // cumulative stack
+  const cum=new Array(N).fill(0);
+  for(const L of layers){
+    ctx.beginPath();
+    for(let t=0;t<N;t++){const X=px(t),Y=py(cum[t]+L.data[t]);t?ctx.lineTo(X,Y):ctx.moveTo(X,Y);}
+    for(let t=N-1;t>=0;t--){const X=px(t),Y=py(cum[t]);ctx.lineTo(X,Y);}
+    ctx.closePath();ctx.fillStyle=L.col;ctx.globalAlpha=L.k=="baseline"?0.55:0.78;ctx.fill();ctx.globalAlpha=1;
+    for(let t=0;t<N;t++)cum[t]+=L.data[t];
+  }
+  // actual sales dots
+  ctx.fillStyle="#111";
+  for(let t=0;t<N;t+=2){ctx.beginPath();ctx.arc(px(t),py(sales[t]),1.7,0,7);ctx.fill();}
+  // totals for takeaway
+  const tot=sales.reduce((s,v)=>s+v,0);
+  const cTot={};for(const c of CH)cTot[c]=contrib[c].reduce((s,v)=>s+v,0);
+  const baseTot=baseline.reduce((s,v)=>s+v,0);
+  const pct=v=>Math.round(v/tot*100);
+  document.getElementById("decTake").innerHTML=
+    `Over two years, marketing drove <strong>${100-pct(baseTot)}%</strong> of sales. `+
+    `Contribution split — TV <strong>${pct(cTot.TV)}%</strong>, Search <strong>${pct(cTot.Search)}%</strong>, Social <strong>${pct(cTot.Social)}%</strong>. `+
+    `That split — not the spend split — is what a media plan should be built on.`;
+}
+
+/* ---------- STEP 4: budget optimization (greedy water-filling) ---------- */
+// Response curves in spend-space (saturation already absorbs adstock carryover, the way a
+// fitted MMM expresses it). TV is over-invested at its current spend; Search has headroom.
+const BUD_RESP={TV:{beta:140,kappa:16,alpha:1},Search:{beta:120,kappa:70,alpha:1},Social:{beta:75,kappa:28,alpha:1}};
+const CUR_ALLOC={TV:54,Search:12,Social:14};
+const CUR_TOTAL=CH.reduce((s,c)=>s+CUR_ALLOC[c],0); // 80
+function weeklyResp(c,s){const p=BUD_RESP[c];return p.beta*hill(s,p.kappa,p.alpha);} // sales lift from weekly spend
+function optimize(total){
+  const alloc={TV:0,Search:0,Social:0};const STEPS=400;const inc=total/STEPS;
+  for(let i=0;i<STEPS;i++){
+    let best=null,bestG=-1;
+    for(const c of CH){const g=weeklyResp(c,alloc[c]+inc)-weeklyResp(c,alloc[c]);if(g>bestG){bestG=g;best=c;}}
+    alloc[best]+=inc;
+  }
+  return alloc;
+}
+function drawBudget(){
+  const total=+document.getElementById("budTotal").value;
+  document.getElementById("budTotalV").textContent=fmtK(total);
+  // current allocation scaled to chosen total (keep current proportions)
+  const cur={};for(const c of CH)cur[c]=CUR_ALLOC[c]/CUR_TOTAL*total;
+  const opt=optimize(total);
+  const curSales=CH.reduce((s,c)=>s+weeklyResp(c,cur[c]),0);
+  const optSales=CH.reduce((s,c)=>s+weeklyResp(c,opt[c]),0);
+  const lift=(optSales-curSales);
+  const liftPct=curSales>0?(lift/curSales*100):0;
+
+  const cv=document.getElementById("cBudget");const {ctx,w,h}=setup(cv,300);
+  const ymax=Math.max(...CH.map(c=>Math.max(cur[c],opt[c])))*1.15;
+  const {px,py}=axes(ctx,w,h,0,1,0,ymax,{yticks:4,yfmt:fmtK,ytitle:"weekly spend ($k)"});
+  const groupW=(w-M.l-M.r)/CH.length;
+  CH.forEach((c,i)=>{
+    const cx=M.l+groupW*(i+0.5);
+    const bw=groupW*0.26;
+    // current (gray) left, recommended (teal) right
+    ctx.fillStyle="#cfd6db";ctx.fillRect(cx-bw-3,py(cur[c]),bw,py(0)-py(cur[c]));
+    ctx.fillStyle=COL[c];ctx.fillRect(cx+3,py(opt[c]),bw,py(0)-py(opt[c]));
+    ctx.fillStyle="#5a6b78";ctx.font="12px Inter";ctx.textAlign="center";
+    ctx.fillText(c,cx,h-M.b+14);
+    // delta label
+    const d=opt[c]-cur[c];const dl=(d>=0?"+$":"−$")+Math.round(Math.abs(d))+"k";
+    ctx.fillStyle=d>=0?"#1F7A8C":"#b3543a";ctx.font="600 11px Inter";
+    ctx.fillText(dl,cx+3+bw/2,py(opt[c])-7);
+  });
+  document.getElementById("budHeadline").innerHTML=
+    liftPct>0.5?`Same budget, smarter split: <b>+${liftPct.toFixed(1)}% sales</b> (≈ ${fmtK(lift)}/week).`
+               :`At this budget the current split is already near-optimal.`;
+  // recommendation text
+  const moves=CH.map(c=>({c,d:opt[c]-cur[c]})).sort((a,b)=>a.d-b.d);
+  const from=moves[0],to=moves[moves.length-1];
+  document.getElementById("budTake").innerHTML=
+    `The model shifts budget toward channels with the highest marginal return. `+
+    (Math.abs(from.d)>1?`Here: move spend from <strong>${from.c}</strong> (saturated) into <strong>${to.c}</strong> (headroom) until the next dollar pays the same everywhere.`:`Allocations are balanced at this budget level.`)+
+    ` This is the payoff of steps 1–3: adstock + saturation + decomposition turn into a concrete plan.`;
+}
+
+/* ---------- wiring ---------- */
+function bindSeg(id,cb){document.querySelectorAll("#"+id+" button").forEach(b=>b.addEventListener("click",()=>{
+  if(id==="decToggle"){b.classList.toggle("active");}
+  else{document.querySelectorAll("#"+id+" button").forEach(x=>x.classList.remove("active"));b.classList.add("active");}
+  cb(b);}));}
+
+bindSeg("adChan",b=>{adState.ch=b.dataset.ch;drawAdstock();});
+document.getElementById("adLambda").addEventListener("input",e=>{adState.lambda=+e.target.value;document.getElementById("adLambdaV").textContent=adState.lambda.toFixed(2);drawAdstock();});
+
+bindSeg("satChan",b=>{satState.ch=b.dataset.ch;satState.k=TRUE[b.dataset.ch].kappa;document.getElementById("satK").value=satState.k;drawSat();});
+document.getElementById("satK").addEventListener("input",e=>{satState.k=+e.target.value;drawSat();});
+
+bindSeg("decToggle",b=>{decShow[b.dataset.k]=b.classList.contains("active");drawDecomp();});
+
+document.getElementById("budTotal").addEventListener("input",drawBudget);
+
+function drawAll(){drawAdstock();drawSat();drawDecomp();drawBudget();}
+window.addEventListener("resize",()=>{clearTimeout(window._rt);window._rt=setTimeout(drawAll,120);});
+// set initial budget slider to current total
+document.getElementById("budTotal").value=CUR_TOTAL;
+drawAll();
+</script>
+</body>
+</html>
