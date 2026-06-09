@@ -42,6 +42,11 @@ a:focus-visible,button:focus-visible,input[type=range]:focus-visible{outline:2px
   .tmark{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:600;font-size:1.9em;line-height:.85;color:#b3543a;flex:none;display:inline-block;margin-right:.04em}
   @media(max-width:600px){header .wname,.tc-header .wname{display:none}}
 
+/* full-width alternating panels for demo pages (match the main site) */
+.band{background:#f4f8fc}
+.band-alt{background:#e4ecf5;border-top:3px solid #0F2A43;border-bottom:3px solid #0F2A43}
+.band header.hero{border-bottom:none}
+
 /* "Work together" engagement panel */
 .engage{padding:6px 0 30px;background:#f4f8fc}
 .engage-inner{max-width:920px;margin:0 auto;padding:0 1.4rem}
