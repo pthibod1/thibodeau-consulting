@@ -316,6 +316,12 @@
   .wordmark,.tc-wordmark{display:inline-flex;align-items:center;gap:.5em}
   .tmark{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:600;font-size:1.9em;line-height:.85;color:#b3892f;flex:none;display:inline-block;margin-right:.04em}
   @media(max-width:600px){header .wname,.tc-header .wname{display:none}}
+
+  /* Advisory card: Playfair T monogram on the left */
+  .svc-advisory{flex-direction:row;align-items:stretch;gap:22px}
+  .svc-advisory .svc-bigt{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:600;color:#b3892f;font-size:4.2rem;line-height:1;flex:none;align-self:center}
+  .svc-advisory .svc-body{display:flex;flex-direction:column;flex:1}
+  @media(max-width:520px){.svc-advisory{gap:16px}.svc-advisory .svc-bigt{font-size:3.2rem}}
 </style>
 </head>
 <body>
@@ -340,9 +346,9 @@
         <span class="eyebrow reveal">Scientific rigor · Industry speed</span>
         <h1 class="display reveal">Marketing <span style="color:var(--gold)">&amp;</span> Data Consulting</h1>
         <ul class="hero-points reveal">
-          <li><strong>I build data systems you can trust</strong>, using state-of-the-art tools and drawing on my experience as a senior data scientist in tech.</li>
-          <li><strong>I make sure you understand the strengths and limitations of your data and tools</strong>, drawing on my experience as a tenured professor.</li>
-          <li><strong>Let me help you strategize, measure, and grow.</strong></li>
+          <li><strong>I build data systems you can trust.</strong> Production-grade, from years as a senior data scientist in tech.</li>
+          <li><strong>I make sure you understand your data, its strengths and its limits.</strong> I'm a teacher at heart.</li>
+          <li><strong>I help you strategize, measure, and grow.</strong> That's the whole job.</li>
         </ul>
         <div class="btns reveal" style="justify-content:center">
           <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener" class="btn btn-primary">Book a free 30-min call <span class="arr">→</span></a>
@@ -367,7 +373,7 @@
       <div class="block-head reveal" style="max-width:46em">
         <span class="eyebrow">About</span>
         <h2 class="display" style="margin-top:18px">Two decades solving hard problems with data.</h2>
-        <p class="lede" style="margin-top:16px">I'm Paul Thibodeau, a cognitive scientist and data scientist. I've spent more than twenty years investigating processes that are hard to pin down, like how people think and what drives behavior. Two things have never let up: curiosity about how things work, and a stubborn need to get it right.</p>
+        <p class="lede" style="margin-top:16px">I'm Paul Thibodeau, a cognitive scientist and data scientist. I've spent more than twenty years investigating processes that are hard to pin down, like how people think and what drives behavior. Two things have never let up: curiosity about how things work and a stubborn need to get it right.</p>
       </div>
 
       <div class="about-stack">
@@ -389,7 +395,7 @@
             <span class="ch-logo two"><img src="assets/logo-oberlin.png" alt="Oberlin College" loading="lazy" style="max-width:120px;max-height:42px;object-fit:contain;display:block"><img src="assets/logo-swarthmore.png" alt="Swarthmore" loading="lazy" style="max-width:120px;max-height:42px;object-fit:contain;display:block"><img src="assets/logo-trinity.webp" alt="Trinity" loading="lazy" style="max-width:120px;max-height:42px;object-fit:contain;display:block"></span>
           </div>
           <div class="body">
-            <h4>The questions became a body of work.</h4>
+            <h4>The question became a body of work.</h4>
             <p>I took those tools and built a research program at Oberlin College, publishing 50+ peer-reviewed papers and earning tenure. In academia the key performance metric (KPI) is citations, a measure of how much others build on your work. <span class="hl">Mine have been cited over 5,700 times</span>: a record built on getting the measurement right, not just the result you hoped for.</p>
           </div>
         </div>
@@ -425,7 +431,7 @@
     <div class="wrap">
       <div class="block-head reveal">
         <span class="eyebrow">Services</span>
-        <h2 class="display" style="margin-top:18px">Let's work together.</h2>
+        <h2 class="display" style="margin-top:18px">Let's work together!</h2>
       </div>
 
       <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener" class="audit-cta reveal">
@@ -456,18 +462,21 @@
           <p>Brand lift, message and concept testing, willingness-to-pay, attitudes. Survey and experiment design from a published cognitive scientist, so your numbers measure what you think they measure.</p>
           <div class="svc-foot"><span class="svc-demo"><span class="pl">▶</span>Interactive demo</span><span class="more">Explore <span class="arr">→</span></span></div>
         </a>
-        <a href="demos/maturity_demo.html" class="svc reveal">
-          <div class="svc-top"><span class="svc-idx">04</span></div>
-          <h3>Advisory</h3>
-          <p>Senior measurement leadership in the room, part-time: strategy, standards, hiring, product and feature-test design, and an expert second opinion that keeps the work honest.</p>
-          <div class="svc-foot"><span class="svc-demo"><span class="pl">▶</span>Interactive demo</span><span class="more">Explore <span class="arr">→</span></span></div>
+        <a href="demos/maturity_demo.html" class="svc svc-advisory reveal">
+          <span class="svc-bigt" aria-hidden="true">T</span>
+          <div class="svc-body">
+            <div class="svc-top"><span class="svc-idx">04</span></div>
+            <h3>Advisory</h3>
+            <p>Senior measurement leadership in the room, part-time: strategy, standards, hiring, product and feature-test design, and an expert second opinion that keeps the work honest.</p>
+            <div class="svc-foot"><span class="svc-demo"><span class="pl">▶</span>Interactive demo</span><span class="more">Explore <span class="arr">→</span></span></div>
+          </div>
         </a>
       </div>
     </div>
   </section>
 
   <!-- TESTIMONIALS -->
-  <section class="block" id="testimonials" style="display:none"><!-- hidden until real testimonials; remove style="display:none" to restore -->
+  <section class="block" id="testimonials">
     <div class="wrap">
       <div class="block-head reveal">
         <span class="eyebrow">In their words</span>
