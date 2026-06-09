@@ -161,8 +161,8 @@
 
   /* services */
   .svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:44px}
-  .svc{display:flex;flex-direction:column;padding:24px 28px;border:1px solid var(--line-2);border-top:2px solid var(--accent);border-bottom:2px solid var(--accent);background:var(--surface);border-radius:0;position:relative;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;box-shadow:0 1px 0 var(--line)}
-  .svc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);opacity:0;transition:opacity .18s ease}
+  .svc{display:flex;flex-direction:column;padding:24px 28px;border:1px solid var(--line-2);background:var(--surface);border-radius:4px;position:relative;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;box-shadow:0 1px 0 var(--line)}
+  .svc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);border-radius:4px 0 0 4px;opacity:0;transition:opacity .18s ease}
   .svc:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 10px 26px -12px color-mix(in srgb,var(--accent) 30%, transparent)}
   .svc:hover::before{opacity:1}
   .svc-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:15px;border-top:1px solid var(--line)}
@@ -180,7 +180,7 @@
   .badge-sig{background:var(--gold-soft);color:#7a3322;border:1px solid var(--gold)}
   @media(max-width:720px){.svc-grid{grid-template-columns:1fr}.svc{border-right:none}}
   .audit-cta{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
-    margin-top:30px;padding:24px 28px;border:1px solid var(--line-2);border-top:2px solid var(--accent);border-bottom:2px solid var(--accent);border-radius:0;background:var(--surface);text-decoration:none;transition:.18s ease}
+    margin-top:30px;padding:24px 28px;border:1px solid var(--line-2);border-radius:4px;background:var(--surface);text-decoration:none;transition:.18s ease}
   .audit-cta:hover{background:#eef4fb}
   .audit-cta .badge{margin-bottom:2px}
   .audit-cta h3{font-family:var(--font-display);font-weight:500;font-size:1.4rem;margin:12px 0 6px;letter-spacing:-.01em;color:var(--ink)}
@@ -240,7 +240,7 @@
   /* ---------- blue scheme: alternating panels (hero A · creds B · testimonials A · work B · cta A) ---------- */
   .hero{background:#f4f8fc}
   #work{background:#e4ecf5}
-  #work,.cta{border-top:1px solid #d5e0ee}
+  #work{border-top:3px solid #0F2A43;border-bottom:3px solid #0F2A43}
   #testimonials .tm{background:transparent}
   /* white cards + audit band pop on the tinted services panel */
   #work .svc{background:#ffffff}
@@ -335,6 +335,8 @@
   /* credibility strip: muted logo cluster */
   .logos-row{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 12px;margin-top:auto;padding-top:16px}
   .logos-row img{height:22px;width:auto;display:block}
+  .stanford-row{justify-content:flex-end}
+  .stanford-row img{height:46px}
   #testimonials{background:#f4f8fc}
   .cred-deg{display:block;color:var(--ink);font-weight:600;font-size:1.02rem;margin-bottom:3px;letter-spacing:-.005em}
 </style>
@@ -379,17 +381,17 @@
           <div class="num">20 years</div>
           <div class="lbl">in industry and academia</div>
           <div class="logos-row">
-            <img src="assets/logo-betterhelp.png" alt="BetterHelp">
             <img src="assets/logo-espark.png" alt="eSpark">
             <img src="assets/logo-oberlin.png" alt="Oberlin College">
             <img src="assets/logo-swarthmore.png" alt="Swarthmore">
             <img src="assets/logo-trinity.webp" alt="Trinity University">
+            <img src="assets/logo-betterhelp.png" alt="BetterHelp">
           </div>
         </div>
         <div class="stat">
           <div class="num num-stanford">Stanford PhD</div>
           <div class="lbl">Cognitive Science<br>MS, Statistics</div>
-          <div class="logos-row"><img src="assets/logo-stanford-s.avif" alt="Stanford"></div>
+          <div class="logos-row stanford-row"><img src="assets/logo-stanford-s.avif" alt="Stanford"></div>
         </div>
         <div class="stat">
           <div class="num">50+</div>
