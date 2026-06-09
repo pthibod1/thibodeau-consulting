@@ -69,7 +69,8 @@ a:focus-visible,button:focus-visible,input[type=range]:focus-visible{outline:2px
 .howwe{padding:14px 0 6px}
 .howwe .eyebrow{display:block}
 .howwe h2{font-family:'Newsreader',Georgia,serif;font-weight:600;font-size:1.9rem;color:#0F2A43;letter-spacing:-.01em;margin:.5rem 0 1.5rem;line-height:1.1}
-.howwe-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem;border-top:1px solid #d8d3c8;padding-top:1.4rem}
+.howwe-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-top:.4rem}
+.howwe-step{border:1px solid var(--line);border-radius:8px;padding:1.2rem 1.2rem 1.3rem;background:#fff}
 .howwe-step .n{font-family:'Newsreader',Georgia,serif;font-size:1.05rem;color:#9aa6af}
 .howwe-step h3{font-family:'Newsreader',Georgia,serif;font-weight:600;font-size:1.18rem;color:#0F2A43;margin:.45rem 0 .5rem;letter-spacing:-.01em}
 .howwe-step p{font-size:.92rem;color:#5a6b78;margin:0;line-height:1.55}
