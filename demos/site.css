@@ -37,7 +37,7 @@ a:focus-visible,button:focus-visible,input[type=range]:focus-visible{outline:2px
 
   /* T monogram logo */
   .wordmark,.tc-wordmark{display:inline-flex;align-items:center;gap:.5em}
-  .tmark{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:600;font-size:1.9em;line-height:.85;color:#b3892f;flex:none;display:inline-block;margin-right:.04em}
+  .tmark{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:600;font-size:1.9em;line-height:.85;color:#b3543a;flex:none;display:inline-block;margin-right:.04em}
   @media(max-width:600px){header .wname,.tc-header .wname{display:none}}
 
 /* "Work together" engagement panel */
