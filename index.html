@@ -339,6 +339,7 @@
   /* credibility strip: muted logo cluster */
   .stat .num.logos{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
   .stat .num.logos img{height:20px;width:auto;display:block;filter:grayscale(1);opacity:.6}
+  #testimonials{background:#f4f8fc}
 </style>
 </head>
 <body>
@@ -347,7 +348,7 @@
   <div class="wrap nav">
     <a href="#top" class="wordmark"><span class="tmark">T</span><span class="wname">Thibodeau Consulting, LLC</span></a>
     <nav class="navlinks">
-      <a href="#about">About</a>
+      
       <a href="#work">Services</a>
       <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Book a free call</a>
     </nav>
@@ -408,77 +409,48 @@
     </div>
   </section>
 
-  <!-- CREDENTIAL BAND moved into individual service pages -->
+  <section class="block" id="testimonials">
+    <div class="wrap">
+      <div class="block-head reveal">
+        <span class="eyebrow">In their words</span>
+        <h2 class="display" style="margin-top:18px">Numbers to stake a budget on.</h2>
+      </div>
+      <!-- ================= TESTIMONIALS ================= -->
+      <!-- Edit the cards between TM:START and TM:END below.                 -->
+      <!-- Each testimonial is one <figure class="tm reveal"> block:         -->
+      <!--   * <blockquote>   the quote (1-2 sentences)                      -->
+      <!--   * .tm-name        the person's name                             -->
+      <!--   * .tm-role        their title and company                       -->
+      <!-- Add or delete <figure> blocks freely - they reflow (3 per row).   -->
+      <!-- See README.md > "Updating testimonials" for a Claude prompt.      -->
+      <div class="tm-grid">
+        <!-- TM:START -->
+        <figure class="tm reveal">
+          <span class="qm">&ldquo;</span>
+          <blockquote>Paul rebuilt our attribution from the ground up. For the first time, finance actually trusts the numbers behind our spend.</blockquote>
+          <figcaption><span class="tm-name">[Client name]</span><span class="tm-role">VP Growth · consumer health (Series B)</span></figcaption>
+        </figure>
+        <figure class="tm reveal">
+          <span class="qm">&ldquo;</span>
+          <blockquote>The rare scientist who can also ship. The marketing-mix model he built is still the backbone of how we plan budget.</blockquote>
+          <figcaption><span class="tm-name">[Client name]</span><span class="tm-role">Head of Marketing · DTC brand</span></figcaption>
+        </figure>
+        <figure class="tm reveal">
+          <span class="qm">&ldquo;</span>
+          <blockquote>Honest about what the data can and can't say. That rigor talked us out of a six-figure mistake.</blockquote>
+          <figcaption><span class="tm-name">[Client name]</span><span class="tm-role">Director of Analytics · edtech</span></figcaption>
+        </figure>
+        <!-- TM:END -->
+      </div>
+    </div>
+  </section>
+
+  
 
   <!-- ABOUT -->
-  <section class="block" id="howhelp">
-    <div class="wrap">
-      <span class="eyebrow">How I help</span>
-      <div class="help-grid reveal">
-        <div class="help"><h3>I build it right</h3><p>Data systems you can trust, production-grade, from years as a senior data scientist in tech.</p></div>
-        <div class="help"><h3>I make sure you get it</h3><p>You'll understand your data's strengths and its limits. I'm a teacher at heart.</p></div>
-        <div class="help"><h3>I help you act</h3><p>Strategy, measurement, and growth. That's the whole job.</p></div>
-      </div>
-    </div>
-  </section>
+  
 
-  <section class="block" id="about">
-    <div class="wrap">
-      <div class="block-head reveal" style="max-width:46em">
-        <span class="eyebrow">About</span>
-        <h2 class="display" style="margin-top:18px">Two decades solving hard problems with data.</h2>
-        <p class="lede" style="margin-top:16px">Paul Thibodeau is a cognitive scientist and data scientist who has spent more than twenty years investigating processes that are hard to pin down, like how people think and what drives behavior. Two things have never let up: curiosity about how things work and a stubborn need to get it right.</p>
-      </div>
-
-      <div class="about-stack">
-        <div class="chapter reveal">
-          <div class="rail">
-            <span class="ch-num">01</span>
-            <span class="ch-era">Training · Stanford</span>
-            <span class="ch-logo"><img src="assets/logo-stanford-s.avif" alt="Stanford" loading="lazy" style="max-width:120px;max-height:42px;object-fit:contain;display:block"></span>
-          </div>
-          <div class="body">
-            <h4>It started with a question about the mind.</h4>
-            <p>I was drawn to science by a single question: <span class="hl">how do people process language and make meaning from words?</span> I went to Stanford to chase it, earning a PhD in cognitive science and an MS in statistics. I gained a toolbox for solving impossible problems along the way.</p>
-          </div>
-        </div>
-        <div class="chapter reveal">
-          <div class="rail">
-            <span class="ch-num">02</span>
-            <span class="ch-era">Academia · Professor</span>
-            <span class="ch-logo two"><img src="assets/logo-oberlin.png" alt="Oberlin College" loading="lazy" style="max-width:120px;max-height:42px;object-fit:contain;display:block"><img src="assets/logo-swarthmore.png" alt="Swarthmore" loading="lazy" style="max-width:120px;max-height:42px;object-fit:contain;display:block"><img src="assets/logo-trinity.webp" alt="Trinity" loading="lazy" style="max-width:120px;max-height:42px;object-fit:contain;display:block"></span>
-          </div>
-          <div class="body">
-            <h4>The question became a body of work.</h4>
-            <p>I took those tools and built a research program at Oberlin College, publishing 50+ peer-reviewed papers and earning tenure. In academia the key performance metric (KPI) is citations, a measure of how much others build on your work. <span class="hl">Mine have been cited over 5,700 times</span>: a record built on getting the measurement right, not just the result you hoped for.</p>
-          </div>
-        </div>
-        <div class="chapter reveal">
-          <div class="rail">
-            <span class="ch-num">03</span>
-            <span class="ch-era">Industry · Data Science</span>
-            <span class="ch-logo two"><img src="assets/logo-espark.png" alt="eSpark" loading="lazy" style="max-width:120px;max-height:42px;object-fit:contain;display:block"><img src="assets/logo-betterhelp.png" alt="BetterHelp" loading="lazy" style="max-width:120px;max-height:42px;object-fit:contain;display:block"></span>
-          </div>
-          <div class="body">
-            <h4>Then I took the rigor into industry.</h4>
-            <p>From the lab, I moved into industry, where the work got faster and more collaborative. I built marketing-mix and churn models, ran A/B tests, and did countless analyses where the numbers had to move real budgets. <span class="hl">I owned these systems end to end in ed tech (eSpark) and health tech (BetterHelp).</span> It's the same work I now do for growth and product teams as an independent consultant.</p>
-          </div>
-        </div>
-        <div class="chapter reveal">
-          <div class="rail">
-            <span class="ch-num">04</span>
-            <span class="ch-era">Thibodeau Consulting, LLC</span>
-          </div>
-          <div class="body">
-            <h4>So I started this practice.</h4>
-            <p>I founded Thibodeau Consulting, LLC to bring that same rigor to your team. <span class="hl">I'm passionate about helping clients understand their data</span>, separate signal from noise, and make confident calls about where to invest. That's the kind of measurement that earns trust, because it's honest about what it knows and what it doesn't.</p>
-          </div>
-        </div>
-      </div>
-
-      <a href="https://scholar.google.com/citations?user=VA5iX4AAAAAJ&hl=en" target="_blank" rel="noopener" class="about-scholar reveal">View profile on Google Scholar <span class="arr">→</span></a>
-    </div>
-  </section>
+  
 
   <!-- SERVICES -->
   <section class="block" id="work">
@@ -530,41 +502,7 @@
   </section>
 
   <!-- TESTIMONIALS -->
-  <section class="block" id="testimonials">
-    <div class="wrap">
-      <div class="block-head reveal">
-        <span class="eyebrow">In their words</span>
-        <h2 class="display" style="margin-top:18px">Numbers to stake a budget on.</h2>
-      </div>
-      <!-- ================= TESTIMONIALS ================= -->
-      <!-- Edit the cards between TM:START and TM:END below.                 -->
-      <!-- Each testimonial is one <figure class="tm reveal"> block:         -->
-      <!--   * <blockquote>   the quote (1-2 sentences)                      -->
-      <!--   * .tm-name        the person's name                             -->
-      <!--   * .tm-role        their title and company                       -->
-      <!-- Add or delete <figure> blocks freely - they reflow (3 per row).   -->
-      <!-- See README.md > "Updating testimonials" for a Claude prompt.      -->
-      <div class="tm-grid">
-        <!-- TM:START -->
-        <figure class="tm reveal">
-          <span class="qm">&ldquo;</span>
-          <blockquote>Paul rebuilt our attribution from the ground up. For the first time, finance actually trusts the numbers behind our spend.</blockquote>
-          <figcaption><span class="tm-name">[Client name]</span><span class="tm-role">VP Growth · consumer health (Series B)</span></figcaption>
-        </figure>
-        <figure class="tm reveal">
-          <span class="qm">&ldquo;</span>
-          <blockquote>The rare scientist who can also ship. The marketing-mix model he built is still the backbone of how we plan budget.</blockquote>
-          <figcaption><span class="tm-name">[Client name]</span><span class="tm-role">Head of Marketing · DTC brand</span></figcaption>
-        </figure>
-        <figure class="tm reveal">
-          <span class="qm">&ldquo;</span>
-          <blockquote>Honest about what the data can and can't say. That rigor talked us out of a six-figure mistake.</blockquote>
-          <figcaption><span class="tm-name">[Client name]</span><span class="tm-role">Director of Analytics · edtech</span></figcaption>
-        </figure>
-        <!-- TM:END -->
-      </div>
-    </div>
-  </section>
+  
 
   <!-- CTA -->
   <section class="cta" id="book">
