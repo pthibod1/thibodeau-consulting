@@ -52,6 +52,10 @@ a:focus-visible,button:focus-visible,input[type=range]:focus-visible{outline:2px
 .engage-col li{font-size:.95rem;color:#1c2733;margin:.35rem 0;line-height:1.5}
 .engage-cta{display:inline-block;margin-top:1.4rem;background:#275f9e;color:#fff;font-weight:600;font-size:.92rem;padding:.62rem 1.15rem;border-radius:3px;text-decoration:none}
 .engage-cta:hover{background:#0F2A43}
+
+/* canonical action button (Book Call CTAs + interactive controls) — matches engage-cta + main-site primary */
+.btn{display:inline-block;border:1px solid #275f9e;background:#275f9e;color:#fff;font:inherit;font-weight:600;font-size:.92rem;padding:.62rem 1.15rem;border-radius:3px;cursor:pointer;text-decoration:none;transition:background .18s ease,border-color .18s ease}
+.btn:hover{background:#0F2A43;border-color:#0F2A43}
 @media(max-width:640px){.engage-cols{grid-template-columns:1fr;gap:1.1rem}}
 
 /* "How we'd work together" process + deliverables (from designer) */
