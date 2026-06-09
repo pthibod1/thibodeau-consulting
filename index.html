@@ -143,6 +143,10 @@
   .stat:first-child{padding-left:0;border-left:none}
   .stat .num{font-family:var(--font-display);font-weight:500;font-size:clamp(2.2rem,3.6vw,3rem);line-height:1;color:var(--accent);letter-spacing:-.02em}
   .stat .lbl{margin-top:12px;font-size:.86rem;color:var(--ink-2);line-height:1.4}
+  .stat .num-stanford{font-size:clamp(1.5rem,2.1vw,1.9rem);white-space:nowrap}
+  .lbl-stanford{display:flex;align-items:center;gap:16px}
+  .stanford-mark{height:40px;width:auto;flex:none}
+  @media(max-width:720px){.stat .num-stanford{white-space:normal}}
   @media(max-width:720px){.statrow{grid-template-columns:1fr 1fr;gap:30px 0}.stat{padding:0 22px}.stat:nth-child(odd){padding-left:0;border-left:none}.stat:nth-child(3),.stat:nth-child(4){border-top:1px solid var(--line-2);padding-top:26px}}
 
   /* ---------- quote ---------- */
@@ -391,8 +395,11 @@
           </div>
         </div>
         <div class="stat">
-          <div class="num">Stanford PhD</div>
-          <div class="lbl">Cognitive Science<br>MS, Statistics</div>
+          <div class="num num-stanford">Stanford PhD</div>
+          <div class="lbl lbl-stanford">
+            <span>Cognitive Science<br>MS, Statistics</span>
+            <img src="assets/logo-stanford-s.avif" alt="Stanford" class="stanford-mark">
+          </div>
         </div>
         <div class="stat">
           <div class="num">50+</div>
