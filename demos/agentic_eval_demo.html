@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Is your AI agent ready to ship? — Thibodeau Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0F2A43; --teal:#1F7A8C; --accent:#B9822F; --bg:#FBFAF7;
+  --ink:#1c2733; --muted:#5a6b78; --line:#e6e1d8; --card:#ffffff;
+  --good:#1f7a5a; --warn:#b9822f; --bad:#b3543a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 1.4rem}
+header.hero{padding:4rem 0 2.2rem;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin:0 0 1rem}
+h1{font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:2.5rem;line-height:1.14;color:var(--navy);margin:0 0 1rem;letter-spacing:.005em}
+.lede{font-size:1.12rem;color:var(--muted);max-width:43rem;margin:0}
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;padding:2.6rem 0 0}
+@media(max-width:780px){.layout{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.5rem;box-shadow:0 1px 2px rgba(15,42,67,.04)}
+.qtitle{font-family:"Newsreader",serif;font-size:1.15rem;color:var(--navy);margin:0 0 1.2rem}
+/* controls */
+.ctrl{margin-bottom:1.5rem}
+.ctrl:last-child{margin-bottom:0}
+.ctrl .lab{font-size:.9rem;font-weight:600;color:var(--navy);display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;margin-bottom:.5rem}
+.ctrl .lab .val{font-family:"Newsreader",serif;font-size:1.05rem;color:var(--teal)}
+.ctrl .hint{font-size:.82rem;color:var(--muted);margin:.5rem 0 0}
+input[type=range]{width:100%;accent-color:var(--navy);height:22px}
+.seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{flex:1;border:none;background:#fff;padding:.55rem .4rem;font:inherit;font-size:.85rem;font-weight:600;color:var(--muted);cursor:pointer;border-left:1px solid var(--line)}
+.seg button:first-child{border-left:none}
+.seg button.active{background:var(--navy);color:#fff}
+/* case bar */
+.casebar-wrap{margin-top:1.6rem}
+.casebar-wrap h4,.metrics-head{font-size:.74rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:0 0 .6rem;font-weight:700}
+.casebar{display:flex;height:30px;border-radius:7px;overflow:hidden;border:1px solid var(--line)}
+.casebar span{display:block;height:100%;transition:width .35s ease}
+.cb-ok{background:#2f9e7a}.cb-bad{background:#c0654a}.cb-esc{background:#c3cdd6}
+.legend{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;margin-top:.6rem;font-size:.8rem;color:var(--muted)}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:.35rem;vertical-align:-1px}
+/* calibration */
+.cal-wrap{display:flex;justify-content:center}
+.cal-legend{display:flex;justify-content:center;gap:1.2rem;margin:.3rem 0 1.1rem;font-size:.8rem;color:var(--muted)}
+.cal-legend i{display:inline-block;width:18px;height:0;border-top:2px;vertical-align:middle;margin-right:.4rem}
+.cal-legend .l-act{border-top:2px solid var(--teal)}
+.cal-legend .l-diag{border-top:2px dashed #9aa6af}
+/* verdict */
+.verdict{border-radius:10px;padding:1rem 1.1rem;margin:0 0 1.2rem;border:1px solid var(--line)}
+.verdict.is-good{background:#eaf6f0;border-color:#bfe3d3}
+.verdict.is-warn{background:#f7f1e4;border-color:#e7d6b0}
+.verdict.is-bad{background:#f7ece8;border-color:#e7c9bf}
+.verdict .vlab{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--muted);margin:0 0 .25rem}
+.verdict .vmain{font-family:"Newsreader",serif;font-size:1.45rem;margin:0;line-height:1.15}
+.verdict.is-good .vmain{color:var(--good)}
+.verdict.is-warn .vmain{color:var(--warn)}
+.verdict.is-bad .vmain{color:var(--bad)}
+.verdict .vsub{margin:.4rem 0 0;font-size:.9rem;color:var(--ink)}
+/* metrics */
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.metric{border:1px solid var(--line);border-radius:9px;padding:.8rem .9rem;background:#fbfaf7}
+.metric .m-val{font-family:"Newsreader",serif;font-size:1.6rem;color:var(--navy);line-height:1}
+.metric .m-lab{font-size:.78rem;color:var(--muted);margin-top:.3rem}
+.cta{margin-top:1.4rem}
+.btn{display:inline-block;border:1px solid var(--navy);background:var(--navy);color:#fff;font:inherit;font-weight:600;font-size:.92rem;padding:.6rem 1.1rem;border-radius:8px;cursor:pointer;text-decoration:none}
+.disclaimer{font-size:.82rem;color:var(--muted);margin-top:.9rem}
+footer{padding:1rem 0 4rem;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+footer a{color:var(--teal)}
+</style>
+<link rel="stylesheet" href="site.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+<body>
+<header class="tc-header"><div class="tc-nav">
+  <a href="../index.html" class="tc-wordmark"><span class="tmark">T</span><span class="wname">Thibodeau Consulting, LLC</span></a>
+  <nav class="tc-navlinks">
+    <a href="index.html" class="hideable">All demos</a>
+    <a href="../index.html#work" class="hideable">Services</a>
+    <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener" class="tc-btn">Book Call</a>
+  </nav>
+</div></header>
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">Interactive demo · AI &amp; agentic workflows</p>
+    <h1>Is your AI agent ready to ship?</h1>
+    <p class="lede">Most AI demos look great and fail quietly in production. This is the other half of the work: evaluating an agent like any other intervention. Picture a support agent that drafts replies to customers. Tune the guardrails below and watch what they do to accuracy, hallucinations, and the ship decision. Runs entirely in your browser on illustrative data.</p>
+  </header>
+
+  <div class="layout">
+    <!-- LEFT: controls -->
+    <div class="card">
+      <p class="qtitle">Set the guardrails</p>
+
+      <div class="ctrl">
+        <div class="lab"><span>Auto-send only when the agent's confidence is at least</span><span class="val" id="thrVal">50%</span></div>
+        <input type="range" id="thr" min="20" max="95" step="5" value="50" aria-label="Confidence threshold to auto-send">
+        <p class="hint">Below the bar, the answer is escalated to a human instead of sent automatically. Raise it and the agent sends less, but what it does send is righter.</p>
+      </div>
+
+      <div class="ctrl">
+        <div class="lab"><span>Verification pass before sending</span></div>
+        <div class="seg" id="verifySeg">
+          <button data-v="0" class="active">Off</button>
+          <button data-v="1">On</button>
+        </div>
+        <p class="hint">A second step that checks the draft against the source before it goes out — the single biggest lever on hallucinations. Costs a little more per answer.</p>
+      </div>
+
+      <div class="casebar-wrap">
+        <h4>What happens to 1,000 incoming questions</h4>
+        <div class="casebar">
+          <span class="cb-ok" id="barOk"></span>
+          <span class="cb-bad" id="barBad"></span>
+          <span class="cb-esc" id="barEsc"></span>
+        </div>
+        <div class="legend">
+          <span><i class="cb-ok"></i><b id="lgOk">0</b> answered correctly</span>
+          <span><i class="cb-bad"></i><b id="lgBad">0</b> answered wrong</span>
+          <span><i class="cb-esc"></i><b id="lgEsc">0</b> sent to a human</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: evidence -->
+    <div class="card">
+      <div class="verdict" id="verdict">
+        <p class="vlab">Ship decision</p>
+        <p class="vmain" id="vMain">—</p>
+        <p class="vsub" id="vSub"></p>
+      </div>
+
+      <div class="metrics-head">Is the agent calibrated? (stated confidence vs. real accuracy)</div>
+      <div class="cal-wrap"><canvas id="cal" width="400" height="290" style="max-width:100%"></canvas></div>
+      <div class="cal-legend">
+        <span><i class="l-act"></i><span id="calActLab">Raw agent</span></span>
+        <span><i class="l-diag"></i>Perfect calibration</span>
+      </div>
+
+      <div class="metrics">
+        <div class="metric"><div class="m-val" id="mAcc">—</div><div class="m-lab">Accuracy of auto-sent answers</div></div>
+        <div class="metric"><div class="m-val" id="mCov">—</div><div class="m-lab">Share handled automatically</div></div>
+        <div class="metric"><div class="m-val" id="mHall">—</div><div class="m-lab">Hallucination rate (auto-sent)</div></div>
+        <div class="metric"><div class="m-val" id="mCost">—</div><div class="m-lab">Est. cost / 1k answers</div></div>
+      </div>
+
+      <div class="cta">
+        <a class="btn" href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener">Evaluate your agent — book a call →</a>
+        <p class="disclaimer">Illustrative simulation, not a benchmark of any specific model. A real engagement evaluates your agent on your tasks, your data, and your risk tolerance.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="engage">
+    <div class="engage-inner">
+      <div class="engage-card">
+        <h2>Work together: AI &amp; agentic workflows</h2>
+        <p class="engage-sub">Build the workflow, then prove it works before it touches customers.</p>
+        <div class="engage-cols">
+          <div class="engage-col">
+            <h3>What you get</h3>
+            <ul>
+              <li>A task-grounded eval harness for your agent — offline and online</li>
+              <li>A calibration and reliability report: where it's overconfident, where it fails</li>
+              <li>Guardrails and a human-in-the-loop policy tuned to your risk tolerance</li>
+              <li>A clear ship / no-ship call, backed by numbers instead of vibes</li>
+            </ul>
+          </div>
+          <div class="engage-col">
+            <h3>How it works</h3>
+            <ol>
+              <li>Free 30-minute call</li>
+              <li>Define what "good" means for your agent and assemble a test suite</li>
+              <li>Evaluate accuracy, grounding, calibration, cost, and latency</li>
+              <li>Ship with guardrails, or iterate — with the evidence in hand</li>
+            </ol>
+          </div>
+        </div>
+        <a class="engage-cta" href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener">Book Call →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Built by <strong>Paul Thibodeau</strong> · <a href="https://calendly.com/paul-thibodeau/30min">Thibodeau Consulting</a> — LLM and agentic systems, built and evaluated like any other intervention.</p>
+  </footer>
+</div>
+
+<script>
+// Illustrative eval of a customer-support drafting agent.
+// 10 confidence bins (stated-confidence midpoints), with the volume that lands in each,
+// the TRUE accuracy there, and the hallucination rate -- raw vs. with a verification pass.
+const MID   =[0.05,0.15,0.25,0.35,0.45,0.55,0.65,0.75,0.85,0.95];
+const WEIGHT =[0.01,0.01,0.02,0.03,0.05,0.07,0.10,0.16,0.25,0.30]; // sums to 1.00
+const ACC_RAW=[0.20,0.28,0.36,0.44,0.52,0.58,0.64,0.70,0.78,0.86]; // overconfident at the top
+const ACC_VER=[0.30,0.42,0.54,0.64,0.72,0.80,0.86,0.90,0.94,0.97];
+const HAL_RAW=[0.45,0.40,0.34,0.28,0.22,0.18,0.14,0.10,0.07,0.05];
+const HAL_VER=[0.12,0.10,0.08,0.06,0.05,0.04,0.03,0.02,0.015,0.01];
+const COST_RAW=2.10, COST_VER=3.80;
+
+let thr=0.50, verify=false;
+
+function compute(){
+  const acc=verify?ACC_VER:ACC_RAW, hal=verify?HAL_VER:HAL_RAW;
+  let cov=0, accNum=0, halNum=0, okFrac=0;
+  for(let i=0;i<MID.length;i++){
+    if(MID[i] >= thr - 1e-9){
+      cov += WEIGHT[i];
+      accNum += WEIGHT[i]*acc[i];
+      halNum += WEIGHT[i]*hal[i];
+      okFrac += WEIGHT[i]*acc[i];
+    }
+  }
+  const autoAcc = cov>0 ? accNum/cov : 0;
+  const autoHal = cov>0 ? halNum/cov : 0;
+  const escal = 1-cov;
+  const okPct = okFrac;            // correct & auto-sent (of all volume)
+  const badPct = cov-okFrac;       // wrong & auto-sent
+  return {cov, autoAcc, autoHal, escal, okPct, badPct, cost: verify?COST_VER:COST_RAW};
+}
+
+function verdict(m){
+  if(m.autoAcc>=0.90 && m.autoHal<=0.03 && m.cov>=0.30)
+    return {cls:"is-good", main:"Ship it — auto-send with guardrails",
+      sub:`At this bar, ${(m.autoAcc*100).toFixed(0)}% of auto-sent answers are right and hallucinations are ${(m.autoHal*100).toFixed(1)}%. Safe to send automatically, with the rest escalated.`};
+  if(m.autoAcc>=0.80 && m.autoHal<=0.08)
+    return {cls:"is-warn", main:"Human-in-the-loop only",
+      sub:`Good enough to draft, not to send unattended: ${(m.autoAcc*100).toFixed(0)}% accurate, ${(m.autoHal*100).toFixed(1)}% hallucinations. Let it draft, have a person approve.`};
+  return {cls:"is-bad", main:"Not ready to ship",
+    sub:`At this bar, auto-sent answers are only ${(m.autoAcc*100).toFixed(0)}% accurate with a ${(m.autoHal*100).toFixed(1)}% hallucination rate. Raise the confidence bar or turn on verification.`};
+}
+
+function drawCal(){
+  const cv=document.getElementById("cal");const dpr=window.devicePixelRatio||1;
+  const W=400,H=290;cv.width=W*dpr;cv.height=H*dpr;cv.style.width=W+"px";cv.style.height=H+"px";
+  const ctx=cv.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);
+  const L=46,R=14,T=12,B=36, pw=W-L-R, ph=H-T-B;
+  const x=c=>L+c*pw, y=a=>T+(1-a)*ph;
+  // grid
+  ctx.strokeStyle="#eee7da";ctx.lineWidth=1;ctx.fillStyle="#9aa6af";ctx.font="10px Inter,sans-serif";
+  for(let g=0;g<=1.0001;g+=0.25){
+    ctx.beginPath();ctx.moveTo(x(0),y(g));ctx.lineTo(x(1),y(g));ctx.stroke();
+    ctx.textAlign="right";ctx.textBaseline="middle";ctx.fillText((g*100)+"%",L-8,y(g));
+    ctx.beginPath();ctx.moveTo(x(g),y(0));ctx.lineTo(x(g),y(1));ctx.stroke();
+    ctx.textAlign="center";ctx.textBaseline="top";ctx.fillText((g*100)+"%",x(g),y(0)+6);
+  }
+  // axis titles
+  ctx.fillStyle="#5a6b78";ctx.font="600 10px Inter,sans-serif";
+  ctx.textAlign="center";ctx.textBaseline="top";ctx.fillText("STATED CONFIDENCE",L+pw/2,H-14);
+  ctx.save();ctx.translate(12,T+ph/2);ctx.rotate(-Math.PI/2);ctx.textBaseline="middle";ctx.fillText("ACTUAL ACCURACY",0,0);ctx.restore();
+  // perfect-calibration diagonal
+  ctx.strokeStyle="#9aa6af";ctx.setLineDash([5,4]);ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(x(0),y(0));ctx.lineTo(x(1),y(1));ctx.stroke();ctx.setLineDash([]);
+  // threshold marker
+  ctx.strokeStyle="rgba(185,130,47,.9)";ctx.setLineDash([3,3]);ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(x(thr),y(0));ctx.lineTo(x(thr),y(1));ctx.stroke();ctx.setLineDash([]);
+  ctx.fillStyle="#B9822F";ctx.font="600 9px Inter,sans-serif";ctx.textAlign=thr>0.7?"right":"left";ctx.textBaseline="bottom";
+  ctx.fillText("send bar",x(thr)+(thr>0.7?-4:4),y(1)-2);
+  // ghost (inactive) curve
+  const ghost=verify?ACC_RAW:ACC_VER;
+  ctx.strokeStyle="rgba(120,134,148,.35)";ctx.lineWidth=1.5;ctx.beginPath();
+  MID.forEach((c,i)=>{i?ctx.lineTo(x(c),y(ghost[i])):ctx.moveTo(x(c),y(ghost[i]));});ctx.stroke();
+  // active curve
+  const acc=verify?ACC_VER:ACC_RAW;
+  ctx.strokeStyle="#1F7A8C";ctx.lineWidth=2.5;ctx.beginPath();
+  MID.forEach((c,i)=>{i?ctx.lineTo(x(c),y(acc[i])):ctx.moveTo(x(c),y(acc[i]));});ctx.stroke();
+  ctx.fillStyle="#0F2A43";
+  MID.forEach((c,i)=>{ctx.beginPath();ctx.arc(x(c),y(acc[i]),3,0,7);ctx.fill();});
+}
+
+function pct(v){return (v*100).toFixed(0)+"%";}
+function render(){
+  const m=compute();
+  // case bar (of 1000)
+  document.getElementById("barOk").style.width=(m.okPct*100)+"%";
+  document.getElementById("barBad").style.width=(m.badPct*100)+"%";
+  document.getElementById("barEsc").style.width=(m.escal*100)+"%";
+  document.getElementById("lgOk").textContent=Math.round(m.okPct*1000);
+  document.getElementById("lgBad").textContent=Math.round(m.badPct*1000);
+  document.getElementById("lgEsc").textContent=Math.round(m.escal*1000);
+  // metrics
+  document.getElementById("mAcc").textContent=pct(m.autoAcc);
+  document.getElementById("mCov").textContent=pct(m.cov);
+  document.getElementById("mHall").textContent=(m.autoHal*100).toFixed(1)+"%";
+  document.getElementById("mCost").textContent="$"+m.cost.toFixed(2);
+  // verdict
+  const v=verdict(m);const box=document.getElementById("verdict");
+  box.className="verdict "+v.cls;
+  document.getElementById("vMain").textContent=v.main;
+  document.getElementById("vSub").textContent=v.sub;
+  // calibration
+  document.getElementById("calActLab").textContent=verify?"With verification":"Raw agent";
+  drawCal();
+}
+
+document.getElementById("thr").addEventListener("input",e=>{
+  thr=+e.target.value/100;document.getElementById("thrVal").textContent=e.target.value+"%";render();
+});
+document.getElementById("verifySeg").querySelectorAll("button").forEach(b=>{
+  b.addEventListener("click",()=>{
+    verify=b.dataset.v==="1";
+    b.parentNode.querySelectorAll("button").forEach(x=>x.classList.remove("active"));b.classList.add("active");
+    render();
+  });
+});
+render();
+window.addEventListener("resize",()=>setTimeout(drawCal,80));
+</script>
+
+<footer class="tc-footer"><div class="tc-foot">
+  <div><a href="../index.html" class="tc-wordmark"><span class="tmark">T</span><span class="wname">Thibodeau Consulting, LLC</span></a><div class="tc-fine">Scientific rigor · Industry speed</div></div>
+  <nav class="tc-links">
+    <a href="../index.html">Home</a>
+    <a href="index.html">All demos</a>
+    <a href="https://www.linkedin.com/in/paulhthibodeau/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener">Book Call</a>
+  </nav>
+</div></footer>
+</body>
+</html>
