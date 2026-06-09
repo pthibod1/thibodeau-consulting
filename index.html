@@ -63,7 +63,7 @@
 
   /* ---------- type ---------- */
   .eyebrow{
-    font-family:var(--font-body);font-weight:600;font-size:.72rem;
+    font-family:var(--font-body);font-weight:600;font-size:.8rem;
     letter-spacing:.2em;text-transform:uppercase;color:var(--accent);
     display:inline-flex;align-items:center;gap:14px;
   }
@@ -137,13 +137,13 @@
   /* ---------- credential band ---------- */
   .creds{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .creds-inner{padding-top:46px;padding-bottom:50px}
-  .creds .kicker{margin-bottom:26px;display:block}
+  .creds .kicker{margin-bottom:24px;display:flex}
   .statrow{display:grid;grid-template-columns:repeat(4,1fr)}
   .stat{padding:4px 28px;border-left:1px solid var(--line-2);display:flex;flex-direction:column}
   .stat:first-child{padding-left:0;border-left:none}
   .stat .num{font-family:var(--font-display);font-weight:500;font-size:clamp(2.2rem,3.6vw,3rem);line-height:1;color:var(--accent);letter-spacing:-.02em;min-height:clamp(2.2rem,3.6vw,3rem);display:flex;align-items:flex-end}
   .stat .lbl{margin-top:12px;font-size:.86rem;color:var(--ink-2);line-height:1.4}
-  .stat .num-stanford{font-size:clamp(1.5rem,2.1vw,1.9rem);white-space:nowrap}
+  .stat .num-stanford{font-size:clamp(1.7rem,2.6vw,2.25rem);white-space:nowrap}
   @media(max-width:720px){.stat .num-stanford{white-space:normal}}
   @media(max-width:720px){.statrow{grid-template-columns:1fr 1fr;gap:30px 0}.stat{padding:0 22px}.stat:nth-child(odd){padding-left:0;border-left:none}.stat:nth-child(3),.stat:nth-child(4){border-top:1px solid var(--line-2);padding-top:26px}}
 
@@ -377,6 +377,7 @@
 
     <section class="creds reveal">
     <div class="wrap creds-inner">
+      <span class="eyebrow kicker">About</span>
       <div class="statrow">
         <div class="stat">
           <div class="num">20 years</div>
@@ -410,7 +411,6 @@
     <div class="wrap">
       <div class="block-head reveal">
         <span class="eyebrow">In their words</span>
-        <h2 class="display" style="margin-top:18px">Numbers to stake a budget on.</h2>
       </div>
       <!-- ================= TESTIMONIALS ================= -->
       <!-- Edit the cards between TM:START and TM:END below.                 -->
