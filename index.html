@@ -188,7 +188,15 @@
   .badge{font-family:var(--font-body);font-weight:600;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;padding:.32em .7em;border-radius:2px;white-space:nowrap}
   .badge-start{background:var(--accent);color:#fdfbf5}
   .badge-sig{background:var(--gold-soft);color:#7a3322;border:1px solid var(--gold)}
-  @media(max-width:720px){.svc-grid{grid-template-columns:1fr}.svc{border-right:none}}
+  .svc-intro{font-size:1.12rem;line-height:1.55;color:var(--ink-2);max-width:34em;margin:14px 0 0}
+  @media(max-width:720px){
+    .svc-grid{grid-template-columns:1fr;gap:16px}
+    .svc{border-right:none;padding:26px 22px}
+    .svc h3{font-size:1.5rem;margin-top:14px}
+    .svc-top{margin-bottom:2px}
+    .svc-foot{margin-top:20px;padding-top:18px}
+    .svc-intro{font-size:1.05rem;margin-top:12px}
+  }
   .audit-cta{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
     margin-top:30px;padding:24px 28px;border:1px solid var(--line-2);border-radius:4px;background:var(--surface);text-decoration:none;transition:.18s ease}
   .audit-cta:hover{background:#eef4fb}
@@ -475,6 +483,7 @@
     <div class="wrap">
       <div class="block-head reveal">
         <span class="eyebrow">Services</span>
+        <p class="svc-intro">Examples of the work we could take on together. Each card opens a short interactive demo of how I'd approach it, take a look at whichever fits your question.</p>
       </div>
 
       <div class="svc-grid">
