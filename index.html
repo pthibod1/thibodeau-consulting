@@ -163,8 +163,8 @@
 
   /* services */
   .svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:44px}
-  .svc{display:flex;flex-direction:column;padding:26px 28px 26px;border:1px solid var(--line-2);background:var(--surface);border-radius:4px;position:relative;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;box-shadow:0 1px 0 var(--line)}
-  .svc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);border-radius:4px 0 0 4px;opacity:0;transition:opacity .18s ease}
+  .svc{display:flex;flex-direction:column;padding:24px 28px;border:1px solid var(--line-2);border-top:2px solid var(--accent);border-bottom:2px solid var(--accent);background:var(--surface);border-radius:0;position:relative;text-decoration:none;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;box-shadow:0 1px 0 var(--line)}
+  .svc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);opacity:0;transition:opacity .18s ease}
   .svc:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 10px 26px -12px color-mix(in srgb,var(--accent) 30%, transparent)}
   .svc:hover::before{opacity:1}
   .svc-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:15px;border-top:1px solid var(--line)}
@@ -483,25 +483,25 @@
         <a href="demos/mmm_demo.html" class="svc reveal">
           <div class="svc-top"><span class="svc-idx">01</span></div>
           <h3>MMM &amp; Attribution</h3>
-          <p>Bayesian marketing-mix modeling and attribution built end to end, with channel-level incrementality you can budget against, durable to privacy changes.</p>
+          <p>Bayesian marketing-mix modeling and attribution, with channel-level incrementality you can budget against.</p>
           <div class="svc-foot"><span class="more">Explore <span class="arr">→</span></span></div>
         </a>
         <a href="demos/experimentation_demo.html" class="svc reveal">
           <div class="svc-top"><span class="svc-idx">02</span></div>
           <h3>Causal Inference &amp; Experimentation</h3>
-          <p>Did the change cause the lift, or did you get lucky? Experiment, geo-test, and quasi-experiment designs built to settle the question.</p>
+          <p>Experiment, geo-test, and quasi-experiment designs that settle whether the change caused the lift.</p>
           <div class="svc-foot"><span class="more">Explore <span class="arr">→</span></span></div>
         </a>
         <a href="demos/agentic_eval_demo.html" class="svc reveal">
           <div class="svc-top"><span class="svc-idx">03</span></div>
           <h3>AI &amp; Agentic Workflows</h3>
-          <p>LLM and agentic workflows built for real work and evaluated like any other intervention. I help you find where AI genuinely moves the needle, ship tools your team actually trusts, and prove they work before they reach production.</p>
+          <p>LLM and agentic workflows built for real work, and evaluated before they reach production.</p>
           <div class="svc-foot"><span class="more">Explore <span class="arr">→</span></span></div>
         </a>
         <a href="demos/behavioral_survey_demo.html" class="svc reveal">
           <div class="svc-top"><span class="svc-idx">04</span></div>
           <h3>Behavioral &amp; Survey Research</h3>
-          <p>Brand lift, message and concept testing, willingness-to-pay, attitudes. Survey and experiment design from a published cognitive scientist, so your numbers measure what you think they measure.</p>
+          <p>Brand lift, message testing, and willingness-to-pay, designed by a published cognitive scientist.</p>
           <div class="svc-foot"><span class="more">Explore <span class="arr">→</span></span></div>
         </a>
       </div>
