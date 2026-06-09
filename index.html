@@ -327,6 +327,14 @@
   .hero-sub{margin:14px 0 0;font-size:1.12rem;color:var(--ink-2);max-width:32rem;line-height:1.5}
   .cta-note{margin:14px 0 0;font-size:.85rem;color:var(--ink-3);letter-spacing:.02em}
   .creds{background:#e4ecf5;border-top:3px solid #0F2A43;border-bottom:1px solid var(--line)}
+
+  /* "How I help" 3-up band */
+  #howhelp{background:#f4f8fc;border-top:3px solid #0F2A43}
+  .help-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:1.6rem}
+  .help h3{font-family:var(--font-display);font-weight:500;font-size:1.25rem;color:var(--ink);margin:0 0 .5rem;letter-spacing:-.01em}
+  .help h3::before{content:"";display:block;width:30px;height:2px;background:var(--gold);margin-bottom:.7rem}
+  .help p{font-size:.97rem;color:var(--ink-2);margin:0;line-height:1.55}
+  @media(max-width:760px){.help-grid{grid-template-columns:1fr;gap:1.4rem}}
 </style>
 </head>
 <body>
@@ -349,13 +357,8 @@
     <div class="wrap hero-grid">
       <div class="hero-copy">
         <span class="eyebrow reveal">Scientific rigor · Industry speed</span>
-        <h1 class="display reveal">Marketing <span style="color:var(--gold)">&amp;</span> Data Consulting</h1>
-        <p class="hero-sub reveal">Measurement and modeling for digital-health, consumer, and growth teams.</p>
-        <ul class="hero-points reveal">
-          <li><strong>I build data systems you can trust.</strong> Production-grade, from years as a senior data scientist in tech.</li>
-          <li><strong>I make sure you understand your data, its strengths and its limits.</strong> I'm a teacher at heart.</li>
-          <li><strong>I help you strategize, measure, and grow.</strong> That's the whole job.</li>
-        </ul>
+        <h1 class="display reveal">Know what's actually driving your <span style="color:var(--gold)">growth</span>.</h1>
+        <p class="hero-sub reveal">Marketing-mix modeling, attribution, and experimentation for digital-health, consumer, and growth teams that need numbers they can trust.</p>
         <div class="btns reveal" style="justify-content:center">
           <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener" class="btn btn-primary">Book a free 30-min call <span class="arr">→</span></a>
         </div>
@@ -387,6 +390,17 @@
   <!-- CREDENTIAL BAND moved into individual service pages -->
 
   <!-- ABOUT -->
+  <section class="block" id="howhelp">
+    <div class="wrap">
+      <span class="eyebrow">How I help</span>
+      <div class="help-grid reveal">
+        <div class="help"><h3>I build it right</h3><p>Data systems you can trust, production-grade, from years as a senior data scientist in tech.</p></div>
+        <div class="help"><h3>I make sure you get it</h3><p>You'll understand your data's strengths and its limits. I'm a teacher at heart.</p></div>
+        <div class="help"><h3>I help you act</h3><p>Strategy, measurement, and growth. That's the whole job.</p></div>
+      </div>
+    </div>
+  </section>
+
   <section class="block" id="about">
     <div class="wrap">
       <div class="block-head reveal" style="max-width:46em">
