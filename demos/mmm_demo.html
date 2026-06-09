@@ -24,7 +24,7 @@ header.hero{padding:4rem 0 2.4rem;border-bottom:1px solid var(--line)}
 h1{font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:2.5rem;line-height:1.12;color:var(--navy);margin:0 0 1rem;letter-spacing:.005em}
 .lede{font-size:1.12rem;color:var(--muted);max-width:42rem;margin:0}
 .wordmark{font-family:"Newsreader",serif;font-weight:600;color:var(--navy);font-size:1.05rem;margin:0 0 2rem}
-.step{padding:3rem 0;border-bottom:1px solid var(--line)}
+.step{padding:3rem 0}
 .step-num{display:inline-flex;align-items:center;justify-content:center;width:2rem;height:2rem;border-radius:999px;background:var(--navy);color:#fff;font-weight:600;font-size:.95rem;font-family:"Newsreader",serif;margin-right:.7rem;flex:none}
 .step h2{font-family:"Newsreader",serif;font-weight:600;font-size:1.7rem;color:var(--navy);margin:0;display:flex;align-items:center}
 .step .sub{color:var(--muted);margin:.6rem 0 1.4rem;max-width:44rem}
@@ -52,6 +52,12 @@ canvas{width:100%;display:block}
 footer{padding:2.6rem 0 4rem;color:var(--muted);font-size:.9rem}
 footer a{color:var(--teal)}
 @media(max-width:640px){h1{font-size:2rem}.step h2{font-size:1.4rem}.control{min-width:100%}}
+.hero-grid{display:grid;grid-template-columns:1.4fr .9fr;gap:2.2rem;align-items:center}
+.hero-cartoon{justify-self:end}
+.hero-cartoon svg{display:block;width:100%;height:auto;max-width:340px}
+.cta-band .wrap{text-align:center;padding:3.6rem 1.4rem}
+.cta-band h2{font-family:"Newsreader",serif;font-weight:600;font-size:1.9rem;color:var(--navy);margin:0 0 1.4rem;border:none}
+@media(max-width:760px){.hero-grid{grid-template-columns:1fr}.hero-cartoon{display:none}}
 </style>
 <link rel="stylesheet" href="site.css">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
@@ -65,14 +71,35 @@ footer a{color:var(--teal)}
     <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener" class="tc-btn">Book Call</a>
   </nav>
 </div></header>
-<div class="wrap">
+<section class="band"><div class="wrap">
   <header class="hero">
-    <p class="eyebrow">MMM &amp; Attribution</p>
-    <h1>How is marketing spend impacting revenue and growth?</h1>
-    <p class="lede">Marketing-mix modeling (MMM) explains your sales using your spend: privacy-durable, no cookies, no user tracking.</p>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">MMM &amp; Attribution</p>
+        <h1>How is marketing spend impacting revenue and growth?</h1>
+        <p class="lede">Marketing-mix modeling (MMM) explains your sales using your spend: privacy-durable, no cookies, no user tracking.</p>
+      </div>
+      <div class="hero-cartoon" aria-hidden="true">
+        <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg">
+          <rect x="14" y="120" width="28" height="78" rx="3" fill="#1F7A8C"/>
+          <rect x="50" y="92" width="28" height="106" rx="3" fill="#B9822F"/>
+          <rect x="86" y="142" width="28" height="56" rx="3" fill="#0F2A43"/>
+          <line x1="8" y1="198" x2="120" y2="198" stroke="#c2cbd4" stroke-width="2"/>
+          <g stroke="#9aa6af" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="138" y1="140" x2="178" y2="140"/>
+            <polyline points="170,132 180,140 170,148"/>
+          </g>
+          <line x1="206" y1="40" x2="206" y2="198" stroke="#c2cbd4" stroke-width="2"/>
+          <line x1="206" y1="198" x2="352" y2="198" stroke="#c2cbd4" stroke-width="2"/>
+          <path d="M210 188 C 250 184, 270 96, 348 60" fill="none" stroke="#b3543a" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="348" cy="60" r="5.5" fill="#b3543a"/>
+        </svg>
+      </div>
+    </div>
   </header>
+</div></section>
 
-  <!-- STEP 1, ADSTOCK -->
+<section class="band band-alt"><div class="wrap">
   <section class="howwe">
     <span class="eyebrow">How we'd work together</span>
     <h2>From question to decision.</h2>
@@ -96,12 +123,14 @@ footer a{color:var(--teal)}
       </ul>
       <p class="typ">Typical first engagement: 4-6 weeks from kickoff to a model your finance team can trust.</p>
     </div>
-    <div class="howwe-seemethod">
-      <span class="eyebrow">See the method at work</span>
-      <p>Marketing-mix modeling rests on four ideas. Play with each one below; the data comes from a known "true" model, so you can watch the method recover the answer.</p>
-    </div>
   </section>
+</div></section>
 
+<section class="band"><div class="wrap">
+  <div class="howwe-seemethod">
+    <span class="eyebrow">See the method at work</span>
+    <p>Marketing-mix modeling rests on four ideas. Play with each one below; the data comes from a known "true" model, so you can watch the method recover the answer.</p>
+  </div>
   <section class="step" id="adstock">
     <h2><span class="step-num">1</span>Adstock, advertising keeps working after you stop paying</h2>
     <p class="sub">A burst of spend doesn't all convert the week you pay for it. Awareness lingers and decays. Adstock smears each week's spend forward: <span class="eq">aₜ = xₜ + λ·aₜ₋₁</span>. Slide the carryover λ and watch the bars (raw spend) turn into the curve (effective, remembered media).</p>
@@ -128,8 +157,9 @@ footer a{color:var(--teal)}
       <div class="takeaway" id="adTake"></div>
     </div>
   </section>
+</div></section>
 
-  <!-- STEP 2, SATURATION -->
+<section class="band band-alt"><div class="wrap">
   <section class="step" id="saturation">
     <h2><span class="step-num">2</span>Diminishing returns, the 10th impression is worth less than the 1st</h2>
     <p class="sub">Doubling spend never doubles sales. Each channel has a response curve that bends over as it saturates (a Hill curve: <span class="eq">f(a) = aᵃ / (aᵃ + κᵃ)</span>). The half-saturation point κ is where you've "used up" half the channel's potential. The dot marks where this channel currently operates.</p>
@@ -156,8 +186,9 @@ footer a{color:var(--teal)}
       <div class="takeaway" id="satTake"></div>
     </div>
   </section>
+</div></section>
 
-  <!-- STEP 3, DECOMPOSITION -->
+<section class="band"><div class="wrap">
   <section class="step" id="decomp">
     <h2><span class="step-num">3</span>Decomposition, splitting sales into baseline + each channel</h2>
     <p class="sub">Put adstock and saturation together for every channel, add a baseline (what you'd sell with no marketing), and you can decompose observed sales into its drivers: <span class="eq">salesₜ = baseₜ + Σ βc·f(adstock(spend))</span>. The shaded bands show each channel's contribution; the dots are actual sales. Toggle channels to see what each is really worth.</p>
@@ -184,8 +215,9 @@ footer a{color:var(--teal)}
       <div class="takeaway" id="decTake"></div>
     </div>
   </section>
+</div></section>
 
-  <!-- STEP 4, BUDGET -->
+<section class="band band-alt"><div class="wrap">
   <section class="step" id="budget">
     <h2><span class="step-num">4</span>Budget attribution, where should the next dollar go?</h2>
     <p class="sub">Because every channel saturates, the best plan equalizes the <em>marginal</em> return across channels, pour into channels with headroom, pull back from saturated ones. Below, the model reallocates your weekly budget to maximize sales. Slide the total budget and compare your current split (left bars) to the model's recommendation (right bars).</p>
@@ -205,11 +237,16 @@ footer a{color:var(--teal)}
       <div class="takeaway" id="budTake"></div>
     </div>
   </section>
+</div></section>
 
-  <footer>
-    <p>This is a teaching demo on synthetic data. A real engagement fits these curves to <em>your</em> sales and spend, with uncertainty intervals and validation. Built by <strong>Paul Thibodeau</strong> · <a href="https://calendly.com/paul-thibodeau/30min">Thibodeau Consulting</a>, measurement &amp; marketing science.</p>
-  </footer>
-</div>
+<section class="band cta-band"><div class="wrap">
+  <h2>See this on your own spend and sales.</h2>
+  <a class="btn" href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener">Book Call →</a>
+</div></section>
+
+<div class="wrap"><footer>
+  <p>This is a teaching demo on synthetic data. A real engagement fits these curves to <em>your</em> sales and spend, with uncertainty intervals and validation. Built by <strong>Paul Thibodeau</strong> · <a href="https://calendly.com/paul-thibodeau/30min">Thibodeau Consulting</a>, measurement &amp; marketing science.</p>
+</footer></div>
 
 <script>
 /* ---------- deterministic synthetic data ---------- */
