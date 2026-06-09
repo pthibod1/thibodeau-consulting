@@ -46,6 +46,11 @@ a:focus-visible,button:focus-visible,input[type=range]:focus-visible{outline:2px
 .band{background:#f4f8fc}
 .band-alt{background:#e4ecf5;border-top:3px solid #0F2A43;border-bottom:3px solid #0F2A43}
 .band header.hero{border-bottom:none}
+.hero-grid{display:grid;grid-template-columns:1.4fr .9fr;gap:2.2rem;align-items:center}
+.hero-cartoon{justify-self:end}
+.hero-cartoon svg{display:block;width:100%;height:auto;max-width:340px}
+@media(max-width:760px){.hero-grid{grid-template-columns:1fr}.hero-cartoon{display:none}}
+.engage.band-alt{background:#e4ecf5;padding:38px 0 44px}
 
 /* "Work together" engagement panel */
 .engage{padding:6px 0 30px;background:#f4f8fc}

@@ -67,14 +67,31 @@ footer a{color:var(--teal)}
     <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener" class="tc-btn">Book Call</a>
   </nav>
 </div></header>
-<div class="wrap">
+<section class="band"><div class="wrap">
   <header class="hero">
-    <p class="eyebrow">Causal Inference &amp; Experimentation</p>
-    <h1>Did the new feature really move the needle?</h1>
-    <p class="lede">Your team ships a new onboarding flow and the test shows <em>+12% signups on day three</em>. Do you roll it out? Most product A/B tests are read wrong, stopped too early, under-powered, or shipped on a "win" too small to matter. Here's the discipline that turns a test into a decision you can defend, on a flow with a 12% baseline signup rate.</p>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Causal Inference &amp; Experimentation</p>
+        <h1>Did the new feature really move the needle?</h1>
+        <p class="lede">Your team ships a new onboarding flow and the test shows <em>+12% signups on day three</em>. Do you roll it out? Most product A/B tests are read wrong, stopped too early, under-powered, or shipped on a "win" too small to matter. Here's the discipline that turns a test into a decision you can defend, on a flow with a 12% baseline signup rate.</p>
+      </div>
+      <div class="hero-cartoon" aria-hidden="true">
+        <svg viewBox="0 0 320 210" xmlns="http://www.w3.org/2000/svg">
+          <line x1="24" y1="180" x2="296" y2="180" stroke="#c2cbd4" stroke-width="2"/>
+          <rect x="62" y="110" width="66" height="70" rx="3" fill="#9aa6af"/>
+          <rect x="192" y="66" width="66" height="114" rx="3" fill="#1F7A8C"/>
+          <line x1="62" y1="110" x2="258" y2="110" stroke="#b3543a" stroke-width="2" stroke-dasharray="5 4"/>
+          <line x1="270" y1="66" x2="270" y2="110" stroke="#b3543a" stroke-width="2"/>
+          <text x="285" y="93" font-size="15" fill="#b3543a" font-weight="700" font-family="Inter,sans-serif">+?</text>
+          <text x="95" y="200" text-anchor="middle" font-size="13" fill="#5a6b78" font-family="Inter,sans-serif">A</text>
+          <text x="225" y="200" text-anchor="middle" font-size="13" fill="#5a6b78" font-family="Inter,sans-serif">B</text>
+        </svg>
+      </div>
+    </div>
   </header>
+</div></section>
 
-  <!-- STEP 1 -->
+<section class="band band-alt"><div class="wrap">
   <section class="step" id="design">
     <h2><span class="step-num">1</span>Design it first, how long must it run?</h2>
     <p class="sub">You can't decide duration after you peek; you commit before. The smaller the effect you want to catch, the more traffic you need, and it grows with the <em>square</em> of how small. Pick the minimum lift worth shipping and your traffic; the test tells you the sample size and runtime (80% power, 5% false-positive rate).</p>
@@ -99,8 +116,9 @@ footer a{color:var(--teal)}
       <div class="takeaway" id="designTake"></div>
     </div>
   </section>
+</div></section>
 
-  <!-- STEP 2 -->
+<section class="band"><div class="wrap">
   <section class="step" id="peeking">
     <h2><span class="step-num">2</span>Don't peek, early "significance" is mostly noise</h2>
     <p class="sub">Here's the trap that ruins more product tests than any other. These are <strong>A/A tests</strong>, both arms are identical, so the true effect is <em>zero</em>. Yet if you check every day and ship the moment p &lt; 0.05, you'll declare a fake winner shockingly often. Each line is one A/A test's running p-value; the more times you look, the more chances to get unlucky.</p>
@@ -117,8 +135,9 @@ footer a{color:var(--teal)}
       <div class="takeaway" id="peekTake"></div>
     </div>
   </section>
+</div></section>
 
-  <!-- STEP 3 -->
+<section class="band band-alt"><div class="wrap">
   <section class="step" id="read">
     <h2><span class="step-num">3</span>Read it right, "significant" isn't "worth shipping"</h2>
     <p class="sub">A test answers two different questions. <em>Is the effect real?</em> (does the interval clear zero?) and <em>is it big enough to matter?</em> (does it clear your ship bar?). A tiny, certain win and a huge, uncertain one are different decisions. Move the true effect and the sample size and watch the verdict change.</p>
@@ -138,8 +157,9 @@ footer a{color:var(--teal)}
       <div class="takeaway" id="readTake"></div>
     </div>
   </section>
+</div></section>
 
-  <!-- STEP 4 -->
+<section class="band"><div class="wrap">
   <section class="step" id="decide">
     <h2><span class="step-num">4</span>From result to decision, size the bet</h2>
     <p class="sub">The last mile is business, not statistics: translate the lift (and its uncertainty) into the outcome leadership cares about, then make the call. Same test result as above; set how much traffic hits this flow in a year.</p>
@@ -157,8 +177,9 @@ footer a{color:var(--teal)}
       <div class="takeaway" id="decTake"></div>
     </div>
   </section>
+</div></section>
 
-    <section class="engage">
+<section class="engage band-alt">
     <div class="engage-inner">
       <div class="engage-card">
         <h2>Work together on experimentation</h2>
@@ -188,10 +209,9 @@ footer a{color:var(--teal)}
     </div>
   </section>
 
-  <footer>
+  <div class="wrap"><footer>
     <p>Same rigor, whether it's an onboarding flow, a pricing change, or a marketing creative: power the test, pre-commit the stopping rule, separate "real" from "worth it," and size the bet with its uncertainty. Built by <strong>Paul Thibodeau</strong>.</p>
-  </footer>
-</div>
+  </footer></div>
 
 <script>
 function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
