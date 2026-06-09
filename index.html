@@ -335,6 +335,10 @@
   .help h3::before{content:"";display:block;width:30px;height:2px;background:var(--gold);margin-bottom:.7rem}
   .help p{font-size:.97rem;color:var(--ink-2);margin:0;line-height:1.55}
   @media(max-width:760px){.help-grid{grid-template-columns:1fr;gap:1.4rem}}
+
+  /* credibility strip: muted logo cluster */
+  .stat .num.logos{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+  .stat .num.logos img{height:20px;width:auto;display:block;filter:grayscale(1);opacity:.6}
 </style>
 </head>
 <body>
@@ -375,14 +379,31 @@
     </div>
   </section>
 
-  <section class="creds reveal">
+    <section class="creds reveal">
     <div class="wrap creds-inner">
-      <span class="kicker">Measurement, research, and industry data science</span>
+      <span class="kicker">20+ years of academic research and industry data science</span>
       <div class="statrow">
-        <div class="stat"><div class="num"><img src="assets/logo-stanford.png" alt="Stanford" style="height:48px;width:auto;display:block"></div><div class="lbl">PhD, Cognitive Science</div></div>
-        <div class="stat"><div class="num">8-figure</div><div class="lbl">monthly ad spend modeled</div></div>
-        <div class="stat"><div class="num">5,700+</div><div class="lbl">citations of peer-reviewed research</div></div>
-        <div class="stat"><div class="num">50+</div><div class="lbl">published papers</div></div>
+        <div class="stat">
+          <div class="num logos">
+            <img src="assets/logo-betterhelp.png" alt="BetterHelp">
+            <img src="assets/logo-espark.png" alt="eSpark">
+            <img src="assets/logo-oberlin.png" alt="Oberlin College">
+            <img src="assets/logo-swarthmore.png" alt="Swarthmore">
+          </div>
+          <div class="lbl">Industry &amp; academia</div>
+        </div>
+        <div class="stat">
+          <div class="num"><img src="assets/logo-stanford.png" alt="Stanford" style="height:46px;width:auto;display:block"></div>
+          <div class="lbl">PhD, Cognitive Science &middot; MS, Statistics</div>
+        </div>
+        <div class="stat">
+          <div class="num">50+</div>
+          <div class="lbl">peer-reviewed papers, cited 5,000+ times</div>
+        </div>
+        <div class="stat">
+          <div class="num">8-figure</div>
+          <div class="lbl">budgets managed and advised on</div>
+        </div>
       </div>
     </div>
   </section>
