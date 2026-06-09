@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Run an A/B test that won't fool you — Thibodeau Consulting</title>
+<title>Did the new feature really move the needle? · Thibodeau Consulting</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
@@ -69,15 +69,15 @@ footer a{color:var(--teal)}
 </div></header>
 <div class="wrap">
   <header class="hero">
-    <p class="eyebrow">Interactive demo · Causal inference &amp; experimentation</p>
-    <h1>Run an A/B test that won't fool you</h1>
-    <p class="lede">Your team ships a new onboarding flow and the test shows <em>+12% signups on day three</em>. Do you roll it out? Most product A/B tests are read wrong — stopped too early, under-powered, or shipped on a "win" too small to matter. Here's the discipline that turns a test into a decision you can defend, on a flow with a 12% baseline signup rate.</p>
+    <p class="eyebrow">Causal Inference &amp; Experimentation</p>
+    <h1>Did the new feature really move the needle?</h1>
+    <p class="lede">Your team ships a new onboarding flow and the test shows <em>+12% signups on day three</em>. Do you roll it out? Most product A/B tests are read wrong, stopped too early, under-powered, or shipped on a "win" too small to matter. Here's the discipline that turns a test into a decision you can defend, on a flow with a 12% baseline signup rate.</p>
   </header>
 
   <!-- STEP 1 -->
   <section class="step" id="design">
-    <h2><span class="step-num">1</span>Design it first — how long must it run?</h2>
-    <p class="sub">You can't decide duration after you peek; you commit before. The smaller the effect you want to catch, the more traffic you need — and it grows with the <em>square</em> of how small. Pick the minimum lift worth shipping and your traffic; the test tells you the sample size and runtime (80% power, 5% false-positive rate).</p>
+    <h2><span class="step-num">1</span>Design it first, how long must it run?</h2>
+    <p class="sub">You can't decide duration after you peek; you commit before. The smaller the effect you want to catch, the more traffic you need, and it grows with the <em>square</em> of how small. Pick the minimum lift worth shipping and your traffic; the test tells you the sample size and runtime (80% power, 5% false-positive rate).</p>
     <div class="card">
       <div class="controls">
         <div class="control">
@@ -90,9 +90,9 @@ footer a{color:var(--teal)}
         </div>
       </div>
       <div class="statgrid">
-        <div class="stat"><div class="k">Sample / arm</div><div class="v" id="nArmOut">—</div></div>
-        <div class="stat"><div class="k">Total visitors</div><div class="v" id="nTotOut">—</div></div>
-        <div class="stat"><div class="k">Run time</div><div class="v" id="daysOut">—</div></div>
+        <div class="stat"><div class="k">Sample / arm</div><div class="v" id="nArmOut">, </div></div>
+        <div class="stat"><div class="k">Total visitors</div><div class="v" id="nTotOut">, </div></div>
+        <div class="stat"><div class="k">Run time</div><div class="v" id="daysOut">, </div></div>
       </div>
       <div class="canvas-wrap"><canvas id="cPower" height="280"></canvas></div>
       <div class="legend"><span><span class="swatch" style="background:var(--teal)"></span>Sample/arm needed vs. effect size</span><span>● your current target</span></div>
@@ -102,8 +102,8 @@ footer a{color:var(--teal)}
 
   <!-- STEP 2 -->
   <section class="step" id="peeking">
-    <h2><span class="step-num">2</span>Don't peek — early "significance" is mostly noise</h2>
-    <p class="sub">Here's the trap that ruins more product tests than any other. These are <strong>A/A tests</strong> — both arms are identical, so the true effect is <em>zero</em>. Yet if you check every day and ship the moment p &lt; 0.05, you'll declare a fake winner shockingly often. Each line is one A/A test's running p-value; the more times you look, the more chances to get unlucky.</p>
+    <h2><span class="step-num">2</span>Don't peek, early "significance" is mostly noise</h2>
+    <p class="sub">Here's the trap that ruins more product tests than any other. These are <strong>A/A tests</strong>, both arms are identical, so the true effect is <em>zero</em>. Yet if you check every day and ship the moment p &lt; 0.05, you'll declare a fake winner shockingly often. Each line is one A/A test's running p-value; the more times you look, the more chances to get unlucky.</p>
     <div class="card">
       <div class="controls">
         <div class="control">
@@ -113,14 +113,14 @@ footer a{color:var(--teal)}
       </div>
       <p class="headline-stat" id="peekHeadline"></p>
       <div class="canvas-wrap"><canvas id="cPeek" height="300"></canvas></div>
-      <div class="legend"><span>— gray lines = running p-value of A/A tests (true effect = 0)</span><span><span class="swatch" style="background:var(--bad)"></span>p = 0.05 "significance" line</span></div>
+      <div class="legend"><span>, gray lines = running p-value of A/A tests (true effect = 0)</span><span><span class="swatch" style="background:var(--bad)"></span>p = 0.05 "significance" line</span></div>
       <div class="takeaway" id="peekTake"></div>
     </div>
   </section>
 
   <!-- STEP 3 -->
   <section class="step" id="read">
-    <h2><span class="step-num">3</span>Read it right — "significant" isn't "worth shipping"</h2>
+    <h2><span class="step-num">3</span>Read it right, "significant" isn't "worth shipping"</h2>
     <p class="sub">A test answers two different questions. <em>Is the effect real?</em> (does the interval clear zero?) and <em>is it big enough to matter?</em> (does it clear your ship bar?). A tiny, certain win and a huge, uncertain one are different decisions. Move the true effect and the sample size and watch the verdict change.</p>
     <div class="card">
       <div class="controls">
@@ -141,7 +141,7 @@ footer a{color:var(--teal)}
 
   <!-- STEP 4 -->
   <section class="step" id="decide">
-    <h2><span class="step-num">4</span>From result to decision — size the bet</h2>
+    <h2><span class="step-num">4</span>From result to decision, size the bet</h2>
     <p class="sub">The last mile is business, not statistics: translate the lift (and its uncertainty) into the outcome leadership cares about, then make the call. Same test result as above; set how much traffic hits this flow in a year.</p>
     <div class="card">
       <div class="controls">
@@ -189,7 +189,7 @@ footer a{color:var(--teal)}
   </section>
 
   <footer>
-    <p>Same rigor, whether it's an onboarding flow, a pricing change, or a marketing creative: power the test, pre-commit the stopping rule, separate "real" from "worth it," and size the bet with its uncertainty. Built by <strong>Paul Thibodeau</strong> · <a href="https://calendly.com/paul-thibodeau/30min">Thibodeau Consulting</a> — measurement &amp; experimentation.</p>
+    <p>Same rigor, whether it's an onboarding flow, a pricing change, or a marketing creative: power the test, pre-commit the stopping rule, separate "real" from "worth it," and size the bet with its uncertainty. Built by <strong>Paul Thibodeau</strong> · <a href="https://calendly.com/paul-thibodeau/30min">Thibodeau Consulting</a>, measurement &amp; experimentation.</p>
   </footer>
 </div>
 
@@ -252,7 +252,7 @@ function drawPower(){
   const half=nPerArm(P0,mde/2);
   document.getElementById("designTake").innerHTML=
     `To catch a <strong>+${Math.round(mde*100)}%</strong> lift you need <strong>${kfmt(n)}/arm</strong> (~${days} days at this traffic). `+
-    `Halving the target to +${Math.round(mde*50)}% would need <strong>${kfmt(half)}/arm</strong> — about ${(half/n).toFixed(1)}× as much. Chasing tiny effects is expensive; decide what's worth detecting before you start.`;
+    `Halving the target to +${Math.round(mde*50)}% would need <strong>${kfmt(half)}/arm</strong>, about ${(half/n).toFixed(1)}× as much. Chasing tiny effects is expensive; decide what's worth detecting before you start.`;
 }
 
 /* ---- STEP 2: peeking / A/A ---- */
@@ -300,8 +300,8 @@ function drawPeek(){
   document.getElementById("peekHeadline").innerHTML=
     `Checking <b>${peeks}×</b> turns a 5% false-alarm rate into <b>${Math.round(fp*100)}%</b>.`;
   document.getElementById("peekTake").innerHTML=
-    `With ${peeks} look${peeks>1?"s":""}, <strong>${Math.round(fp*100)}%</strong> of these zero-effect tests cross "significance" at some point — vs the <strong>${Math.round(fp1*100)}%</strong> you signed up for by checking once at the planned end. `+
-    `The fix isn't "never look" — it's pre-committing the sample size (Step 1) or using a sequential test designed for peeking.`;
+    `With ${peeks} look${peeks>1?"s":""}, <strong>${Math.round(fp*100)}%</strong> of these zero-effect tests cross "significance" at some point, vs the <strong>${Math.round(fp1*100)}%</strong> you signed up for by checking once at the planned end. `+
+    `The fix isn't "never look", it's pre-committing the sample size (Step 1) or using a sequential test designed for peeking.`;
 }
 
 /* ---- shared result state for steps 3 & 4 ---- */
@@ -314,7 +314,7 @@ function estCI(rel,n){
 }
 function verdict(rel,n){
   const {est,lo}=estCI(rel,n);const shipPP=P0*SHIP_REL;
-  if(lo<=0) return {key:"wait",label:"⏳ Inconclusive — keep running"};
+  if(lo<=0) return {key:"wait",label:"⏳ Inconclusive, keep running"};
   if(est<shipPP) return {key:"stop",label:"✕ Real, but too small to ship"};
   return {key:"ship",label:"✓ Ship it"};
 }
@@ -344,9 +344,9 @@ function drawRead(){
   document.getElementById("readTake").innerHTML=
     `<span class="verdict ${v.key}">${v.label}</span><br><br>`+
     `Measured lift ≈ <strong>${(est*100).toFixed(1)} pts</strong> (95% CI ${(lo*100).toFixed(1)}–${(hi*100).toFixed(1)}). `+
-    (v.key==="wait"?`The interval still touches zero — you can't rule out "no effect." Bigger sample, or accept the uncertainty.`
-    :v.key==="stop"?`It clears zero (real) but sits below the ship bar — shipping costs effort for a win too small to matter.`
-    :`It clears both zero and the ship bar — a real effect big enough to act on.`);
+    (v.key==="wait"?`The interval still touches zero, you can't rule out "no effect." Bigger sample, or accept the uncertainty.`
+    :v.key==="stop"?`It clears zero (real) but sits below the ship bar, shipping costs effort for a win too small to matter.`
+    :`It clears both zero and the ship bar, a real effect big enough to act on.`);
 }
 
 /* ---- STEP 4: decision / impact ---- */
@@ -372,8 +372,8 @@ function drawDecide(){
   document.getElementById("decVerdict").innerHTML=`<span class="verdict ${v.key}">${v.label}</span>`;
   document.getElementById("decTake").innerHTML=
     (v.key==="ship"?`A defensible bet: even the pessimistic end of the interval (${kfmt(Math.round(addLo))}/yr) is clearly positive. Ship, and keep monitoring.`
-    :v.key==="stop"?`Statistically real, but the upside is modest — weigh it against the engineering and risk cost before committing.`
-    :`The interval spans zero, so the annual impact could be nothing. Don't bet roadmap on it yet — extend the test or move on.`)+
+    :v.key==="stop"?`Statistically real, but the upside is modest, weigh it against the engineering and risk cost before committing.`
+    :`The interval spans zero, so the annual impact could be nothing. Don't bet roadmap on it yet, extend the test or move on.`)+
     ` This is the translation that gets experimentation taken seriously: a number, an interval, and a recommendation.`;
 }
 

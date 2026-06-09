@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Why last-click lies: causal attribution — Thibodeau Consulting</title>
+<title>Why last-click lies · Thibodeau Consulting</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
@@ -67,15 +67,15 @@ footer a{color:var(--teal)}
 </div></header>
 <div class="wrap">
   <header class="hero">
-    <p class="eyebrow">Interactive demo</p>
-    <h1>Why last-click lies — and how to measure what your ads <em>actually</em> caused</h1>
-    <p class="lede">Most attribution credits whoever was clicked last. But the channel clicked last is often just standing where demand was already heading. This walks through the trap, the hidden cause, and the experiment that fixes it. The data comes from a known "true" model — so you can see exactly how far last-click drifts from the truth.</p>
+    <p class="eyebrow">Attribution</p>
+    <h1>Why last-click lies, and how to measure what your ads <em>actually</em> caused</h1>
+    <p class="lede">Most attribution credits whoever was clicked last. But the channel clicked last is often just standing where demand was already heading. This walks through the trap, the hidden cause, and the experiment that fixes it. The data comes from a known "true" model, so you can see exactly how far last-click drifts from the truth.</p>
   </header>
 
   <!-- STEP 1 -->
   <section class="step" id="rules">
-    <h2><span class="step-num">1</span>Last-click looks decisive — until you change the rule</h2>
-    <p class="sub">Rule-based attribution divides credit among the touchpoints on the path to a sale. Switch the rule and the "winning" channel changes — even though nothing about the business changed. That's the tell: these models reshuffle credit, they don't measure cause.</p>
+    <h2><span class="step-num">1</span>Last-click looks decisive, until you change the rule</h2>
+    <p class="sub">Rule-based attribution divides credit among the touchpoints on the path to a sale. Switch the rule and the "winning" channel changes, even though nothing about the business changed. That's the tell: these models reshuffle credit, they don't measure cause.</p>
     <div class="card">
       <div class="controls">
         <div class="control" style="max-width:520px">
@@ -100,8 +100,8 @@ footer a{color:var(--teal)}
 
   <!-- STEP 2 -->
   <section class="step" id="confounder">
-    <h2><span class="step-num">2</span>The hidden cause — demand drives both clicks and sales</h2>
-    <p class="sub">People who already want you search your brand name and click the ad on the way to buying. So <em>demand</em> causes the branded-search click <strong>and</strong> the sale — the click didn't cause much of anything. Below, the same conversions split into what's truly ad-driven vs. organic demand that would have converted anyway. Slide how much branded search rides on demand and watch its last-click credit balloon while its real contribution barely moves.</p>
+    <h2><span class="step-num">2</span>The hidden cause, demand drives both clicks and sales</h2>
+    <p class="sub">People who already want you search your brand name and click the ad on the way to buying. So <em>demand</em> causes the branded-search click <strong>and</strong> the sale, the click didn't cause much of anything. Below, the same conversions split into what's truly ad-driven vs. organic demand that would have converted anyway. Slide how much branded search rides on demand and watch its last-click credit balloon while its real contribution barely moves.</p>
     <div class="dag"><canvas id="cDag" width="560" height="150" style="max-width:560px;width:100%"></canvas></div>
     <div class="card">
       <div class="controls">
@@ -113,9 +113,9 @@ footer a{color:var(--teal)}
       <div class="canvas-wrap"><canvas id="cDecomp" height="340"></canvas></div>
       <div class="legend">
         <span><span class="swatch" style="background:var(--direct)"></span>Organic (would convert anyway)</span>
-        <span><span class="swatch" style="background:var(--search)"></span>Search — true incremental</span>
-        <span><span class="swatch" style="background:var(--social)"></span>Social — true incremental</span>
-        <span><span class="swatch" style="background:var(--display)"></span>Display — true incremental</span>
+        <span><span class="swatch" style="background:var(--search)"></span>Search, true incremental</span>
+        <span><span class="swatch" style="background:var(--social)"></span>Social, true incremental</span>
+        <span><span class="swatch" style="background:var(--display)"></span>Display, true incremental</span>
         <span><span class="swatch" style="background:var(--demand);border-radius:50%"></span>Latent demand</span>
       </div>
       <div class="takeaway" id="confTake"></div>
@@ -124,8 +124,8 @@ footer a{color:var(--teal)}
 
   <!-- STEP 3 -->
   <section class="step" id="experiment">
-    <h2><span class="step-num">3</span>The experiment — turn it off and watch what happens</h2>
-    <p class="sub">Causation needs a counterfactual: what would sales have been <em>without</em> the channel? A geo holdout turns the channel off in a random set of markets (control) and leaves it on elsewhere (treatment). The gap between them is the true incremental lift — with an honest confidence interval. Pick a channel and a holdout size.</p>
+    <h2><span class="step-num">3</span>The experiment, turn it off and watch what happens</h2>
+    <p class="sub">Causation needs a counterfactual: what would sales have been <em>without</em> the channel? A geo holdout turns the channel off in a random set of markets (control) and leaves it on elsewhere (treatment). The gap between them is the true incremental lift, with an honest confidence interval. Pick a channel and a holdout size.</p>
     <div class="card">
       <div class="controls">
         <div class="control" style="max-width:360px">
@@ -153,7 +153,7 @@ footer a{color:var(--teal)}
 
   <!-- STEP 4 -->
   <section class="step" id="verdict">
-    <h2><span class="step-num">4</span>The verdict — last-click would defund what's working</h2>
+    <h2><span class="step-num">4</span>The verdict, last-click would defund what's working</h2>
     <p class="sub">Put the two side by side: return on ad spend as last-click believes it, vs. return measured by experiment. Branded search looks like a star on last-click because it's billing you for organic demand. The channel that actually creates customers is the one last-click would cut.</p>
     <div class="card">
       <p class="headline-stat" id="verHeadline"></p>
@@ -161,7 +161,7 @@ footer a{color:var(--teal)}
       <div class="legend">
         <span><span class="swatch" style="background:#cfd6db"></span>Last-click ROAS (what you'd believe)</span>
         <span><span class="swatch" style="background:var(--teal)"></span>Incremental ROAS (measured)</span>
-        <span>— dashed line = break-even (ROAS 1.0)</span>
+        <span>, dashed line = break-even (ROAS 1.0)</span>
       </div>
       <div class="takeaway" id="verTake"></div>
     </div>
@@ -198,7 +198,7 @@ footer a{color:var(--teal)}
   </section>
 
   <footer>
-    <p>Teaching demo on synthetic data — a real engagement measures incrementality on <em>your</em> channels with geo-experiments, holdouts, or causal models, and quantifies the uncertainty. Built by <strong>Paul Thibodeau</strong> · <a href="https://calendly.com/paul-thibodeau/30min">Thibodeau Consulting</a> — measurement &amp; marketing science.</p>
+    <p>Teaching demo on synthetic data, a real engagement measures incrementality on <em>your</em> channels with geo-experiments, holdouts, or causal models, and quantifies the uncertainty. Built by <strong>Paul Thibodeau</strong> · <a href="https://calendly.com/paul-thibodeau/30min">Thibodeau Consulting</a>, measurement &amp; marketing science.</p>
   </footer>
 </div>
 
@@ -284,7 +284,7 @@ function drawRules(){
   const rn={last:"Last-click",first:"First-click",linear:"Linear"}[rule];
   document.getElementById("ruleTake").innerHTML=
     `Under <strong>${rn}</strong>, the apparent top paid channel is <strong>${labs[winner]}</strong>. `+
-    `Flip to another rule and the winner moves — same sales, same spend, different story. None of these answer the only question that matters: <em>which conversions would not have happened without the ad?</em>`;
+    `Flip to another rule and the winner moves, same sales, same spend, different story. None of these answer the only question that matters: <em>which conversions would not have happened without the ad?</em>`;
 }
 
 /* ---------- DAG (static) ---------- */
@@ -334,7 +334,7 @@ function drawDecomp(){
   const truePct=Math.round(trueIncTot.Search/Ctot*100);
   document.getElementById("rhoV").textContent=Math.round(rho*100)+"%";
   document.getElementById("confTake").innerHTML=
-    `With branded search riding <strong>${Math.round(rho*100)}%</strong> of demand, last-click credits it about <strong>${lcPct}%</strong> of all conversions — but its <em>true</em> incremental share is only <strong>${truePct}%</strong>. `+
+    `With branded search riding <strong>${Math.round(rho*100)}%</strong> of demand, last-click credits it about <strong>${lcPct}%</strong> of all conversions, but its <em>true</em> incremental share is only <strong>${truePct}%</strong>. `+
     `The gap is organic demand (the gray band) wearing a branded-search costume. Social and Display, which actually create demand, get no such free credit.`;
 }
 
@@ -369,9 +369,9 @@ function drawExp(){
   const lcCredit=expCh==="Search"? trueIncTot.Search/N+rho*Otot/N : trueIncTot[expCh]/N*0.5;
   document.getElementById("holdoutV").textContent=Math.round(holdout*100)+"%";
   const verdict=expCh==="Search"
-    ? `Turning branded search off barely dents conversions. Measured incremental lift ≈ <strong>${lift.toFixed(0)}/wk</strong> (95% CI ${(lift-ci).toFixed(0)}–${(lift+ci).toFixed(0)}) — yet last-click credits it ≈ <strong>${lcCredit.toFixed(0)}/wk</strong>. You were paying for demand you already had.`
-    : `Holding out ${expCh} clearly drops conversions. Measured incremental lift ≈ <strong>${lift.toFixed(0)}/wk</strong> (95% CI ${(lift-ci).toFixed(0)}–${(lift+ci).toFixed(0)}) — <em>more</em> than its ${lcCredit.toFixed(0)}/wk last-click credit. This channel is under-credited.`;
-  document.getElementById("expTake").innerHTML=verdict+` A bigger holdout buys a tighter interval — that's the price of certainty.`;
+    ? `Turning branded search off barely dents conversions. Measured incremental lift ≈ <strong>${lift.toFixed(0)}/wk</strong> (95% CI ${(lift-ci).toFixed(0)}–${(lift+ci).toFixed(0)}), yet last-click credits it ≈ <strong>${lcCredit.toFixed(0)}/wk</strong>. You were paying for demand you already had.`
+    : `Holding out ${expCh} clearly drops conversions. Measured incremental lift ≈ <strong>${lift.toFixed(0)}/wk</strong> (95% CI ${(lift-ci).toFixed(0)}–${(lift+ci).toFixed(0)}), <em>more</em> than its ${lcCredit.toFixed(0)}/wk last-click credit. This channel is under-credited.`;
+  document.getElementById("expTake").innerHTML=verdict+` A bigger holdout buys a tighter interval, that's the price of certainty.`;
 }
 
 /* ---------- STEP 4: ROAS comparison ---------- */
@@ -398,7 +398,7 @@ function drawRoas(){
   document.getElementById("verHeadline").innerHTML=
     `Last-click crowns <b>${labs[bestLc]}</b>. The experiment says your best dollar is in <b>${labs[bestInc]}</b>.`;
   document.getElementById("verTake").innerHTML=
-    `Branded search clears break-even on last-click (${lcROAS.Search.toFixed(1)}×) but loses money on incremental truth (${incROAS.Search.toFixed(1)}× — below the red line). `+
+    `Branded search clears break-even on last-click (${lcROAS.Search.toFixed(1)}×) but loses money on incremental truth (${incROAS.Search.toFixed(1)}×, below the red line). `+
     `Social is the reverse: last-click would cut it, the experiment says scale it. <strong>Acting on last-click would defund your growth and over-fund a channel billing you for organic demand.</strong>`;
 }
 

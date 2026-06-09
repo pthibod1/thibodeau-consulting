@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Measurement Health Check — Thibodeau Consulting</title>
+<title>Measurement Health Check · Thibodeau Consulting</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
@@ -124,35 +124,35 @@ footer a{color:var(--teal)}
   </section>
 
   <div class="wrap"><footer>
-    <p>Built by <strong>Paul Thibodeau</strong> · <a href="https://calendly.com/paul-thibodeau/30min">Thibodeau Consulting</a> — senior measurement &amp; behavioral-science leadership, a few days a month.</p>
+    <p>Built by <strong>Paul Thibodeau</strong> · <a href="https://calendly.com/paul-thibodeau/30min">Thibodeau Consulting</a>, senior measurement &amp; behavioral-science leadership, a few days a month.</p>
   </footer></div>
 
 <script>
 const DIMS=[
   {key:"data", short:["Data","foundation"],
    q:"We have a single, trusted source of truth for our core metrics.",
-   adv:["No reliable foundation means every number downstream is suspect. A fractional lead's first move is a trusted metric layer with agreed definitions — nothing else is believable until this exists.",
+   adv:["No reliable foundation means every number downstream is suspect. A fractional lead's first move is a trusted metric layer with agreed definitions, nothing else is believable until this exists.",
         "A partial source of truth still leaks trust. Tighten definitions, reconcile the conflicting dashboards, and make one number the number."]},
   {key:"attribution", short:["Attribution &","incrementality"],
-   q:"We know which channels and efforts actually drive growth — not just last-click.",
+   q:"We know which channels and efforts actually drive growth, not just last-click.",
    adv:["If you're steering on last-click or platform-reported ROAS, you're funding correlation, not cause. Start with incrementality testing or marketing-mix modeling so budget decisions rest on real lift.",
         "You've moved past last-click but the causal picture is patchy. Fill it in with a structured incrementality / MMM read across your major channels."]},
   {key:"experiments", short:["Experimen-","tation"],
-   q:"We run experiments and read them correctly — powered, pre-committed, no peeking.",
-   adv:["Without experiments you're inferring cause from observational noise. Stand up a lightweight, correctly-powered testing practice — even a few clean tests a quarter changes the conversation.",
+   q:"We run experiments and read them correctly, powered, pre-committed, no peeking.",
+   adv:["Without experiments you're inferring cause from observational noise. Stand up a lightweight, correctly-powered testing practice, even a few clean tests a quarter changes the conversation.",
         "You test, but power, peeking, or significance-vs-practical issues are likely costing you. Tighten the discipline so the results you act on are real."]},
   {key:"decision", short:["Decision","loop"],
    q:"Our analysis regularly changes real decisions and budget.",
    adv:["Measurement that doesn't move decisions is theater. Wire insight into the actual budget and roadmap cadence so the work earns its keep.",
-        "Insight reaches decisions sometimes. Make it routine — a standing cadence where the numbers set the agenda, not the other way around."]},
+        "Insight reaches decisions sometimes. Make it routine, a standing cadence where the numbers set the agenda, not the other way around."]},
   {key:"capability", short:["In-house","capability"],
    q:"We have senior measurement / analytics leadership in-house.",
-   adv:["No senior measurement voice in the room is exactly the gap fractional advisory fills — the judgment of a head-of-measurement, a few days a month, until (or instead of) a full-time hire.",
+   adv:["No senior measurement voice in the room is exactly the gap fractional advisory fills, the judgment of a head-of-measurement, a few days a month, until (or instead of) a full-time hire.",
         "You have some capability but it's stretched or junior. A fractional lead adds senior judgment and mentors the team you already have."]}
 ];
 const LEVELS=["Not yet","Partly","Solid"];
 const LADDER=[
-  {name:"Reporting", small:"see what happened", desc:"You can see what happened, but not reliably why — or what to do about it. The priority is a trustworthy foundation."},
+  {name:"Reporting", small:"see what happened", desc:"You can see what happened, but not reliably why, or what to do about it. The priority is a trustworthy foundation."},
   {name:"Measuring", small:"quantify drivers", desc:"You're quantifying drivers, but causal confidence and testing are still thin. The priority is earning that confidence."},
   {name:"Experimenting", small:"test for cause", desc:"You test and measure incrementality. The gap now is consistency and getting results into decisions."},
   {name:"Optimizing", small:"decide with it", desc:"Measurement is woven into decisions. The work is sharpening, scaling, and defending it."}
@@ -221,7 +221,7 @@ function renderGaps(){
   const c=document.getElementById("gapList");
   // lowest-scoring dims (ties -> array order, which is foundational-first)
   const min=Math.min(...DIMS.map(d=>scores[d.key]));
-  if(min>=2){c.innerHTML=`<div class="gap">Every dimension is solid — rare air. At this stage advisory shifts from fixing gaps to <b>sharpening and defending</b> the system: guarding against metric drift, raising the bar on experiment quality, and pressure-testing the calls that matter most.</div>`;return;}
+  if(min>=2){c.innerHTML=`<div class="gap">Every dimension is solid, rare air. At this stage advisory shifts from fixing gaps to <b>sharpening and defending</b> the system: guarding against metric drift, raising the bar on experiment quality, and pressure-testing the calls that matter most.</div>`;return;}
   const gaps=DIMS.filter(d=>scores[d.key]===min).slice(0,2);
   c.innerHTML=gaps.map(d=>`<div class="gap"><b>${NAMES[d.key]}:</b> ${d.adv[scores[d.key]]}</div>`).join("");
 }

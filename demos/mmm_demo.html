@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How a Marketing-Mix Model Works — Thibodeau Consulting</title>
+<title>How is marketing spend impacting revenue and growth? · Thibodeau Consulting</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
@@ -67,12 +67,12 @@ footer a{color:var(--teal)}
 </div></header>
 <div class="wrap">
   <header class="hero">
-    <p class="eyebrow">Interactive demo</p>
-    <h1>What a marketing-mix model actually does</h1>
+    <p class="eyebrow">MMM &amp; Attribution</p>
+    <h1>How is marketing spend impacting revenue and growth?</h1>
     <p class="lede">Marketing-mix modeling (MMM) explains your sales using your spend: privacy-durable, no cookies, no user tracking.</p>
   </header>
 
-  <!-- STEP 1 — ADSTOCK -->
+  <!-- STEP 1, ADSTOCK -->
   <section class="howwe">
     <span class="eyebrow">How we'd work together</span>
     <h2>From question to decision.</h2>
@@ -103,7 +103,7 @@ footer a{color:var(--teal)}
   </section>
 
   <section class="step" id="adstock">
-    <h2><span class="step-num">1</span>Adstock — advertising keeps working after you stop paying</h2>
+    <h2><span class="step-num">1</span>Adstock, advertising keeps working after you stop paying</h2>
     <p class="sub">A burst of spend doesn't all convert the week you pay for it. Awareness lingers and decays. Adstock smears each week's spend forward: <span class="eq">aₜ = xₜ + λ·aₜ₋₁</span>. Slide the carryover λ and watch the bars (raw spend) turn into the curve (effective, remembered media).</p>
     <div class="card">
       <div class="controls">
@@ -129,9 +129,9 @@ footer a{color:var(--teal)}
     </div>
   </section>
 
-  <!-- STEP 2 — SATURATION -->
+  <!-- STEP 2, SATURATION -->
   <section class="step" id="saturation">
-    <h2><span class="step-num">2</span>Diminishing returns — the 10th impression is worth less than the 1st</h2>
+    <h2><span class="step-num">2</span>Diminishing returns, the 10th impression is worth less than the 1st</h2>
     <p class="sub">Doubling spend never doubles sales. Each channel has a response curve that bends over as it saturates (a Hill curve: <span class="eq">f(a) = aᵃ / (aᵃ + κᵃ)</span>). The half-saturation point κ is where you've "used up" half the channel's potential. The dot marks where this channel currently operates.</p>
     <div class="card">
       <div class="controls">
@@ -157,9 +157,9 @@ footer a{color:var(--teal)}
     </div>
   </section>
 
-  <!-- STEP 3 — DECOMPOSITION -->
+  <!-- STEP 3, DECOMPOSITION -->
   <section class="step" id="decomp">
-    <h2><span class="step-num">3</span>Decomposition — splitting sales into baseline + each channel</h2>
+    <h2><span class="step-num">3</span>Decomposition, splitting sales into baseline + each channel</h2>
     <p class="sub">Put adstock and saturation together for every channel, add a baseline (what you'd sell with no marketing), and you can decompose observed sales into its drivers: <span class="eq">salesₜ = baseₜ + Σ βc·f(adstock(spend))</span>. The shaded bands show each channel's contribution; the dots are actual sales. Toggle channels to see what each is really worth.</p>
     <div class="card">
       <div class="controls">
@@ -185,10 +185,10 @@ footer a{color:var(--teal)}
     </div>
   </section>
 
-  <!-- STEP 4 — BUDGET -->
+  <!-- STEP 4, BUDGET -->
   <section class="step" id="budget">
-    <h2><span class="step-num">4</span>Budget attribution — where should the next dollar go?</h2>
-    <p class="sub">Because every channel saturates, the best plan equalizes the <em>marginal</em> return across channels — pour into channels with headroom, pull back from saturated ones. Below, the model reallocates your weekly budget to maximize sales. Slide the total budget and compare your current split (left bars) to the model's recommendation (right bars).</p>
+    <h2><span class="step-num">4</span>Budget attribution, where should the next dollar go?</h2>
+    <p class="sub">Because every channel saturates, the best plan equalizes the <em>marginal</em> return across channels, pour into channels with headroom, pull back from saturated ones. Below, the model reallocates your weekly budget to maximize sales. Slide the total budget and compare your current split (left bars) to the model's recommendation (right bars).</p>
     <div class="card">
       <div class="controls">
         <div class="control">
@@ -207,7 +207,7 @@ footer a{color:var(--teal)}
   </section>
 
   <footer>
-    <p>This is a teaching demo on synthetic data — a real engagement fits these curves to <em>your</em> sales and spend, with uncertainty intervals and validation. Built by <strong>Paul Thibodeau</strong> · <a href="https://calendly.com/paul-thibodeau/30min">Thibodeau Consulting</a> — measurement &amp; marketing science.</p>
+    <p>This is a teaching demo on synthetic data, a real engagement fits these curves to <em>your</em> sales and spend, with uncertainty intervals and validation. Built by <strong>Paul Thibodeau</strong> · <a href="https://calendly.com/paul-thibodeau/30min">Thibodeau Consulting</a>, measurement &amp; marketing science.</p>
   </footer>
 </div>
 
@@ -309,7 +309,7 @@ function drawAdstock(){
   const pctNextWeek=Math.round(adState.lambda*100);
   document.getElementById("adTake").innerHTML=
     `At λ = <strong>${adState.lambda.toFixed(2)}</strong>, <strong>${pctNextWeek}%</strong> of this week's effect carries into next week. `+
-    (hl>0?`Half of a burst's impact is gone after about <strong>${hl.toFixed(1)} weeks</strong>. `:`With λ = 0 there's no carryover — spend works only the week you pay. `)+
+    (hl>0?`Half of a burst's impact is gone after about <strong>${hl.toFixed(1)} weeks</strong>. `:`With λ = 0 there's no carryover, spend works only the week you pay. `)+
     `TV typically carries far longer than Search.`;
 }
 
@@ -343,7 +343,7 @@ function drawSat(){
   document.getElementById("satKV").textContent=fmtK(satState.k);
   document.getElementById("satTake").innerHTML=
     `${c} is currently operating at <strong>${usedPct}%</strong> of its ceiling. The next $1k of ${c} returns about <strong>$${slope.toFixed(2)}k</strong> in sales right now. `+
-    (usedPct>65?`It's deep in diminishing returns — extra budget here mostly wastes.`:`There's real headroom — this channel can absorb more spend efficiently.`);
+    (usedPct>65?`It's deep in diminishing returns, extra budget here mostly wastes.`:`There's real headroom, this channel can absorb more spend efficiently.`);
 }
 
 /* ---------- STEP 3: decomposition (stacked area) ---------- */
@@ -376,8 +376,8 @@ function drawDecomp(){
   const pct=v=>Math.round(v/tot*100);
   document.getElementById("decTake").innerHTML=
     `Over two years, marketing drove <strong>${100-pct(baseTot)}%</strong> of sales. `+
-    `Contribution split — TV <strong>${pct(cTot.TV)}%</strong>, Search <strong>${pct(cTot.Search)}%</strong>, Social <strong>${pct(cTot.Social)}%</strong>. `+
-    `That split — not the spend split — is what a media plan should be built on.`;
+    `Contribution split, TV <strong>${pct(cTot.TV)}%</strong>, Search <strong>${pct(cTot.Search)}%</strong>, Social <strong>${pct(cTot.Social)}%</strong>. `+
+    `That split, not the spend split, is what a media plan should be built on.`;
 }
 
 /* ---------- STEP 4: budget optimization (greedy water-filling) ---------- */

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Did the metaphor cause the choice? A causal-inference demo — Thibodeau Consulting</title>
+<title>What do our customers want? · Thibodeau Consulting</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
@@ -76,15 +76,15 @@ footer a{color:var(--teal)}
 </div></header>
 <div class="wrap">
   <header class="hero">
-    <p class="eyebrow">Interactive demo · Behavioral &amp; survey research</p>
-    <h1>Did the metaphor <em>cause</em> the choice — or just go along with it?</h1>
-    <p class="lede">Years ago I ran an experiment: people read about crime in a city described either as a <span class="tag beast">beast</span> preying on it or a <span class="tag virus">virus</span> infecting it, then chose how to respond. The wording shifted their policy choices. But "shifted" is a causal claim — and causal claims are hard. This walks through how you actually earn one.</p>
-    <p class="cite">Inspired by Thibodeau &amp; Boroditsky (2011), "Metaphors We Think With," <em>PLoS ONE</em>. Numbers here are illustrative — the method is the point.</p>
+    <p class="eyebrow">Behavioral &amp; Survey Research</p>
+    <h1>What do our customers want?</h1>
+    <p class="lede">Years ago I ran an experiment: people read about crime in a city described either as a <span class="tag beast">beast</span> preying on it or a <span class="tag virus">virus</span> infecting it, then chose how to respond. The wording shifted their policy choices. But "shifted" is a causal claim, and causal claims are hard. This walks through how you actually earn one.</p>
+    <p class="cite">Inspired by Thibodeau &amp; Boroditsky (2011), "Metaphors We Think With," <em>PLoS ONE</em>. Numbers here are illustrative, the method is the point.</p>
   </header>
 
   <!-- STEP 1 -->
   <section class="step" id="potential">
-    <h2><span class="step-num">1</span>The fundamental problem — you only see one outcome</h2>
+    <h2><span class="step-num">1</span>The fundamental problem, you only see one outcome</h2>
     <p class="sub">Every person has two <em>potential outcomes</em>: what they'd choose under "beast" and what they'd choose under "virus." Causation is the difference between them. The trouble: each person reads only one version, so one of those two is forever unobserved. Reveal the hidden column to see the counterfactual we never get in real life.</p>
     <div class="card">
       <div class="controls">
@@ -93,14 +93,14 @@ footer a{color:var(--teal)}
         </div>
       </div>
       <div id="poTable"></div>
-      <div class="takeaway" id="poTake">Each person was randomly shown one frame. The <strong>colored</strong> cell is what we observed; the other is what they <em>would</em> have done under the other frame — invisible in reality. Causal inference is the science of estimating that missing column for a whole population.</div>
+      <div class="takeaway" id="poTake">Each person was randomly shown one frame. The <strong>colored</strong> cell is what we observed; the other is what they <em>would</em> have done under the other frame, invisible in reality. Causal inference is the science of estimating that missing column for a whole population.</div>
     </div>
   </section>
 
   <!-- STEP 2 -->
   <section class="step" id="confound">
     <h2><span class="step-num">2</span>Why you can't just compare the groups you find</h2>
-    <p class="sub">Suppose you skipped the experiment and compared people who <em>naturally</em> talk about crime as a beast vs. a virus. Political leaning drives both which metaphor someone favors <strong>and</strong> how punitive they are — so the difference you measure is part metaphor, part politics. That's confounding. Slide how lopsided the groups are by party.</p>
+    <p class="sub">Suppose you skipped the experiment and compared people who <em>naturally</em> talk about crime as a beast vs. a virus. Political leaning drives both which metaphor someone favors <strong>and</strong> how punitive they are, so the difference you measure is part metaphor, part politics. That's confounding. Slide how lopsided the groups are by party.</p>
     <div class="dag"><canvas id="cDag2" width="540" height="150" style="max-width:540px;width:100%"></canvas></div>
     <div class="card">
       <div class="controls">
@@ -113,7 +113,7 @@ footer a{color:var(--teal)}
       <div class="legend">
         <span><span class="swatch" style="background:var(--con)"></span>Conservatives</span>
         <span><span class="swatch" style="background:var(--lib)"></span>Liberals</span>
-        <span>— dashed = true causal effect (+18 pts)</span>
+        <span>, dashed = true causal effect (+18 pts)</span>
       </div>
       <div class="takeaway" id="confTake"></div>
     </div>
@@ -121,8 +121,8 @@ footer a{color:var(--teal)}
 
   <!-- STEP 3 -->
   <section class="step" id="randomize">
-    <h2><span class="step-num">3</span>Randomization — the move that earns the claim</h2>
-    <p class="sub">Assign the frame by a coin flip and the confounder loses its grip: liberals and conservatives end up split roughly evenly across both arms, so the two groups are alike in every way <em>except</em> the metaphor. Now any difference in their choices is caused by the wording. Randomize the sample and watch the party mix balance out — and steady as the sample grows.</p>
+    <h2><span class="step-num">3</span>Randomization, the move that earns the claim</h2>
+    <p class="sub">Assign the frame by a coin flip and the confounder loses its grip: liberals and conservatives end up split roughly evenly across both arms, so the two groups are alike in every way <em>except</em> the metaphor. Now any difference in their choices is caused by the wording. Randomize the sample and watch the party mix balance out, and steady as the sample grows.</p>
     <div class="dag"><canvas id="cDag3" width="540" height="150" style="max-width:540px;width:100%"></canvas></div>
     <div class="card">
       <div class="controls">
@@ -145,8 +145,8 @@ footer a{color:var(--teal)}
 
   <!-- STEP 4 -->
   <section class="step" id="effect">
-    <h2><span class="step-num">4</span>The effect — and how sure we are</h2>
-    <p class="sub">With a clean randomized comparison, the estimate is just the difference in the share choosing enforcement: beast minus virus. But an estimate without uncertainty is a guess in a lab coat. The 95% confidence interval shows the range consistent with the data — and it tightens as the sample grows. The red line is "no effect"; the gray marker is the partisan gap, for scale.</p>
+    <h2><span class="step-num">4</span>The effect, and how sure we are</h2>
+    <p class="sub">With a clean randomized comparison, the estimate is just the difference in the share choosing enforcement: beast minus virus. But an estimate without uncertainty is a guess in a lab coat. The 95% confidence interval shows the range consistent with the data, and it tightens as the sample grows. The red line is "no effect"; the gray marker is the partisan gap, for scale.</p>
     <div class="card">
       <div class="controls">
         <div class="control">
@@ -191,7 +191,7 @@ footer a{color:var(--teal)}
   </section>
 
   <footer>
-    <p>The same logic scales from a metaphor study to a marketing test or a product change: define the counterfactual, beat back confounding (by design when you can, by modeling when you can't), and report the effect <em>with</em> its uncertainty. Built by <strong>Paul Thibodeau</strong> · <a href="https://calendly.com/paul-thibodeau/30min">Thibodeau Consulting</a> — measurement &amp; behavioral science.</p>
+    <p>The same logic scales from a metaphor study to a marketing test or a product change: define the counterfactual, beat back confounding (by design when you can, by modeling when you can't), and report the effect <em>with</em> its uncertainty. Built by <strong>Paul Thibodeau</strong> · <a href="https://calendly.com/paul-thibodeau/30min">Thibodeau Consulting</a>, measurement &amp; behavioral science.</p>
   </footer>
 </div>
 
@@ -311,8 +311,8 @@ function drawConf(){
   document.getElementById("skewV").textContent=Math.round(skew*100)+"% vs "+Math.round((1-skew)*100)+"%";
   document.getElementById("confTake").innerHTML=
     `Naive difference = <strong>${Math.round(naive*100)} pts</strong>, but the true causal effect is only <strong>+18 pts</strong>. `+
-    (naive>0.22?`The extra ${Math.round((naive-0.18)*100)} pts is politics, not metaphor — the beast group is simply more conservative.`
-              :`With the groups balanced by party, the naive number lands near the truth — but you got there by luck, not design.`);
+    (naive>0.22?`The extra ${Math.round((naive-0.18)*100)} pts is politics, not metaphor, the beast group is simply more conservative.`
+              :`With the groups balanced by party, the naive number lands near the truth, but you got there by luck, not design.`);
 }
 
 /* ---- STEP 3: randomization balance ---- */
@@ -344,8 +344,8 @@ function drawRand(){
   document.getElementById("nRandV").textContent=nRand;
   const gap=Math.abs(conB-conV)*100;
   document.getElementById("randTake").innerHTML=
-    `The beast arm is ${pct(conB)} conservative; the virus arm ${pct(conV)} — a gap of just <strong>${gap.toFixed(0)} pts</strong>. `+
-    (nRand<120?`At this size the coin flip is still a bit lumpy — small samples balance imperfectly.`
+    `The beast arm is ${pct(conB)} conservative; the virus arm ${pct(conV)}, a gap of just <strong>${gap.toFixed(0)} pts</strong>. `+
+    (nRand<120?`At this size the coin flip is still a bit lumpy, small samples balance imperfectly.`
               :`Random assignment balanced party (and everything else, measured or not) across the arms. That's what makes the comparison causal.`);
 }
 
@@ -383,8 +383,8 @@ function drawEffect(){
     `Reading "beast" instead of "virus" raised enforcement support by <b>+${Math.round(est*100)} pts</b> (95% CI ${Math.round((est-ci)*100)}–${Math.round((est+ci)*100)} pts).`;
   document.getElementById("effTake").innerHTML=
     (sig?`The interval clears zero, so the effect is statistically distinguishable from "no effect" at this sample size. `
-        :`At n = ${nEff} the interval still touches zero — too few people to be sure. Grow the sample and watch it separate from the red line. `)+
-    `Notice the metaphor effect is real and sizable, yet smaller than the raw partisan gap (gray) — and, unlike that gap, we know it's <strong>caused</strong> by the wording, because randomization held politics constant.`;
+        :`At n = ${nEff} the interval still touches zero, too few people to be sure. Grow the sample and watch it separate from the red line. `)+
+    `Notice the metaphor effect is real and sizable, yet smaller than the raw partisan gap (gray), and, unlike that gap, we know it's <strong>caused</strong> by the wording, because randomization held politics constant.`;
 }
 
 /* ---- wiring ---- */

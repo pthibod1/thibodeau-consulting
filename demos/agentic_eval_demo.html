@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Is your AI agent ready to ship? — Thibodeau Consulting</title>
+<title>Can we use AI more efficiently? · Thibodeau Consulting</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
@@ -84,8 +84,8 @@ footer a{color:var(--teal)}
 </div></header>
 <div class="wrap">
   <header class="hero">
-    <p class="eyebrow">Interactive demo · AI &amp; agentic workflows</p>
-    <h1>Is your AI agent ready to ship?</h1>
+    <p class="eyebrow">AI &amp; Agentic Workflows</p>
+    <h1>Can we use AI more efficiently?</h1>
     <p class="lede">Most AI demos look great and fail quietly in production. This is the other half of the work: evaluating an agent like any other intervention. Picture a support agent that drafts replies to customers. Tune the guardrails below and watch what they do to accuracy, hallucinations, and the ship decision. Runs entirely in your browser on illustrative data.</p>
   </header>
 
@@ -106,7 +106,7 @@ footer a{color:var(--teal)}
           <button data-v="0" class="active">Off</button>
           <button data-v="1">On</button>
         </div>
-        <p class="hint">A second step that checks the draft against the source before it goes out — the single biggest lever on hallucinations. Costs a little more per answer.</p>
+        <p class="hint">A second step that checks the draft against the source before it goes out, the single biggest lever on hallucinations. Costs a little more per answer.</p>
       </div>
 
       <div class="casebar-wrap">
@@ -128,7 +128,7 @@ footer a{color:var(--teal)}
     <div class="card">
       <div class="verdict" id="verdict">
         <p class="vlab">Ship decision</p>
-        <p class="vmain" id="vMain">—</p>
+        <p class="vmain" id="vMain">, </p>
         <p class="vsub" id="vSub"></p>
       </div>
 
@@ -140,10 +140,10 @@ footer a{color:var(--teal)}
       </div>
 
       <div class="metrics">
-        <div class="metric"><div class="m-val" id="mAcc">—</div><div class="m-lab">Accuracy of auto-sent answers</div></div>
-        <div class="metric"><div class="m-val" id="mCov">—</div><div class="m-lab">Share handled automatically</div></div>
-        <div class="metric"><div class="m-val" id="mHall">—</div><div class="m-lab">Hallucination rate (auto-sent)</div></div>
-        <div class="metric"><div class="m-val" id="mCost">—</div><div class="m-lab">Est. cost / 1k answers</div></div>
+        <div class="metric"><div class="m-val" id="mAcc">, </div><div class="m-lab">Accuracy of auto-sent answers</div></div>
+        <div class="metric"><div class="m-val" id="mCov">, </div><div class="m-lab">Share handled automatically</div></div>
+        <div class="metric"><div class="m-val" id="mHall">, </div><div class="m-lab">Hallucination rate (auto-sent)</div></div>
+        <div class="metric"><div class="m-val" id="mCost">, </div><div class="m-lab">Est. cost / 1k answers</div></div>
       </div>
 
       <div class="cta">
@@ -162,7 +162,7 @@ footer a{color:var(--teal)}
           <div class="engage-col">
             <h3>What you get</h3>
             <ul>
-              <li>A task-grounded eval harness for your agent — offline and online</li>
+              <li>A task-grounded eval harness for your agent, offline and online</li>
               <li>A calibration and reliability report: where it's overconfident, where it fails</li>
               <li>Guardrails and a human-in-the-loop policy tuned to your risk tolerance</li>
               <li>A clear ship / no-ship call, backed by numbers instead of vibes</li>
@@ -174,7 +174,7 @@ footer a{color:var(--teal)}
               <li>Free 30-minute call</li>
               <li>Define what "good" means for your agent and assemble a test suite</li>
               <li>Evaluate accuracy, grounding, calibration, cost, and latency</li>
-              <li>Ship with guardrails, or iterate — with the evidence in hand</li>
+              <li>Ship with guardrails, or iterate, with the evidence in hand</li>
             </ol>
           </div>
         </div>
@@ -184,7 +184,7 @@ footer a{color:var(--teal)}
   </section>
 
   <footer>
-    <p>Built by <strong>Paul Thibodeau</strong> · <a href="https://calendly.com/paul-thibodeau/30min">Thibodeau Consulting</a> — LLM and agentic systems, built and evaluated like any other intervention.</p>
+    <p>Built by <strong>Paul Thibodeau</strong> · <a href="https://calendly.com/paul-thibodeau/30min">Thibodeau Consulting</a>, LLM and agentic systems, built and evaluated like any other intervention.</p>
   </footer>
 </div>
 
@@ -223,7 +223,7 @@ function compute(){
 
 function verdict(m){
   if(m.autoAcc>=0.90 && m.autoHal<=0.03 && m.cov>=0.30)
-    return {cls:"is-good", main:"Ship it — auto-send with guardrails",
+    return {cls:"is-good", main:"Ship it, auto-send with guardrails",
       sub:`At this bar, ${(m.autoAcc*100).toFixed(0)}% of auto-sent answers are right and hallucinations are ${(m.autoHal*100).toFixed(1)}%. Safe to send automatically, with the rest escalated.`};
   if(m.autoAcc>=0.80 && m.autoHal<=0.08)
     return {cls:"is-warn", main:"Human-in-the-loop only",
