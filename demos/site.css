@@ -21,7 +21,7 @@ body{font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sa
 .tc-foot .tc-wordmark{font-size:1.1rem}
 .tc-fine{font-size:.78rem;color:#93a6ba;margin-top:8px}
 .tc-links{display:flex;gap:20px;font-size:.9rem;flex-wrap:wrap}
-.tc-links a{color:#c4d2e2;text-decoration:none}
+.tc-links a{color:#c4d2e2;text-decoration:none;padding:.3rem 0}
 .tc-links a:hover{color:#fff}
 
 /* mobile sizing fixes */
