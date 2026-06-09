@@ -53,3 +53,27 @@ a:focus-visible,button:focus-visible,input[type=range]:focus-visible{outline:2px
 .engage-cta{display:inline-block;margin-top:1.4rem;background:#275f9e;color:#fff;font-weight:600;font-size:.92rem;padding:.62rem 1.15rem;border-radius:3px;text-decoration:none}
 .engage-cta:hover{background:#0F2A43}
 @media(max-width:640px){.engage-cols{grid-template-columns:1fr;gap:1.1rem}}
+
+/* "How we'd work together" process + deliverables (from designer) */
+.howwe{padding:14px 0 6px}
+.howwe .eyebrow{display:block}
+.howwe h2{font-family:'Newsreader',Georgia,serif;font-weight:600;font-size:1.9rem;color:#0F2A43;letter-spacing:-.01em;margin:.5rem 0 1.5rem;line-height:1.1}
+.howwe-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem;border-top:1px solid #d8d3c8;padding-top:1.4rem}
+.howwe-step .n{font-family:'Newsreader',Georgia,serif;font-size:1.05rem;color:#9aa6af}
+.howwe-step h3{font-family:'Newsreader',Georgia,serif;font-weight:600;font-size:1.18rem;color:#0F2A43;margin:.45rem 0 .5rem;letter-spacing:-.01em}
+.howwe-step p{font-size:.92rem;color:#5a6b78;margin:0;line-height:1.55}
+.howwe-optional{margin-top:1.5rem;background:#eef3f8;border:1px solid #dbe4ee;border-radius:10px;padding:1.1rem 1.3rem;display:flex;gap:1.1rem;align-items:flex-start}
+.howwe-optional .n{font-family:'Newsreader',Georgia,serif;font-size:1.05rem;color:#9aa6af;flex:none}
+.howwe-optional .body h3{font-family:'Newsreader',Georgia,serif;font-weight:600;font-size:1.08rem;color:#0F2A43;margin:0 0 .3rem;display:flex;align-items:center;gap:.55rem}
+.howwe-optional .tag{font-family:'Hanken Grotesk',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#155e6b;background:#dbeef2;border-radius:3px;padding:.2em .5em}
+.howwe-optional p{font-size:.9rem;color:#5a6b78;margin:0;line-height:1.5}
+.walkaway{margin-top:1.5rem;background:#fff;border:1px solid #e1d8c4;border-radius:10px;padding:1.3rem 1.5rem}
+.walkaway h3{font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:#275f9e;font-weight:700;margin:0 0 .9rem}
+.walkaway ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.55rem 1.6rem}
+.walkaway li{font-size:.95rem;color:#1c2733;display:flex;gap:.55rem;align-items:flex-start}
+.walkaway li::before{content:"\2713";color:#1F7A8C;font-weight:700;flex:none}
+.walkaway .typ{margin:1rem 0 0;font-size:.86rem;color:#5a6b78;font-style:italic}
+.howwe-seemethod{margin-top:2rem;border-top:1px solid #d8d3c8;padding-top:1.3rem}
+.howwe-seemethod p{font-size:1.02rem;color:#5a6b78;margin:.5rem 0 0;max-width:44rem;line-height:1.55}
+@media(max-width:760px){.howwe-steps{grid-template-columns:1fr 1fr;gap:1.3rem}.walkaway ul{grid-template-columns:1fr}}
+@media(max-width:460px){.howwe-steps{grid-template-columns:1fr}}
