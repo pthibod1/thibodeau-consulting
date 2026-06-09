@@ -13,6 +13,8 @@ body{font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sa
 .tc-navlinks a:hover{color:#fff}
 .tc-btn{background:#e8f1fb;color:#0F2A43;font-weight:600;font-size:.85rem;padding:.5em 1.05em;border-radius:2px;text-decoration:none}
 .tc-btn:hover{background:#fff}
+/* tc-btn lives inside .tc-navlinks, whose link color (#c4d2e2) is more specific — pin navy text in both states */
+.tc-navlinks a.tc-btn,.tc-navlinks a.tc-btn:hover{color:#0F2A43}
 @media(max-width:600px){.tc-navlinks a.hideable{display:none}}
 
 /* navy footer (matches main site) */
