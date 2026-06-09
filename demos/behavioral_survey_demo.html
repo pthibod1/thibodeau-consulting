@@ -74,15 +74,34 @@ footer a{color:var(--teal)}
     <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener" class="tc-btn">Book Call</a>
   </nav>
 </div></header>
-<div class="wrap">
+<section class="band"><div class="wrap">
   <header class="hero">
-    <p class="eyebrow">Behavioral &amp; Survey Research</p>
-    <h1>What do our customers want?</h1>
-    <p class="lede">Years ago I ran an experiment: people read about crime in a city described either as a <span class="tag beast">beast</span> preying on it or a <span class="tag virus">virus</span> infecting it, then chose how to respond. The wording shifted their policy choices. But "shifted" is a causal claim, and causal claims are hard. This walks through how you actually earn one.</p>
-    <p class="cite">Inspired by Thibodeau &amp; Boroditsky (2011), "Metaphors We Think With," <em>PLoS ONE</em>. Numbers here are illustrative, the method is the point.</p>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Behavioral &amp; Survey Research</p>
+        <h1>What do our customers want?</h1>
+        <p class="lede">Years ago I ran an experiment: people read about crime in a city described either as a <span class="tag beast">beast</span> preying on it or a <span class="tag virus">virus</span> infecting it, then chose how to respond. The wording shifted their policy choices. But "shifted" is a causal claim, and causal claims are hard. This walks through how you actually earn one.</p>
+        <p class="cite">Inspired by Thibodeau &amp; Boroditsky (2011), "Metaphors We Think With," <em>PLoS ONE</em>. Numbers here are illustrative, the method is the point.</p>
+      </div>
+      <div class="hero-cartoon" aria-hidden="true">
+        <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="160" cy="44" r="22" fill="#9aa6af"/>
+          <text x="160" y="50" text-anchor="middle" font-size="16" fill="#fff" font-family="Inter,sans-serif" font-weight="700">Z</text>
+          <line x1="143" y1="58" x2="80" y2="118" stroke="#9aa6af" stroke-width="2" stroke-dasharray="5 4"/>
+          <line x1="177" y1="58" x2="240" y2="118" stroke="#9aa6af" stroke-width="2" stroke-dasharray="5 4"/>
+          <circle cx="64" cy="140" r="28" fill="#1F7A8C"/>
+          <text x="64" y="147" text-anchor="middle" font-size="17" fill="#fff" font-family="Inter,sans-serif" font-weight="700">X</text>
+          <circle cx="256" cy="140" r="28" fill="#0F2A43"/>
+          <text x="256" y="147" text-anchor="middle" font-size="17" fill="#fff" font-family="Inter,sans-serif" font-weight="700">Y</text>
+          <line x1="94" y1="140" x2="222" y2="140" stroke="#b3543a" stroke-width="3"/>
+          <polyline points="214,133 224,140 214,147" fill="none" stroke="#b3543a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
   </header>
+</div></section>
 
-  <!-- STEP 1 -->
+<section class="band band-alt"><div class="wrap">
   <section class="step" id="potential">
     <h2><span class="step-num">1</span>The fundamental problem, you only see one outcome</h2>
     <p class="sub">Every person has two <em>potential outcomes</em>: what they'd choose under "beast" and what they'd choose under "virus." Causation is the difference between them. The trouble: each person reads only one version, so one of those two is forever unobserved. Reveal the hidden column to see the counterfactual we never get in real life.</p>
@@ -96,8 +115,9 @@ footer a{color:var(--teal)}
       <div class="takeaway" id="poTake">Each person was randomly shown one frame. The <strong>colored</strong> cell is what we observed; the other is what they <em>would</em> have done under the other frame, invisible in reality. Causal inference is the science of estimating that missing column for a whole population.</div>
     </div>
   </section>
+</div></section>
 
-  <!-- STEP 2 -->
+<section class="band"><div class="wrap">
   <section class="step" id="confound">
     <h2><span class="step-num">2</span>Why you can't just compare the groups you find</h2>
     <p class="sub">Suppose you skipped the experiment and compared people who <em>naturally</em> talk about crime as a beast vs. a virus. Political leaning drives both which metaphor someone favors <strong>and</strong> how punitive they are, so the difference you measure is part metaphor, part politics. That's confounding. Slide how lopsided the groups are by party.</p>
@@ -118,8 +138,9 @@ footer a{color:var(--teal)}
       <div class="takeaway" id="confTake"></div>
     </div>
   </section>
+</div></section>
 
-  <!-- STEP 3 -->
+<section class="band band-alt"><div class="wrap">
   <section class="step" id="randomize">
     <h2><span class="step-num">3</span>Randomization, the move that earns the claim</h2>
     <p class="sub">Assign the frame by a coin flip and the confounder loses its grip: liberals and conservatives end up split roughly evenly across both arms, so the two groups are alike in every way <em>except</em> the metaphor. Now any difference in their choices is caused by the wording. Randomize the sample and watch the party mix balance out, and steady as the sample grows.</p>
@@ -142,8 +163,9 @@ footer a{color:var(--teal)}
       <div class="takeaway" id="randTake"></div>
     </div>
   </section>
+</div></section>
 
-  <!-- STEP 4 -->
+<section class="band"><div class="wrap">
   <section class="step" id="effect">
     <h2><span class="step-num">4</span>The effect, and how sure we are</h2>
     <p class="sub">With a clean randomized comparison, the estimate is just the difference in the share choosing enforcement: beast minus virus. But an estimate without uncertainty is a guess in a lab coat. The 95% confidence interval shows the range consistent with the data, and it tightens as the sample grows. The red line is "no effect"; the gray marker is the partisan gap, for scale.</p>
@@ -159,8 +181,9 @@ footer a{color:var(--teal)}
       <div class="takeaway" id="effTake"></div>
     </div>
   </section>
+</div></section>
 
-    <section class="engage">
+<section class="engage band-alt">
     <div class="engage-inner">
       <div class="engage-card">
         <h2>Work together on behavioral &amp; survey research</h2>
@@ -190,10 +213,9 @@ footer a{color:var(--teal)}
     </div>
   </section>
 
-  <footer>
+  <div class="wrap"><footer>
     <p>The same logic scales from a metaphor study to a marketing test or a product change: define the counterfactual, beat back confounding (by design when you can, by modeling when you can't), and report the effect <em>with</em> its uncertainty. Built by <strong>Paul Thibodeau</strong>.</p>
-  </footer>
-</div>
+  </footer></div>
 
 <script>
 function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
