@@ -288,6 +288,17 @@
   @keyframes revealSettle{from{transform:translateY(12px)}to{transform:none}}
 
   #tweaks-root{position:fixed;z-index:90}
+
+  /* ---- mobile sizing fixes ---- */
+  @media(max-width:600px){
+    .wrap{padding:0 18px}
+    .nav{height:60px}
+    .wordmark{font-size:1.04rem}
+    .brand .wordmark{font-size:1.02rem}
+    header .btn-sm{font-size:.8rem;padding:.5em .8em}
+    h1.display{font-size:clamp(2.05rem,8vw,2.7rem)}
+    .hero{padding:54px 0 48px}
+  }
 </style>
 </head>
 <body>
