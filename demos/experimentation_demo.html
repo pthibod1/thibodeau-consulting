@@ -90,9 +90,9 @@ footer a{color:var(--teal)}
         </div>
       </div>
       <div class="statgrid">
-        <div class="stat"><div class="k">Sample / arm</div><div class="v" id="nArmOut">, </div></div>
-        <div class="stat"><div class="k">Total visitors</div><div class="v" id="nTotOut">, </div></div>
-        <div class="stat"><div class="k">Run time</div><div class="v" id="daysOut">, </div></div>
+        <div class="stat"><div class="k">Sample / arm</div><div class="v" id="nArmOut"></div></div>
+        <div class="stat"><div class="k">Total visitors</div><div class="v" id="nTotOut"></div></div>
+        <div class="stat"><div class="k">Run time</div><div class="v" id="daysOut"></div></div>
       </div>
       <div class="canvas-wrap"><canvas id="cPower" height="280"></canvas></div>
       <div class="legend"><span><span class="swatch" style="background:var(--teal)"></span>Sample/arm needed vs. effect size</span><span>● your current target</span></div>
@@ -113,7 +113,7 @@ footer a{color:var(--teal)}
       </div>
       <p class="headline-stat" id="peekHeadline"></p>
       <div class="canvas-wrap"><canvas id="cPeek" height="300"></canvas></div>
-      <div class="legend"><span>, gray lines = running p-value of A/A tests (true effect = 0)</span><span><span class="swatch" style="background:var(--bad)"></span>p = 0.05 "significance" line</span></div>
+      <div class="legend"><span>Gray lines = running p-value of A/A tests (true effect = 0)</span><span><span class="swatch" style="background:var(--bad)"></span>p = 0.05 "significance" line</span></div>
       <div class="takeaway" id="peekTake"></div>
     </div>
   </section>
