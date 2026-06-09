@@ -241,7 +241,7 @@
   #about,#testimonials{background:#e4ecf5}
   #about,#work,#testimonials,.cta{border-top:3px solid #0F2A43}
   /* crisp white cards on the tinted panels */
-  #about .chapter,#testimonials .tm{background:#ffffff}
+  #testimonials .tm{background:transparent}
   /* on the white services panel, cards + audit band take the tint so they pop */
   #work .svc{background:#e4ecf5}
   #work .audit-cta{background:#ffffff}
@@ -266,14 +266,15 @@
   .about-scholar:hover{text-decoration:underline}
 
   /* ---------- testimonials ---------- */
-  .tm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
-  .tm{margin:0;display:flex;flex-direction:column;padding:28px 28px 26px;border:1px solid var(--line-2);background:var(--surface);border-radius:4px;box-shadow:0 1px 0 var(--line)}
+  .tm-grid{display:grid;grid-template-columns:1fr;gap:0;margin-top:40px;border-top:1px solid var(--line)}
+  .tm{margin:0;display:flex;flex-direction:column;padding:28px 0 26px;border:none;background:transparent;border-radius:0;box-shadow:none;border-bottom:1px solid var(--line)}
   .tm .qm{font-family:var(--font-display);font-size:2.6rem;line-height:.5;color:var(--gold);opacity:.75;height:.42em;display:block}
-  .tm blockquote{margin:0;flex:1;font-family:var(--font-display);font-weight:400;font-size:1.12rem;line-height:1.5;color:var(--ink);letter-spacing:-.005em;text-wrap:pretty}
-  .tm figcaption{margin-top:24px;padding-top:16px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:3px}
+  .tm blockquote{margin:0;font-family:var(--font-display);font-weight:400;font-size:1.22rem;line-height:1.5;color:var(--ink);letter-spacing:-.005em;text-wrap:pretty;max-width:64ch}
+  .tm figcaption{margin-top:16px;display:flex;flex-flow:row wrap;gap:0 8px;align-items:baseline}
   .tm-name{font-weight:600;font-size:.95rem;color:var(--ink)}
   .tm-role{font-size:.83rem;color:var(--ink-3)}
-  @media(max-width:880px){.tm-grid{grid-template-columns:1fr}}
+  .tm-role::before{content:"· "}
+  @media(max-width:880px){.tm blockquote{font-size:1.08rem}}
 
   /* CTA band */
   .cta{background:#f4f8fc;color:#1f3a52}
@@ -368,11 +369,6 @@
         <div class="btns reveal" style="justify-content:center">
           <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener" class="btn btn-primary">Book 30-min call <span class="arr">→</span></a>
         </div>
-        <p class="cta-note reveal">30 minutes · no pitch.</p>
-        <div class="hero-note reveal">
-          <span>Stanford PhD</span><span class="sep"></span>
-          <span>20 years as a scientific researcher &amp; industry data scientist</span>
-        </div>
       </div>
       <figure class="portrait reveal">
         <img class="portrait-img" src="assets/headshot-office2.png" alt="Paul Thibodeau, PhD" style="object-position:50% 16%">
@@ -396,7 +392,7 @@
         </div>
         <div class="stat">
           <div class="num"><img src="assets/logo-stanford-s.avif" alt="Stanford" style="height:46px;width:auto;display:block"></div>
-          <div class="lbl"><span class="cred-deg">Stanford PhD</span>Cognitive Science and Statistics</div>
+          <div class="lbl"><span class="cred-deg">Stanford PhD</span>Cognitive Science<br>MS, Statistics</div>
         </div>
         <div class="stat">
           <div class="num">50+</div>
