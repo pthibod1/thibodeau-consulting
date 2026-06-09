@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap');
 /* Shared chrome so the demos match the main Thibodeau Consulting site.
    Loaded AFTER each demo's inline <style>, so these win for body font + bg. */
 body{font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif !important;}
@@ -33,3 +34,8 @@ body{font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sa
 /* a11y + consistency: navy eyebrow to match main site, visible focus */
 .eyebrow{color:#0F2A43}
 a:focus-visible,button:focus-visible,input[type=range]:focus-visible{outline:2px solid #275f9e;outline-offset:3px}
+
+  /* T monogram logo */
+  .wordmark,.tc-wordmark{display:inline-flex;align-items:center;gap:.5em}
+  .tmark{font-family:'Playfair Display',Georgia,serif;font-weight:700;display:grid;place-items:center;flex:none;width:1.5em;height:1.5em;font-size:1.1em;line-height:1;background:#b3892f;color:#0F2A43;border-radius:5px;padding-bottom:.04em}
+  @media(max-width:600px){header .wname,.tc-header .wname{display:none}}

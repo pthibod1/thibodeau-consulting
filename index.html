@@ -6,7 +6,7 @@
 <title>Thibodeau Consulting, LLC · Research-grade marketing analytics</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Spectral:wght@400;500;600&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Spectral:wght@400;500;600&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#f4ede0;
@@ -300,13 +300,18 @@
     h1.display{font-size:clamp(2.05rem,8vw,2.7rem)}
     .hero{padding:54px 0 48px}
   }
+
+  /* T monogram logo */
+  .wordmark,.tc-wordmark{display:inline-flex;align-items:center;gap:.5em}
+  .tmark{font-family:'Playfair Display',Georgia,serif;font-weight:700;display:grid;place-items:center;flex:none;width:1.5em;height:1.5em;font-size:1.1em;line-height:1;background:#b3892f;color:#0F2A43;border-radius:5px;padding-bottom:.04em}
+  @media(max-width:600px){header .wname,.tc-header .wname{display:none}}
 </style>
 </head>
 <body>
 
 <header>
   <div class="wrap nav">
-    <a href="#top" class="wordmark">Thibodeau Consulting, LLC</a>
+    <a href="#top" class="wordmark"><span class="tmark">T</span><span class="wname">Thibodeau Consulting, LLC</span></a>
     <nav class="navlinks">
       <a href="#about">About</a>
       <a href="#work">Services</a>
@@ -503,7 +508,7 @@
 <footer>
   <div class="wrap foot">
     <div>
-      <a href="#top" class="wordmark">Thibodeau Consulting, LLC</a>
+      <a href="#top" class="wordmark"><span class="tmark">T</span><span class="wname">Thibodeau Consulting, LLC</span></a>
       <div class="fine">Scientific rigor · Industry speed</div>
     </div>
     <div class="links">
