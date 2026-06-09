@@ -139,13 +139,11 @@
   .creds-inner{padding-top:46px;padding-bottom:50px}
   .creds .kicker{margin-bottom:26px;display:block}
   .statrow{display:grid;grid-template-columns:repeat(4,1fr)}
-  .stat{padding:4px 28px;border-left:1px solid var(--line-2)}
+  .stat{padding:4px 28px;border-left:1px solid var(--line-2);display:flex;flex-direction:column}
   .stat:first-child{padding-left:0;border-left:none}
-  .stat .num{font-family:var(--font-display);font-weight:500;font-size:clamp(2.2rem,3.6vw,3rem);line-height:1;color:var(--accent);letter-spacing:-.02em}
+  .stat .num{font-family:var(--font-display);font-weight:500;font-size:clamp(2.2rem,3.6vw,3rem);line-height:1;color:var(--accent);letter-spacing:-.02em;min-height:clamp(2.2rem,3.6vw,3rem);display:flex;align-items:flex-end}
   .stat .lbl{margin-top:12px;font-size:.86rem;color:var(--ink-2);line-height:1.4}
   .stat .num-stanford{font-size:clamp(1.5rem,2.1vw,1.9rem);white-space:nowrap}
-  .lbl-stanford{display:flex;align-items:center;gap:16px}
-  .stanford-mark{height:40px;width:auto;flex:none}
   @media(max-width:720px){.stat .num-stanford{white-space:normal}}
   @media(max-width:720px){.statrow{grid-template-columns:1fr 1fr;gap:30px 0}.stat{padding:0 22px}.stat:nth-child(odd){padding-left:0;border-left:none}.stat:nth-child(3),.stat:nth-child(4){border-top:1px solid var(--line-2);padding-top:26px}}
 
@@ -335,7 +333,7 @@
   @media(max-width:760px){.help-grid{grid-template-columns:1fr;gap:1.4rem}}
 
   /* credibility strip: muted logo cluster */
-  .logos-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:14px}
+  .logos-row{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 12px;margin-top:auto;padding-top:16px}
   .logos-row img{height:22px;width:auto;display:block}
   #testimonials{background:#f4f8fc}
   .cred-deg{display:block;color:var(--ink);font-weight:600;font-size:1.02rem;margin-bottom:3px;letter-spacing:-.005em}
@@ -390,10 +388,8 @@
         </div>
         <div class="stat">
           <div class="num num-stanford">Stanford PhD</div>
-          <div class="lbl lbl-stanford">
-            <span>Cognitive Science<br>MS, Statistics</span>
-            <img src="assets/logo-stanford-s.avif" alt="Stanford" class="stanford-mark">
-          </div>
+          <div class="lbl">Cognitive Science<br>MS, Statistics</div>
+          <div class="logos-row"><img src="assets/logo-stanford-s.avif" alt="Stanford"></div>
         </div>
         <div class="stat">
           <div class="num">50+</div>
