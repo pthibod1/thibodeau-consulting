@@ -29,3 +29,7 @@ body{font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sa
   .tc-wordmark{font-size:1.02rem}
   .tc-foot{padding:28px 18px 36px}
 }
+
+/* a11y + consistency: navy eyebrow to match main site, visible focus */
+.eyebrow{color:#0F2A43}
+a:focus-visible,button:focus-visible,input[type=range]:focus-visible{outline:2px solid #275f9e;outline-offset:3px}

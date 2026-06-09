@@ -14,7 +14,7 @@
     --surface:#fffdf8;
     --ink:#221d17;
     --ink-2:#5e554a;
-    --ink-3:#968b7b;
+    --ink-3:#736857;
     --line:#e1d8c4;
     --line-2:#cec2a9;
     --accent:#0F2A43;
@@ -44,6 +44,7 @@
     text-rendering:optimizeLegibility;
   }
   a{color:inherit}
+  a:focus-visible,button:focus-visible,.btn:focus-visible{outline:2px solid #275f9e;outline-offset:3px}
   ::selection{background:var(--gold-soft)}
 
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px}
@@ -120,7 +121,7 @@
     box-shadow:0 1px 0 var(--line), 14px 16px 0 -2px color-mix(in srgb,var(--accent) 9%, transparent);
   }
   figure.portrait figcaption{margin-top:12px;font-size:.8rem;color:var(--ink-3);letter-spacing:.04em;display:flex;justify-content:flex-end;border-top:1px solid var(--line);padding-top:8px}
-  @media(max-width:880px){.hero-grid{grid-template-columns:1fr;gap:40px}figure.portrait{order:-1;max-width:360px}}
+  @media(max-width:880px){.hero-grid{grid-template-columns:1fr;gap:40px}figure.portrait{order:0;max-width:360px}}
 
   /* ---------- credential band ---------- */
   .creds{background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -450,7 +451,7 @@
   </section>
 
   <!-- TESTIMONIALS -->
-  <section class="block" id="testimonials">
+  <section class="block" id="testimonials" style="display:none"><!-- hidden until real testimonials; remove style="display:none" to restore -->
     <div class="wrap">
       <div class="block-head reveal">
         <span class="eyebrow">In their words</span>
