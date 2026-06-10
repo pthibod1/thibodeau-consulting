@@ -96,7 +96,7 @@
     position:sticky;top:0;z-index:40;background:color-mix(in srgb,#0F2A43 95%, transparent);
     backdrop-filter:blur(8px);border-bottom:1px solid #0a2138;
   }
-  header .wordmark{color:#eef4fb}
+  header .wordmark{color:#eef4fb;font-size:clamp(1.04rem,2.6vw,1.35rem)}
   header .btn-primary{background:#e8f1fb;border-color:#e8f1fb;color:#0F2A43}
   header .btn-primary:hover{background:#ffffff;border-color:#ffffff}
   .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
@@ -110,12 +110,12 @@
   .xbl .xb-x::before{content:"";position:absolute;left:6%;right:-3%;top:.13em;height:.052em;background:currentColor;border-radius:1px}
   .xbl.sm{width:34px;height:34px}.xbl.sm .xb-x{font-size:17px}
   .brand .wordmark{color:var(--accent);font-size:1.4rem}
-  .navlinks{display:flex;align-items:center;gap:30px}
+  .navlinks{display:flex;align-items:center;gap:24px}
   .navlinks a:not(.btn){font-size:.92rem;font-weight:500;color:#c4d2e2;text-decoration:none;position:relative;padding:4px 0}
   .navlinks a:not(.btn)::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:1.5px;background:#8fb6e6;transition:right .22s ease}
   .navlinks a:not(.btn):hover{color:#ffffff}
   .navlinks a:not(.btn):hover::after{right:0}
-  @media(max-width:720px){.navlinks a:not(.btn){display:none}}
+  @media(max-width:760px){.navlinks a:not(.btn){display:none}}
 
   /* ---------- hero ---------- */
   .hero{padding:78px 0 64px}
@@ -398,7 +398,7 @@
 
   <header>
     <div class="wrap nav">
-      <a href="index.html" class="wordmark"><span class="tmark">T</span><span class="wname">Thibodeau Consulting<span class="wname-llc">, LLC</span></span></a>
+      <a href="index.html" class="wordmark"><span class="tmark">T</span><span class="wname">Thibodeau Consulting</span></a>
       <nav class="navlinks">
         <a href="about.html" aria-current="page">About</a>
         <a href="index.html#work">Services</a>
