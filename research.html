@@ -388,7 +388,8 @@
   .cred-deg{display:block;color:var(--ink);font-weight:600;font-size:1.02rem;margin-bottom:3px;letter-spacing:-.005em}
   /* ---- research / publications page ---- */
   body{background:#f4f8fc}
-  .pubs{padding:72px 0 64px;background:#e4ecf5}
+  .intro{padding:64px 0 36px;background:#f4f8fc}
+  .pubs{padding:44px 0 64px;background:#e4ecf5;border-top:3px solid #0F2A43}
   .pubs .block-head{margin-bottom:8px}
   .pub-list{list-style:none;margin:40px 0 0;padding:0;border-top:1px solid var(--line-2)}
   .pub{display:flex;align-items:baseline;justify-content:space-between;gap:28px;padding:20px 0;border-bottom:1px solid var(--line-2)}
@@ -401,12 +402,13 @@
   .pub-link:hover .arr{transform:translateX(3px)}
   .pub-note{margin-top:34px;font-size:.85rem;color:var(--ink-3)}
   @media(max-width:600px){
-    .pubs{padding:48px 0 72px}
+    .intro{padding:44px 0 22px}
+    .pubs{padding:32px 0 72px}
     .pub{flex-direction:column;gap:8px;align-items:flex-start;padding:18px 0}
   }
 
   /* ---- topic filter (papers) ---- */
-  .filterbar{display:flex;flex-wrap:wrap;gap:9px;margin:34px 0 0}
+  .filterbar{display:flex;flex-wrap:wrap;gap:9px;margin:0}
   .chip{font-family:var(--font-body);font-size:.82rem;font-weight:600;letter-spacing:.01em;padding:.5em 1.05em;border-radius:999px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);cursor:pointer;transition:.16s ease;white-space:nowrap}
   .chip:hover{border-color:var(--accent);color:var(--ink)}
   .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
@@ -436,14 +438,18 @@
   </header>
 
   <main>
-    <section class="pubs">
+    <section class="intro">
       <div class="wrap">
         <div class="block-head">
           <span class="eyebrow">Research</span>
           <h1 class="display" style="font-size:clamp(2.2rem,4vw,3rem);margin-top:18px">Papers</h1>
           <p class="lede" style="margin-top:14px">Two decades of peer-reviewed research on language, metaphor, judgment, and how people reason about complex issues. Filter by topic.</p>
         </div>
+      </div>
+    </section>
 
+    <section class="pubs">
+      <div class="wrap">
           <div class="filterbar" role="group" aria-label="Filter papers by topic">
             <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
             <button class="chip" type="button" data-filter="metaphor" aria-pressed="false">Metaphor &amp; framing</button>
