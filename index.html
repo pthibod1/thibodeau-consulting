@@ -198,6 +198,17 @@
     .svc-grid .svc:nth-child(4) .more .arr{animation-delay:1.35s}
     .svc:hover .more .arr{animation:none}
   }
+  @keyframes cartPulse{0%,55%,100%{transform:scale(1)}74%{transform:scale(1.18)}}
+  @keyframes cartLift{0%,62%,100%{transform:translateY(0)}80%{transform:translateY(-3px)}}
+  @keyframes cartPop{0%,60%,100%{transform:scale(1)}78%{transform:scale(1.12)}}
+  @media(prefers-reduced-motion:no-preference){
+    .cart-pulse{transform-box:fill-box;transform-origin:center;animation:cartPulse 3.6s ease-in-out infinite}
+    .cart-lift{animation:cartLift 3.8s ease-in-out infinite}
+    .cart-pop{transform-box:fill-box;transform-origin:center;animation:cartPop 4s ease-in-out infinite}
+    .svc:nth-child(2) .cart-lift{animation-delay:.5s}
+    .svc:nth-child(3) .cart-pop{animation-delay:1s}
+    .svc:nth-child(4) .cart-pulse{animation-delay:1.4s}
+  }
   .badge{font-family:var(--font-body);font-weight:600;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;padding:.32em .7em;border-radius:2px;white-space:nowrap}
   .badge-start{background:var(--accent);color:#fdfbf5}
   .badge-sig{background:var(--gold-soft);color:#7a3322;border:1px solid var(--gold)}
@@ -500,25 +511,25 @@
 
       <div class="svc-grid">
         <a href="demos/mmm_demo.html" class="svc reveal">
-          <span class="svc-cartoon" aria-hidden="true"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="42" width="14" height="30" rx="2" fill="#1F7A8C"/><rect x="24" y="28" width="14" height="44" rx="2" fill="#B9822F"/><rect x="42" y="50" width="14" height="22" rx="2" fill="#0F2A43"/><line x1="4" y1="72" x2="58" y2="72" stroke="#c2cbd4" stroke-width="2"/><path d="M68 64 C 86 60, 96 26, 114 16" fill="none" stroke="#b3543a" stroke-width="3" stroke-linecap="round"/><circle cx="114" cy="16" r="4" fill="#b3543a"/></svg></span>
+          <span class="svc-cartoon" aria-hidden="true"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="42" width="14" height="30" rx="2" fill="#1F7A8C"/><rect x="24" y="28" width="14" height="44" rx="2" fill="#B9822F"/><rect x="42" y="50" width="14" height="22" rx="2" fill="#0F2A43"/><line x1="4" y1="72" x2="58" y2="72" stroke="#c2cbd4" stroke-width="2"/><path d="M68 64 C 86 60, 96 26, 114 16" fill="none" stroke="#b3543a" stroke-width="3" stroke-linecap="round"/><circle class="cart-pulse" cx="114" cy="16" r="4" fill="#b3543a"/></svg></span>
           <div class="svc-top"><span class="svc-idx">01</span><span class="svc-topic">MMM &amp; Attribution</span></div>
           <h3>Which marketing dollars actually drive revenue?</h3>
           <div class="svc-foot"><span class="more">Explore <span class="arr">→</span></span></div>
         </a>
         <a href="demos/experimentation_demo.html" class="svc reveal">
-          <span class="svc-cartoon" aria-hidden="true"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="68" x2="108" y2="68" stroke="#c2cbd4" stroke-width="2"/><rect x="26" y="42" width="26" height="26" rx="2" fill="#9aa6af"/><rect x="70" y="22" width="26" height="46" rx="2" fill="#1F7A8C"/><line x1="26" y1="42" x2="96" y2="42" stroke="#b3543a" stroke-width="2" stroke-dasharray="4 3"/><line x1="100" y1="24" x2="100" y2="42" stroke="#b3543a" stroke-width="2"/><polyline points="96,30 100,24 104,30" fill="none" stroke="#b3543a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="svc-cartoon" aria-hidden="true"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="68" x2="108" y2="68" stroke="#c2cbd4" stroke-width="2"/><rect x="26" y="42" width="26" height="26" rx="2" fill="#9aa6af"/><rect x="70" y="22" width="26" height="46" rx="2" fill="#1F7A8C"/><line x1="26" y1="42" x2="96" y2="42" stroke="#b3543a" stroke-width="2" stroke-dasharray="4 3"/><g class="cart-lift"><line x1="100" y1="24" x2="100" y2="42" stroke="#b3543a" stroke-width="2"/><polyline points="96,30 100,24 104,30" fill="none" stroke="#b3543a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></svg></span>
           <div class="svc-top"><span class="svc-idx">02</span><span class="svc-topic">Causal Inference &amp; Experimentation</span></div>
           <h3>Did the new feature really move the needle?</h3>
           <div class="svc-foot"><span class="more">Explore <span class="arr">→</span></span></div>
         </a>
         <a href="demos/agentic_eval_demo.html" class="svc reveal">
-          <span class="svc-cartoon" aria-hidden="true"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="24" width="42" height="32" rx="9" fill="#1F7A8C"/><circle cx="22" cy="40" r="2.4" fill="#fff"/><circle cx="30" cy="40" r="2.4" fill="#fff"/><circle cx="38" cy="40" r="2.4" fill="#fff"/><line x1="56" y1="40" x2="72" y2="40" stroke="#9aa6af" stroke-width="3"/><polyline points="66,34 74,40 66,46" fill="none" stroke="#9aa6af" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="98" cy="40" r="16" fill="none" stroke="#1f7a5a" stroke-width="3.5"/><path d="M90 40 l6 7 l11 -15" fill="none" stroke="#1f7a5a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="svc-cartoon" aria-hidden="true"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="24" width="42" height="32" rx="9" fill="#1F7A8C"/><circle cx="22" cy="40" r="2.4" fill="#fff"/><circle cx="30" cy="40" r="2.4" fill="#fff"/><circle cx="38" cy="40" r="2.4" fill="#fff"/><line x1="56" y1="40" x2="72" y2="40" stroke="#9aa6af" stroke-width="3"/><polyline points="66,34 74,40 66,46" fill="none" stroke="#9aa6af" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g class="cart-pop"><circle cx="98" cy="40" r="16" fill="none" stroke="#1f7a5a" stroke-width="3.5"/><path d="M90 40 l6 7 l11 -15" fill="none" stroke="#1f7a5a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g></svg></span>
           <div class="svc-top"><span class="svc-idx">03</span><span class="svc-topic">AI &amp; Agentic Workflows</span></div>
           <h3>Where could AI actually pay off for us?</h3>
           <div class="svc-foot"><span class="more">Explore <span class="arr">→</span></span></div>
         </a>
         <a href="demos/behavioral_survey_demo.html" class="svc reveal">
-          <span class="svc-cartoon" aria-hidden="true"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><line x1="54" y1="22" x2="30" y2="52" stroke="#9aa6af" stroke-width="2" stroke-dasharray="4 3"/><line x1="66" y1="22" x2="90" y2="52" stroke="#9aa6af" stroke-width="2" stroke-dasharray="4 3"/><line x1="42" y1="56" x2="80" y2="56" stroke="#b3543a" stroke-width="3"/><polyline points="74,51 82,56 74,61" fill="none" stroke="#b3543a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="60" cy="16" r="11" fill="#9aa6af"/><circle cx="30" cy="56" r="13" fill="#1F7A8C"/><circle cx="92" cy="56" r="13" fill="#0F2A43"/></svg></span>
+          <span class="svc-cartoon" aria-hidden="true"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><line x1="54" y1="22" x2="30" y2="52" stroke="#9aa6af" stroke-width="2" stroke-dasharray="4 3"/><line x1="66" y1="22" x2="90" y2="52" stroke="#9aa6af" stroke-width="2" stroke-dasharray="4 3"/><line x1="42" y1="56" x2="80" y2="56" stroke="#b3543a" stroke-width="3"/><polyline points="74,51 82,56 74,61" fill="none" stroke="#b3543a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="60" cy="16" r="11" fill="#9aa6af"/><circle cx="30" cy="56" r="13" fill="#1F7A8C"/><circle class="cart-pulse" cx="92" cy="56" r="13" fill="#0F2A43"/></svg></span>
           <div class="svc-top"><span class="svc-idx">04</span><span class="svc-topic">Behavioral &amp; Survey Research</span></div>
           <h3>What do customers truly want, and how would we know?</h3>
           <div class="svc-foot"><span class="more">Explore <span class="arr">→</span></span></div>
