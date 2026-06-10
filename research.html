@@ -99,7 +99,7 @@
   header .wordmark{color:#eef4fb;font-size:clamp(1.04rem,2.6vw,1.35rem)}
   header .btn-primary{background:#e8f1fb;border-color:#e8f1fb;color:#0F2A43}
   header .btn-primary:hover{background:#ffffff;border-color:#ffffff}
-  .nav{display:flex;flex-direction:column;align-items:stretch;gap:12px;height:auto;padding-top:15px;padding-bottom:15px}
+  .nav{display:flex;align-items:center;gap:16px;height:64px}
   .wordmark{font-family:var(--font-display);font-weight:500;font-size:1.5rem;letter-spacing:-.01em;text-decoration:none;color:var(--ink);white-space:nowrap}
   .wordmark .dot{color:var(--accent)}
   .wordmark .llc{color:var(--accent);font-weight:600;font-size:.62em;letter-spacing:.08em;vertical-align:.08em;margin-left:.18em}
@@ -110,14 +110,24 @@
   .xbl .xb-x::before{content:"";position:absolute;left:6%;right:-3%;top:.13em;height:.052em;background:currentColor;border-radius:1px}
   .xbl.sm{width:34px;height:34px}.xbl.sm .xb-x{font-size:17px}
   .brand .wordmark{color:var(--accent);font-size:1.4rem}
-  .navlinks{display:flex;align-items:center;gap:24px;width:100%}
-  .nav .wordmark{align-self:flex-start}
-  .navlinks .btn-primary{margin-left:auto}
+  .navlinks{display:flex;align-items:center;gap:24px;margin-left:auto}
+  .tc-book{margin-left:24px}
+  .navtoggle{display:none;align-items:center;justify-content:center;width:40px;height:40px;margin-left:-6px;padding:0;background:none;border:0;color:#c4d2e2;cursor:pointer;border-radius:6px}
+  .navtoggle:hover{color:#fff;background:rgba(255,255,255,.08)}
   .navlinks a:not(.btn){font-size:.92rem;font-weight:500;color:#c4d2e2;text-decoration:none;position:relative;padding:4px 0}
   .navlinks a:not(.btn)::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:1.5px;background:#8fb6e6;transition:right .22s ease}
   .navlinks a:not(.btn):hover{color:#ffffff}
   .navlinks a:not(.btn):hover::after{right:0}
-  @media(max-width:760px){.nav{flex-direction:row;align-items:center;justify-content:space-between;height:60px;padding-top:0;padding-bottom:0}.navlinks{width:auto}.navlinks a:not(.btn){display:none}}
+  @media(max-width:820px){
+    .navtoggle{display:inline-flex}
+    .nav{gap:12px;height:60px}
+    .navlinks{position:absolute;top:100%;left:0;right:0;margin:0;flex-direction:column;align-items:stretch;gap:0;background:#0f2a43;border-bottom:1px solid #0a2138;padding:6px 0;display:none}
+    header.nav-open .navlinks{display:flex}
+    .navlinks a:not(.btn){padding:13px 24px}
+    .navlinks a:not(.btn)::after{display:none}
+    .tc-book{margin-left:auto}
+  }
+  @media(max-width:380px){.nav .wname{display:none}}
 
   /* ---------- hero ---------- */
   .hero{padding:78px 0 64px}
@@ -400,14 +410,15 @@
 
   <header>
     <div class="wrap nav">
+      <button class="navtoggle" aria-label="Menu" aria-expanded="false" aria-controls="navmenu"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
       <a href="index.html" class="wordmark"><span class="tmark">T</span><span class="wname">Thibodeau Consulting</span></a>
-      <nav class="navlinks">
+      <nav class="navlinks" id="navmenu">
         <a href="about.html">About</a>
         <a href="index.html#work">Services</a>
         <a href="research.html" aria-current="page">Research</a>
         <a href="outreach.html">Outreach</a>
-        <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Book Call</a>
       </nav>
+      <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener" class="btn btn-primary btn-sm tc-book">Book Call <span class="arr">&rarr;</span></a>
     </div>
   </header>
 
@@ -550,6 +561,23 @@
       </div>
     </div>
   </footer>
+
+<script>
+(function(){
+  var t=document.querySelector('.navtoggle'), h=document.querySelector('header');
+  if(!t||!h)return;
+  function close(){t.setAttribute('aria-expanded','false');h.classList.remove('nav-open');}
+  t.addEventListener('click',function(e){
+    e.stopPropagation();
+    var open=t.getAttribute('aria-expanded')==='true';
+    t.setAttribute('aria-expanded',String(!open));
+    h.classList.toggle('nav-open',!open);
+  });
+  h.querySelectorAll('.navlinks a').forEach(function(a){a.addEventListener('click',close);});
+  document.addEventListener('click',function(e){if(!h.contains(e.target))close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+})();
+</script>
 
 </body>
 </html>
