@@ -390,6 +390,10 @@
   .pub-link:hover{color:var(--gold)}
   .pub-link:hover .arr{transform:translateX(3px)}
   .pub-note{margin-top:34px;font-size:.85rem;color:var(--ink-3)}
+  .name-list{list-style:none;margin:18px 0 0;padding:0}
+  .name-list li{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;padding:13px 0;border-bottom:1px solid var(--line)}
+  .name-list .nl-name{font-family:var(--font-display);font-weight:500;font-size:1.08rem;color:var(--ink);letter-spacing:-.01em}
+  .name-list .nl-note{font-size:.92rem;color:var(--ink-2)}
   @media(max-width:600px){
     .pubs{padding:48px 0 72px}
     .pub{flex-direction:column;gap:8px;align-items:flex-start;padding:18px 0}
@@ -478,6 +482,22 @@
         <div class="help"><h3>I make sure you get it</h3><p>You'll understand your data's strengths and its limits. I'm a teacher at heart.</p></div>
         <div class="help"><h3>I help you act</h3><p>Strategy, measurement, and growth. That's the whole job.</p></div>
       </div>
+      </div>
+    </section>
+
+    <section class="block" id="thename" style="padding:58px 0 84px;border-top:1px solid var(--line-2)">
+      <div class="wrap" style="max-width:46em">
+        <span class="eyebrow">The name</span>
+        <h2 class="display" style="margin-top:18px;font-size:clamp(1.9rem,3vw,2.6rem)">It's <span style="color:var(--gold)">TIB-uh-doh</span>.</h2>
+        <p class="lede" style="margin-top:14px">French-Acadian, by way of Louisiana. "Thib" rhymes with "rib," then "uh-doh." Easy once you've said it once.</p>
+        <p style="margin:30px 0 0;font-weight:600;color:var(--ink)">A few notable Thibodeaus, no relation (mostly):</p>
+        <ul class="name-list">
+          <li><span class="nl-name">Tom Thibodeau</span> <span class="nl-note">Two-time NBA Coach of the Year</span></li>
+          <li><span class="nl-name">Kayvon Thibodeaux</span> <span class="nl-note">NFL edge rusher, New York Giants</span></li>
+          <li><span class="nl-name">Henry S. Thibodaux</span> <span class="nl-note">Governor of Louisiana, the town Thibodaux is named for him</span></li>
+          <li><span class="nl-name">Boudreaux &amp; Thibodeaux</span> <span class="nl-note">The heroes of a thousand Cajun jokes</span></li>
+          <li><span class="nl-name">Paul Thibodeau</span> <span class="nl-note">This one. The one who'll get your measurement right.</span></li>
+        </ul>
       </div>
     </section>
   </main>
