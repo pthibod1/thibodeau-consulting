@@ -120,7 +120,7 @@
   .navlinks a:not(.btn)::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:1.5px;background:#8fb6e6;transition:right .22s ease}
   .navlinks a:not(.btn):hover{color:#ffffff}
   .navlinks a:not(.btn):hover::after{right:0}
-  @media(max-width:760px){.nav{justify-content:space-between;height:60px}.nav .wordmark{display:inline-flex}.navlinks{width:auto}.navlinks a:not(.btn){display:none}.brandbar{display:none}}
+  @media(max-width:760px){.nav{justify-content:space-between;height:60px}.nav .wordmark{display:inline-flex}.nav .wname{display:none}.navlinks{width:auto}.navlinks a:not(.btn){display:none}.brandbar{display:none}}
 
   /* ---------- hero ---------- */
   .hero{padding:78px 0 64px}
@@ -361,6 +361,8 @@
 
   /* conversion: hero subhead, CTA risk-reversal note, blue proof band */
   .hero-sub{margin:14px 0 0;font-size:1.12rem;color:var(--ink-2);max-width:32rem;line-height:1.5}
+  .hero-tagline{margin:16px 0 0;font-family:var(--font-display);font-weight:500;font-size:clamp(1.5rem,2.6vw,2rem);line-height:1.15;letter-spacing:-.01em;color:var(--ink)}
+  .hero-research{font-size:1rem;color:var(--ink-3)}
   .cta-note{margin:14px 0 0;font-size:.85rem;color:var(--ink-3);letter-spacing:.02em}
   .creds{background:#e4ecf5;border-top:3px solid #0F2A43;border-bottom:3px solid #0F2A43}
 
@@ -397,12 +399,6 @@
   </div>
 </header>
 
-<div class="brandbar">
-  <div class="wrap">
-    <a href="#top" class="wordmark"><span class="tmark">T</span><span class="wname">Thibodeau Consulting</span></a>
-  </div>
-</div>
-
 <main id="top">
 
   <!-- HERO -->
@@ -410,8 +406,10 @@
     <div class="wrap hero-grid">
       <div class="hero-copy">
         <span class="eyebrow reveal">Scientific rigor · Industry speed</span>
-        <h1 class="display reveal">Know what's actually <span style="color:var(--gold)">working</span>.</h1>
+        <h1 class="display reveal">Thibodeau Consulting</h1>
+        <p class="hero-tagline reveal">Know what's actually <span style="color:var(--gold)">working</span>.</p>
         <p class="hero-sub reveal">Marketing-mix modeling, experimentation, behavioral research, and AI systems for digital-health, consumer, and growth teams that need numbers they can trust.</p>
+        <p class="hero-sub hero-research reveal">Two decades of peer-reviewed research into how people reason and decide, now applied to your data.</p>
         <div class="btns reveal">
           <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener" class="btn btn-primary">Book Call <span class="arr">→</span></a>
         </div>
