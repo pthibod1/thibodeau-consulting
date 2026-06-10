@@ -54,8 +54,10 @@ footer a{color:var(--teal)}
 </head>
 <body>
 <header class="tc-header"><div class="tc-nav">
+  <button class="tc-navtoggle" aria-label="Menu" aria-expanded="false" aria-controls="tcmenu"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
   <a href="../index.html" class="tc-wordmark"><span class="tmark">T</span><span class="wname">Thibodeau Consulting</span></a>
-  <nav class="tc-navlinks">
+  <nav class="tc-navlinks" id="tcmenu">
+    <a href="../index.html" class="hideable">Home</a>
     <a href="../about.html" class="hideable">About</a>
     <a href="../index.html#work" class="hideable">Services</a>
     <a href="../research.html" class="hideable">Research</a>
@@ -243,5 +245,8 @@ window.addEventListener("resize",()=>setTimeout(drawRadar,80));
     <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener">Book Call</a>
   </nav>
 </div></footer>
+<script>
+(function(){var t=document.querySelector('.tc-navtoggle'),h=document.querySelector('.tc-header');if(!t||!h)return;function c(){t.setAttribute('aria-expanded','false');h.classList.remove('nav-open');}t.addEventListener('click',function(e){e.stopPropagation();var o=t.getAttribute('aria-expanded')==='true';t.setAttribute('aria-expanded',String(!o));h.classList.toggle('nav-open',!o);});h.querySelectorAll('.tc-navlinks a').forEach(function(a){a.addEventListener('click',c);});document.addEventListener('click',function(e){if(!h.contains(e.target))c();});document.addEventListener('keydown',function(e){if(e.key==='Escape')c();});})();
+</script>
 </body>
 </html>
