@@ -55,19 +55,19 @@ a:focus-visible,button:focus-visible,input[type=range]:focus-visible{outline:2px
 
 /* full-width alternating panels for demo pages (match the main site) */
 .band{background:#f4f8fc}
-.band-alt{background:#e4ecf5;border-top:3px solid #0F2A43;border-bottom:3px solid #0F2A43}
+.band-alt{background:#e4ecf5;border-top:3px solid #0F2A43;border-bottom:3px solid #0F2A43;padding-bottom:2.6rem}
 .band header.hero{border-bottom:none}
 .hero-grid{display:grid;grid-template-columns:1.4fr .9fr;gap:2.2rem;align-items:center}
 .hero-cartoon{justify-self:end}
 .hero-cartoon svg{display:block;width:100%;height:auto;max-width:340px}
 @media(max-width:760px){.hero-grid{grid-template-columns:1fr}.hero-cartoon{display:none}}
-.engage.band-alt{background:#e4ecf5;padding:38px 0 44px}
+.engage.band-alt{background:#e4ecf5;padding:48px 0}
 
 /* "Work together" engagement panel */
-.engage{padding:6px 0 30px;background:#f4f8fc}
+.engage{padding:48px 0;background:#f4f8fc}
 .engage-inner{max-width:920px;margin:0 auto;padding:0 1.4rem}
 .engage-card{background:#fff;border:1px solid #e1d8c4;border-top:3px solid #275f9e;border-radius:10px;padding:1.7rem 1.7rem 1.5rem;box-shadow:0 1px 2px rgba(15,42,67,.05)}
-.engage-card h2{font-family:'Newsreader',Georgia,serif;font-weight:600;font-size:1.5rem;color:#0F2A43;margin:0 0 .2rem;letter-spacing:-.01em}
+.engage-card h2{font-family:'Newsreader',Georgia,serif;font-weight:600;font-size:1.5rem;color:#0F2A43;margin:0 0 .45rem;letter-spacing:-.01em}
 .engage-sub{color:#5a6b78;font-size:.95rem;margin:0 0 1.3rem}
 .engage-cols{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem 2.2rem}
 .engage-col h3{font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:#275f9e;font-weight:700;margin:0 0 .6rem}
@@ -82,7 +82,7 @@ a:focus-visible,button:focus-visible,input[type=range]:focus-visible{outline:2px
 @media(max-width:640px){.engage-cols{grid-template-columns:1fr;gap:1.1rem}}
 
 /* "How we'd work together" process + deliverables (from designer) */
-.howwe{padding:14px 0 6px}
+.howwe{padding:48px 0 6px}  /* nested inside band-alt (+~42px bottom) -> ~48px total */
 .howwe .eyebrow{display:block}
 .howwe h2{font-family:'Newsreader',Georgia,serif;font-weight:600;font-size:1.9rem;color:#0F2A43;letter-spacing:-.01em;margin:.5rem 0 1.5rem;line-height:1.1}
 .howwe-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-top:.4rem}
