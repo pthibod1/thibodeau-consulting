@@ -391,8 +391,8 @@
   .pubs{padding:72px 0 110px}
   .pubs .block-head{margin-bottom:8px}
   .pub-list{list-style:none;margin:40px 0 0;padding:0;border-top:1px solid var(--line-2)}
-  .pub{display:flex;align-items:baseline;justify-content:space-between;gap:28px;padding:20px 0;border-bottom:1px solid var(--line-2)}
-  .pub-main{display:flex;flex-direction:column;gap:4px}
+  .pub{display:flex;align-items:baseline;gap:20px;padding:18px 0;border-bottom:1px solid var(--line-2)}
+  .pub-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
   .pub-title{font-family:var(--font-display);font-weight:500;font-size:1.18rem;line-height:1.3;color:var(--ink);letter-spacing:-.01em}
   .pub-meta{font-size:.86rem;color:var(--ink-3)}
   .pub-link{flex:none;font-size:.85rem;font-weight:600;color:var(--accent);text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:.4em;transition:color .18s ease}
@@ -400,11 +400,18 @@
   .pub-link:hover{color:var(--gold)}
   .pub-link:hover .arr{transform:translateX(3px)}
   .pub-note{margin-top:34px;font-size:.85rem;color:var(--ink-3)}
+  .pub-year{flex:none;width:46px;font-family:var(--font-display);font-size:.98rem;color:var(--ink-3);padding-top:1px}
+  .pub.is-hidden{display:none}
+  .filterbar{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 4px}
+  .chip{font-family:var(--font-body);font-weight:600;font-size:.84rem;padding:.42em .9em;border-radius:999px;border:1px solid var(--line-2);background:transparent;color:var(--ink-2);cursor:pointer;transition:color .15s ease,border-color .15s ease,background .15s ease}
+  .chip:hover{border-color:var(--accent);color:var(--accent)}
+  .chip.is-active{background:var(--accent);border-color:var(--accent);color:#fff}
   .pub-group{font-family:var(--font-body);font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:48px 0 0}
   .pub-group + .pub-list{margin-top:16px}
   @media(max-width:600px){
     .pubs{padding:48px 0 72px}
-    .pub{flex-direction:column;gap:8px;align-items:flex-start;padding:18px 0}
+    .pub{gap:14px;padding:16px 0}
+    .pub-year{width:40px}
   }
 </style>
 </head>
@@ -430,115 +437,128 @@
         <div class="block-head">
           <span class="eyebrow">Outreach</span>
           <h1 class="display" style="font-size:clamp(2.2rem,4vw,3rem);margin-top:18px">Writing &amp; press</h1>
-          <p class="lede" style="margin-top:14px">Writing for a general audience, and a sample of where my research has shown up in the press.</p>
+          <p class="lede" style="margin-top:14px">Public-facing writing, plus a sample of where my research has shown up in the press. Filter by topic, or browse by date.</p>
         </div>
-
-        <h2 class="pub-group">Writing &amp; talks</h2>
-        <ul class="pub-list">
-          <li class="pub">
-            <div class="pub-main">
-              <span class="pub-title">"Blow the Whistle" or "Stop the Leaks"?</span>
-              <span class="pub-meta">Behavioral Scientist · 2017</span>
-            </div>
-            <a class="pub-link" href="https://behavioralscientist.org/blow-whistle-stop-leaks/" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
-          </li>
-          <li class="pub">
-            <div class="pub-main">
-              <span class="pub-title">The "Moist" Conundrum</span>
-              <span class="pub-meta">Behavioral Scientist · 2016</span>
-            </div>
-            <a class="pub-link" href="https://behavioralscientist.org/moist-conundrum/" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
-          </li>
-          <li class="pub">
-            <div class="pub-main">
-              <span class="pub-title">Set to Solve: How Emphasizing Problem Setting Can Solve Problems in Washington</span>
-              <span class="pub-meta">Behavioral Scientist · 2013</span>
-            </div>
-            <a class="pub-link" href="https://behavioralscientist.org/set-to-solve-how-emphasizing-problem-setting-can-solve-problems-in-washington/" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
-          </li>
-          <li class="pub">
+        <div class="filterbar" role="group" aria-label="Filter by topic">
+          <button class="chip is-active" data-filter="all">All</button>
+          <button class="chip" data-filter="framing">Metaphor &amp; framing</button>
+          <button class="chip" data-filter="moist">Word aversion</button>
+          <button class="chip" data-filter="environment">Environment</button>
+        </div>
+        <ul class="pub-list outreach-list">
+          <li class="pub" data-tags="talk framing">
+            <span class="pub-year">2022</span>
             <div class="pub-main">
               <span class="pub-title">How to Talk About People Disengaging From Violent Extremism</span>
-              <span class="pub-meta">Talk · U.S. Institute of Peace</span>
+              <span class="pub-meta">U.S. Institute of Peace · Talk</span>
             </div>
             <a class="pub-link" href="https://www.usip.org/events/how-talk-about-people-disengaging-violent-extremism" target="_blank" rel="noopener">Watch <span class="arr">&rarr;</span></a>
           </li>
-        </ul>
-
-        <h2 class="pub-group">In the press</h2>
-        <ul class="pub-list">
-          <li class="pub">
+          <li class="pub" data-tags="writing framing">
+            <span class="pub-year">2017</span>
             <div class="pub-main">
-              <span class="pub-title">We Know You Hate "Moist." What Other Words Repel You?</span>
-              <span class="pub-meta">The New York Times · 2016</span>
+              <span class="pub-title">"Blow the Whistle" or "Stop the Leaks"?</span>
+              <span class="pub-meta">Behavioral Scientist · Writing</span>
             </div>
-            <a class="pub-link" href="https://www.nytimes.com/2016/05/07/science/moist-word-aversion.html" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
+            <a class="pub-link" href="https://behavioralscientist.org/blow-whistle-stop-leaks/" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
           </li>
-          <li class="pub">
-            <div class="pub-main">
-              <span class="pub-title">Metaphors we do everything by?</span>
-              <span class="pub-meta">The Economist · 2011</span>
-            </div>
-            <a class="pub-link" href="https://www.economist.com/johnson/2011/05/26/metaphors-we-do-everything-by" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
-          </li>
-          <li class="pub">
-            <div class="pub-main">
-              <span class="pub-title">Is crime a virus or a beast? How metaphors shape our thoughts and decisions</span>
-              <span class="pub-meta">National Geographic</span>
-            </div>
-            <a class="pub-link" href="https://www.nationalgeographic.com/science/article/is-crime-a-virus-or-a-beast-how-metaphors-shape-our-thoughts-and-decisions" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
-          </li>
-          <li class="pub">
-            <div class="pub-main">
-              <span class="pub-title">Probing the moist crevices of word aversion</span>
-              <span class="pub-meta">Scientific American · 2016</span>
-            </div>
-            <a class="pub-link" href="https://www.scientificamerican.com/article/probing-the-moist-crevices-of-word-aversion/" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
-          </li>
-          <li class="pub">
-            <div class="pub-main">
-              <span class="pub-title">Scientists now know the psychology behind your worries about the environment</span>
-              <span class="pub-meta">The Washington Post · 2016</span>
-            </div>
-            <a class="pub-link" href="https://www.washingtonpost.com/news/energy-environment/wp/2016/04/27/this-key-psychological-factor-could-explain-why-you-care-about-the-environment/" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
-          </li>
-          <li class="pub">
-            <div class="pub-main">
-              <span class="pub-title">Why do so many people dislike the word "moist"?</span>
-              <span class="pub-meta">Vox · 2016</span>
-            </div>
-            <a class="pub-link" href="https://www.vox.com/2016/4/28/11521048/moist-gross" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
-          </li>
-          <li class="pub">
-            <div class="pub-main">
-              <span class="pub-title">Is crime a virus or a beast? The word you pick frames the debate</span>
-              <span class="pub-meta">Stanford Report · 2011</span>
-            </div>
-            <a class="pub-link" href="https://news.stanford.edu/news/2011/february/metaphors-crime-study-022311.html" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
-          </li>
-          <li class="pub">
+          <li class="pub" data-tags="press framing environment">
+            <span class="pub-year">2017</span>
             <div class="pub-main">
               <span class="pub-title">Communicating climate change: focus on the framing, not just the facts</span>
-              <span class="pub-meta">The Conversation · 2017</span>
+              <span class="pub-meta">The Conversation · Press</span>
             </div>
             <a class="pub-link" href="https://theconversation.com/communicating-climate-change-focus-on-the-framing-not-just-the-facts-73028" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
           </li>
-          <li class="pub">
+          <li class="pub" data-tags="writing moist">
+            <span class="pub-year">2016</span>
             <div class="pub-main">
-              <span class="pub-title">Does metaphorical framing really work?</span>
-              <span class="pub-meta">On the Media · WNYC</span>
+              <span class="pub-title">The "Moist" Conundrum</span>
+              <span class="pub-meta">Behavioral Scientist · Writing</span>
             </div>
-            <a class="pub-link" href="https://www.wnycstudios.org/podcasts/otm/segments/133095-does-metaphorical-framing-really-work" target="_blank" rel="noopener">Listen <span class="arr">&rarr;</span></a>
+            <a class="pub-link" href="https://behavioralscientist.org/moist-conundrum/" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
           </li>
-          <li class="pub">
+          <li class="pub" data-tags="press moist">
+            <span class="pub-year">2016</span>
+            <div class="pub-main">
+              <span class="pub-title">We Know You Hate "Moist." What Other Words Repel You?</span>
+              <span class="pub-meta">The New York Times · Press</span>
+            </div>
+            <a class="pub-link" href="https://www.nytimes.com/2016/05/07/science/moist-word-aversion.html" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
+          </li>
+          <li class="pub" data-tags="press moist">
+            <span class="pub-year">2016</span>
+            <div class="pub-main">
+              <span class="pub-title">Probing the moist crevices of word aversion</span>
+              <span class="pub-meta">Scientific American · Press</span>
+            </div>
+            <a class="pub-link" href="https://www.scientificamerican.com/article/probing-the-moist-crevices-of-word-aversion/" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
+          </li>
+          <li class="pub" data-tags="press environment">
+            <span class="pub-year">2016</span>
+            <div class="pub-main">
+              <span class="pub-title">Scientists now know the psychology behind your worries about the environment</span>
+              <span class="pub-meta">The Washington Post · Press</span>
+            </div>
+            <a class="pub-link" href="https://www.washingtonpost.com/news/energy-environment/wp/2016/04/27/this-key-psychological-factor-could-explain-why-you-care-about-the-environment/" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
+          </li>
+          <li class="pub" data-tags="press moist">
+            <span class="pub-year">2016</span>
+            <div class="pub-main">
+              <span class="pub-title">Why do so many people dislike the word "moist"?</span>
+              <span class="pub-meta">Vox · Press</span>
+            </div>
+            <a class="pub-link" href="https://www.vox.com/2016/4/28/11521048/moist-gross" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
+          </li>
+          <li class="pub" data-tags="press moist">
+            <span class="pub-year">2016</span>
             <div class="pub-main">
               <span class="pub-title">The science behind why "moist" bugs the heck out of you</span>
-              <span class="pub-meta">Forbes · 2016</span>
+              <span class="pub-meta">Forbes · Press</span>
             </div>
             <a class="pub-link" href="https://www.forbes.com/sites/ericmack/2016/04/30/the-science-behind-why-moist-bugs-the-hell-out-of-you/" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
           </li>
+          <li class="pub" data-tags="writing framing">
+            <span class="pub-year">2013</span>
+            <div class="pub-main">
+              <span class="pub-title">Set to Solve: How Emphasizing Problem Setting Can Solve Problems in Washington</span>
+              <span class="pub-meta">Behavioral Scientist · Writing</span>
+            </div>
+            <a class="pub-link" href="https://behavioralscientist.org/set-to-solve-how-emphasizing-problem-setting-can-solve-problems-in-washington/" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
+          </li>
+          <li class="pub" data-tags="press framing">
+            <span class="pub-year">2011</span>
+            <div class="pub-main">
+              <span class="pub-title">Metaphors we do everything by?</span>
+              <span class="pub-meta">The Economist · Press</span>
+            </div>
+            <a class="pub-link" href="https://www.economist.com/johnson/2011/05/26/metaphors-we-do-everything-by" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
+          </li>
+          <li class="pub" data-tags="press framing">
+            <span class="pub-year">2011</span>
+            <div class="pub-main">
+              <span class="pub-title">Is crime a virus or a beast? How metaphors shape our thoughts and decisions</span>
+              <span class="pub-meta">National Geographic · Press</span>
+            </div>
+            <a class="pub-link" href="https://www.nationalgeographic.com/science/article/is-crime-a-virus-or-a-beast-how-metaphors-shape-our-thoughts-and-decisions" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
+          </li>
+          <li class="pub" data-tags="press framing">
+            <span class="pub-year">2011</span>
+            <div class="pub-main">
+              <span class="pub-title">Is crime a virus or a beast?</span>
+              <span class="pub-meta">Stanford Report · Press</span>
+            </div>
+            <a class="pub-link" href="https://news.stanford.edu/news/2011/february/metaphors-crime-study-022311.html" target="_blank" rel="noopener">Read <span class="arr">&rarr;</span></a>
+          </li>
+          <li class="pub" data-tags="press framing">
+            <span class="pub-year">2011</span>
+            <div class="pub-main">
+              <span class="pub-title">Does metaphorical framing really work?</span>
+              <span class="pub-meta">On the Media (WNYC) · Press</span>
+            </div>
+            <a class="pub-link" href="https://www.wnycstudios.org/podcasts/otm/segments/133095-does-metaphorical-framing-really-work" target="_blank" rel="noopener">Listen <span class="arr">&rarr;</span></a>
+          </li>
         </ul>
-
         <p class="pub-note">A fuller list of coverage is on my <a href="https://www.phthibodeau.com/outreach" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">academic outreach page</a>.</p>
       </div>
     </section>
@@ -579,5 +599,20 @@
 })();
 </script>
 
+<script>
+(function(){
+  var bar=document.querySelector('.filterbar'); if(!bar)return;
+  var items=[].slice.call(document.querySelectorAll('.outreach-list .pub'));
+  bar.addEventListener('click',function(e){
+    var b=e.target.closest('.chip'); if(!b)return;
+    bar.querySelectorAll('.chip').forEach(function(c){c.classList.toggle('is-active',c===b);});
+    var f=b.getAttribute('data-filter');
+    items.forEach(function(li){
+      var show=f==='all'||(' '+li.getAttribute('data-tags')+' ').indexOf(' '+f+' ')>-1;
+      li.classList.toggle('is-hidden',!show);
+    });
+  });
+})();
+</script>
 </body>
 </html>
