@@ -388,7 +388,8 @@
   .cred-deg{display:block;color:var(--ink);font-weight:600;font-size:1.02rem;margin-bottom:3px;letter-spacing:-.005em}
   /* ---- research / publications page ---- */
   body{background:#f4f8fc}
-  .pubs{padding:72px 0 64px;background:#e4ecf5}
+  .intro{padding:64px 0 36px;background:#f4f8fc}
+  .pubs{padding:44px 0 64px;background:#e4ecf5;border-top:3px solid #0F2A43}
   .pubs .block-head{margin-bottom:8px}
   .pub-list{list-style:none;margin:40px 0 0;padding:0;border-top:1px solid var(--line-2)}
   .pub{display:flex;align-items:baseline;gap:20px;padding:18px 0;border-bottom:1px solid var(--line-2)}
@@ -402,14 +403,15 @@
   .pub-note{margin-top:34px;font-size:.85rem;color:var(--ink-3)}
   .pub-year{flex:none;width:46px;font-family:var(--font-display);font-size:.98rem;color:var(--ink-2);padding-top:1px}
   .pub.is-hidden{display:none}
-  .filterbar{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 4px}
+  .filterbar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 4px}
   .chip{font-family:var(--font-body);font-weight:600;font-size:.84rem;padding:.42em .9em;border-radius:999px;border:1px solid var(--line-2);background:transparent;color:var(--ink-2);cursor:pointer;transition:color .15s ease,border-color .15s ease,background .15s ease}
   .chip:hover{border-color:var(--accent);color:var(--accent)}
   .chip.is-active{background:var(--accent);border-color:var(--accent);color:#fff}
   .pub-group{font-family:var(--font-body);font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:48px 0 0}
   .pub-group + .pub-list{margin-top:16px}
   @media(max-width:600px){
-    .pubs{padding:48px 0 72px}
+    .intro{padding:44px 0 22px}
+    .pubs{padding:32px 0 72px}
     .pub{gap:14px;padding:16px 0}
     .pub-year{width:40px}
   }
@@ -433,13 +435,17 @@
   </header>
 
   <main>
-    <section class="pubs">
+    <section class="intro">
       <div class="wrap">
         <div class="block-head">
           <span class="eyebrow">Outreach</span>
           <h1 class="display" style="font-size:clamp(2.2rem,4vw,3rem);margin-top:18px">Writing &amp; press</h1>
           <p class="lede" style="margin-top:14px">Public-facing writing, plus a sample of where my research has shown up in the press. Filter by topic, or browse by date.</p>
         </div>
+      </div>
+    </section>
+    <section class="pubs">
+      <div class="wrap">
         <div class="filterbar" role="group" aria-label="Filter by topic">
           <button class="chip is-active" data-filter="all">All</button>
           <button class="chip" data-filter="framing">Metaphor &amp; framing</button>
