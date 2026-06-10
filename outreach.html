@@ -403,10 +403,11 @@
   .pub-note{margin-top:34px;font-size:.85rem;color:var(--ink-3)}
   .pub-year{flex:none;width:46px;font-family:var(--font-display);font-size:.98rem;color:var(--ink-2);padding-top:1px}
   .pub.is-hidden{display:none}
-  .filterbar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 4px}
-  .chip{font-family:var(--font-body);font-weight:600;font-size:.84rem;padding:.42em .9em;border-radius:999px;border:1px solid var(--line-2);background:transparent;color:var(--ink-2);cursor:pointer;transition:color .15s ease,border-color .15s ease,background .15s ease}
-  .chip:hover{border-color:var(--accent);color:var(--accent)}
+  .filterbar{display:flex;flex-wrap:wrap;gap:9px;margin:0}
+  .chip{font-family:var(--font-body);font-size:.82rem;font-weight:600;letter-spacing:.01em;padding:.5em 1.05em;border-radius:999px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);cursor:pointer;transition:.16s ease;white-space:nowrap}
+  .chip:hover{border-color:var(--accent);color:var(--ink)}
   .chip.is-active{background:var(--accent);border-color:var(--accent);color:#fff}
+  .filter-count{font-size:.82rem;color:var(--ink-2);margin:13px 0 0;font-weight:600;letter-spacing:.02em}
   .pub-group{font-family:var(--font-body);font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:48px 0 0}
   .pub-group + .pub-list{margin-top:16px}
   @media(max-width:600px){
@@ -452,6 +453,7 @@
           <button class="chip" data-filter="moist">Word aversion</button>
           <button class="chip" data-filter="environment">Environment</button>
         </div>
+        <p class="filter-count" aria-live="polite"></p>
         <ul class="pub-list outreach-list">
           <li class="pub" data-tags="talk framing">
             <span class="pub-year">2022</span>
@@ -616,6 +618,8 @@
 (function(){
   var bar=document.querySelector('.filterbar'); if(!bar)return;
   var items=[].slice.call(document.querySelectorAll('.outreach-list .pub'));
+  var count=document.querySelector('.filter-count');
+  function upd(){var nn=items.filter(function(li){return !li.classList.contains('is-hidden');}).length; if(count)count.textContent=nn+(nn===1?' piece':' pieces');}
   bar.addEventListener('click',function(e){
     var b=e.target.closest('.chip'); if(!b)return;
     bar.querySelectorAll('.chip').forEach(function(c){c.classList.toggle('is-active',c===b);});
@@ -624,7 +628,9 @@
       var show=f==='all'||(' '+li.getAttribute('data-tags')+' ').indexOf(' '+f+' ')>-1;
       li.classList.toggle('is-hidden',!show);
     });
+    upd();
   });
+  upd();
 })();
 </script>
 </body>
