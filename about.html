@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thibodeau Consulting · Scientific rigor, industry speed</title>
+<title>About · Thibodeau Consulting</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta name="description" content="Scientific rigor, industry speed. Marketing, research, and data consulting from a Stanford PhD and former data-science leader.">
 <meta property="og:type" content="website">
@@ -374,197 +374,129 @@
   .stanford-row img{height:46px}
   #testimonials{background:#f4f8fc}
   .cred-deg{display:block;color:var(--ink);font-weight:600;font-size:1.02rem;margin-bottom:3px;letter-spacing:-.005em}
+  /* ---- research / publications page ---- */
+  body{background:#f4f8fc}
+  .pubs{padding:72px 0 110px}
+  .pubs .block-head{margin-bottom:8px}
+  .pub-list{list-style:none;margin:40px 0 0;padding:0;border-top:1px solid var(--line-2)}
+  .pub{display:flex;align-items:baseline;justify-content:space-between;gap:28px;padding:20px 0;border-bottom:1px solid var(--line-2)}
+  .pub-main{display:flex;flex-direction:column;gap:4px}
+  .pub-title{font-family:var(--font-display);font-weight:500;font-size:1.18rem;line-height:1.3;color:var(--ink);letter-spacing:-.01em}
+  .pub-meta{font-size:.86rem;color:var(--ink-3)}
+  .pub-link{flex:none;font-size:.85rem;font-weight:600;color:var(--accent);text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:.4em;transition:color .18s ease}
+  .pub-link .arr{transition:transform .18s ease}
+  .pub-link:hover{color:var(--gold)}
+  .pub-link:hover .arr{transform:translateX(3px)}
+  .pub-note{margin-top:34px;font-size:.85rem;color:var(--ink-3)}
+  @media(max-width:600px){
+    .pubs{padding:48px 0 72px}
+    .pub{flex-direction:column;gap:8px;align-items:flex-start;padding:18px 0}
+  }
 </style>
 </head>
-<body>
+<body id="top">
 
-<header>
-  <div class="wrap nav">
-    <a href="#top" class="wordmark"><span class="tmark">T</span><span class="wname">Thibodeau Consulting<span class="wname-llc">, LLC</span></span></a>
-    <nav class="navlinks">
-      <a href="about.html">About</a>
-      
-      <a href="#work">Services</a>
-      <a href="research.html">Research</a>
-      <a href="outreach.html">Outreach</a>
-      <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Book Call</a>
-    </nav>
-  </div>
-</header>
-
-<main id="top">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow reveal">Scientific rigor · Industry speed</span>
-        <h1 class="display reveal">Know what's actually <span style="color:var(--gold)">working</span>.</h1>
-        <p class="hero-sub reveal">Marketing-mix modeling, experimentation, behavioral research, and AI systems for digital-health, consumer, and growth teams that need numbers they can trust.</p>
-        <div class="btns reveal">
-          <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener" class="btn btn-primary">Book Call <span class="arr">→</span></a>
-        </div>
-      </div>
-      <figure class="portrait reveal">
-        <img class="portrait-img" src="assets/headshot-casual.jpg?v=4" alt="Paul Thibodeau, PhD" style="object-position:50% 20%">
-        <figcaption><span>Paul Thibodeau, PhD</span></figcaption>
-      </figure>
+  <header>
+    <div class="wrap nav">
+      <a href="index.html" class="wordmark"><span class="tmark">T</span><span class="wname">Thibodeau Consulting<span class="wname-llc">, LLC</span></span></a>
+      <nav class="navlinks">
+        <a href="about.html" aria-current="page">About</a>
+        <a href="index.html#work">Services</a>
+        <a href="research.html">Research</a>
+        <a href="outreach.html">Outreach</a>
+        <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Book Call</a>
+      </nav>
     </div>
-  </section>
+  </header>
 
-    <section class="creds reveal">
-    <div class="wrap creds-inner">
-      <div class="statrow">
-        <div class="stat">
-          <div class="num">20 years</div>
-          <div class="lbl">in industry and academia</div>
-          <div class="logos-row">
-            <img src="assets/logo-espark.png" alt="eSpark">
-            <img src="assets/logo-oberlin.png" alt="Oberlin College">
-            <img src="assets/logo-swarthmore.png" alt="Swarthmore">
-            <img src="assets/logo-trinity.webp" alt="Trinity University">
-            <img src="assets/logo-betterhelp.png" alt="BetterHelp">
+  <main>
+    <section class="block" style="padding:64px 0 36px">
+      <div class="wrap">
+        <div class="block-head" style="max-width:46em">
+          <span class="eyebrow">About</span>
+          <h1 class="display" style="font-size:clamp(2.2rem,4vw,3rem);margin-top:18px">Two decades solving hard problems with data.</h1>
+          <p class="lede" style="margin-top:16px">Paul Thibodeau is a cognitive scientist and data scientist who has spent more than twenty years investigating processes that are hard to pin down, like how people think and what drives behavior. Two things have never let up: curiosity about how things work and a stubborn need to get it right.</p>
+        </div>
+
+        <div class="about-stack">
+        <div class="chapter reveal">
+          <div class="rail">
+            <span class="ch-num">01</span>
+            <span class="ch-era">Training · Stanford</span>
+            <span class="ch-logo"><img src="assets/logo-stanford-s.avif" alt="Stanford" loading="lazy" style="max-width:120px;max-height:42px;object-fit:contain;display:block"></span>
+          </div>
+          <div class="body">
+            <h4>It started with a question about the mind.</h4>
+            <p>I was drawn to science by a single question: <span class="hl">how do people process language and make meaning from words?</span> I went to Stanford to chase it, earning a PhD in cognitive science and an MS in statistics. I gained a toolbox for solving impossible problems along the way.</p>
           </div>
         </div>
-        <div class="stat">
-          <div class="num num-stanford">Stanford PhD</div>
-          <div class="lbl">Cognitive Science<br>MS, Statistics</div>
-          <div class="logos-row stanford-row"><img src="assets/logo-stanford-s.avif" alt="Stanford"></div>
+        <div class="chapter reveal">
+          <div class="rail">
+            <span class="ch-num">02</span>
+            <span class="ch-era">Academia · Professor</span>
+            <span class="ch-logo two"><img src="assets/logo-oberlin.png" alt="Oberlin College" loading="lazy" style="max-width:120px;max-height:42px;object-fit:contain;display:block"><img src="assets/logo-swarthmore.png" alt="Swarthmore" loading="lazy" style="max-width:120px;max-height:42px;object-fit:contain;display:block"><img src="assets/logo-trinity.webp" alt="Trinity" loading="lazy" style="max-width:120px;max-height:42px;object-fit:contain;display:block"></span>
+          </div>
+          <div class="body">
+            <h4>The question became a body of work.</h4>
+            <p>I took those tools and built a research program at Oberlin College, publishing 50+ peer-reviewed papers and earning tenure. In academia the key performance metric (KPI) is citations, a measure of how much others build on your work. <span class="hl">Mine have been cited over 5,700 times</span>: a record built on getting the measurement right, not just the result you hoped for.</p>
+          </div>
         </div>
-        <div class="stat">
-          <div class="num">50+</div>
-          <div class="lbl">peer-reviewed papers, cited 5,000+ times</div>
+        <div class="chapter reveal">
+          <div class="rail">
+            <span class="ch-num">03</span>
+            <span class="ch-era">Industry · Data Science</span>
+            <span class="ch-logo two"><img src="assets/logo-espark.png" alt="eSpark" loading="lazy" style="max-width:120px;max-height:42px;object-fit:contain;display:block"><img src="assets/logo-betterhelp.png" alt="BetterHelp" loading="lazy" style="max-width:120px;max-height:42px;object-fit:contain;display:block"></span>
+          </div>
+          <div class="body">
+            <h4>Then I took the rigor into industry.</h4>
+            <p>From the lab, I moved into industry, where the work got faster and more collaborative. I built marketing-mix and churn models, ran A/B tests, and did countless analyses where the numbers had to move real budgets. <span class="hl">I owned these systems end to end in ed tech (eSpark) and health tech (BetterHelp).</span> It's the same work I now do for growth and product teams as an independent consultant.</p>
+          </div>
         </div>
-        <div class="stat">
-          <div class="num">8-figure</div>
-          <div class="lbl">budgets managed and advised on</div>
+        <div class="chapter reveal">
+          <div class="rail">
+            <span class="ch-num">04</span>
+            <span class="ch-era">Thibodeau Consulting, LLC</span>
+          </div>
+          <div class="body">
+            <h4>So I started this practice.</h4>
+            <p>I founded Thibodeau Consulting, LLC to bring that same rigor to your team. <span class="hl">I'm passionate about helping clients understand their data</span>, separate signal from noise, and make confident calls about where to invest. That's the kind of measurement that earns trust, because it's honest about what it knows and what it doesn't.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section class="block" id="testimonials">
-    <div class="wrap">
-      <div class="block-head reveal">
-        <span class="eyebrow">In their words</span>
+      <a href="https://scholar.google.com/citations?user=VA5iX4AAAAAJ&hl=en" target="_blank" rel="noopener" class="about-scholar reveal">View profile on Google Scholar <span class="arr">→</span></a>
       </div>
-      <!-- ================= TESTIMONIALS ================= -->
-      <!-- Edit the cards between TM:START and TM:END below.                 -->
-      <!-- Each testimonial is one <figure class="tm reveal"> block:         -->
-      <!--   * <blockquote>   the quote (1-2 sentences)                      -->
-      <!--   * .tm-name        the person's name                             -->
-      <!--   * .tm-role        their title and company                       -->
-      <!-- Add or delete <figure> blocks freely - they reflow (3 per row).   -->
-      <!-- See README.md > "Updating testimonials" for a Claude prompt.      -->
-      <div class="tm-grid">
-        <!-- TM:START -->
-        <figure class="tm reveal">
-          <span class="qm" aria-hidden="true">&ldquo;</span>
-          <blockquote>Paul has a gift for using data to improve business outcomes. He helped shape a set of metrics that created new opportunities for our sales team, ones we didn't know we were missing. He builds tools people actually understand and use.</blockquote>
-          <figcaption><span class="tm-name">Edwin Uber</span><span class="tm-role">Head of Engineering, eSpark Learning</span></figcaption>
-        </figure>
-        <figure class="tm reveal">
-          <span class="qm" aria-hidden="true">&ldquo;</span>
-          <blockquote>Paul is technically sharp and genuinely fun to work with. He designed studies and conducted statistical analyses that paved the way to FDA approval of Ycanth&reg;. I can't recommend him more highly!</blockquote>
-          <figcaption><span class="tm-name">Matt Davidson, PhD</span><span class="tm-role">Founder &amp; CEO, Azora Therapeutics &middot; Founder, Verrica Pharmaceuticals</span></figcaption>
-        </figure>
-        <!-- TM:END -->
-        <!-- Placeholder testimonials parked here until real ones land. Move a block above the TM:END line to publish it.
-        <figure class="tm reveal">
-          <span class="qm" aria-hidden="true">&ldquo;</span>
-          <blockquote>Paul rebuilt our attribution from the ground up. For the first time, finance actually trusts the numbers behind our spend.</blockquote>
-          <figcaption><span class="tm-name">[Client name]</span><span class="tm-role">VP Growth · consumer health (Series B)</span></figcaption>
-        </figure>
-        <figure class="tm reveal">
-          <span class="qm" aria-hidden="true">&ldquo;</span>
-          <blockquote>The rare scientist who can also ship. The marketing-mix model he built is still the backbone of how we plan budget.</blockquote>
-          <figcaption><span class="tm-name">[Client name]</span><span class="tm-role">Head of Marketing · DTC brand</span></figcaption>
-        </figure>
-        <figure class="tm reveal">
-          <span class="qm" aria-hidden="true">&ldquo;</span>
-          <blockquote>Honest about what the data can and can't say. That rigor talked us out of a six-figure mistake.</blockquote>
-          <figcaption><span class="tm-name">[Client name]</span><span class="tm-role">Director of Analytics · edtech</span></figcaption>
-        </figure>
-        -->
+    </section>
+
+    <section class="block" id="howhelp" style="padding:56px 0 80px">
+      <div class="wrap">
+        <span class="eyebrow">How I help</span>
+        <div class="help-grid reveal">
+        <div class="help"><h3>I build it right</h3><p>Data systems you can trust, production-grade, from years as a senior data scientist in tech.</p></div>
+        <div class="help"><h3>I make sure you get it</h3><p>You'll understand your data's strengths and its limits. I'm a teacher at heart.</p></div>
+        <div class="help"><h3>I help you act</h3><p>Strategy, measurement, and growth. That's the whole job.</p></div>
+      </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <a href="index.html" class="wordmark"><span class="tmark">T</span><span class="wname">Thibodeau Consulting<span class="wname-llc">, LLC</span></span></a>
+        <div class="fine">Scientific rigor · Industry speed</div>
+      </div>
+      <div class="links">
+        <a href="about.html">About</a>
+        <a href="index.html#work">Services</a>
+        <a href="research.html">Research</a>
+        <a href="outreach.html">Outreach</a>
+        <a href="https://www.linkedin.com/in/paulhthibodeau/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://scholar.google.com/citations?user=VA5iX4AAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener">Book Call</a>
       </div>
     </div>
-  </section>
-
-  
-
-  <!-- ABOUT -->
-  
-
-  
-
-  <!-- SERVICES -->
-  <section class="block" id="work">
-    <div class="wrap">
-      <div class="block-head reveal">
-        <span class="eyebrow">Services</span>
-        <p class="svc-intro">Click the cards below to see project examples and interactive demos.</p>
-      </div>
-
-      <div class="svc-grid">
-        <a href="demos/mmm_demo.html" class="svc reveal">
-          <span class="svc-cartoon" aria-hidden="true"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="42" width="14" height="30" rx="2" fill="#1F7A8C"/><rect x="24" y="28" width="14" height="44" rx="2" fill="#B9822F"/><rect x="42" y="50" width="14" height="22" rx="2" fill="#0F2A43"/><line x1="4" y1="72" x2="58" y2="72" stroke="#c2cbd4" stroke-width="2"/><path d="M68 64 C 86 60, 96 26, 114 16" fill="none" stroke="#b3543a" stroke-width="3" stroke-linecap="round"/><circle class="cart-pulse" cx="114" cy="16" r="4" fill="#b3543a"/></svg></span>
-          <div class="svc-top"><span class="svc-idx">01</span><span class="svc-topic">MMM &amp; Attribution</span></div>
-          <h3>Which marketing dollars actually drive revenue?</h3>
-          <div class="svc-foot"><span class="more">Explore <span class="arr">→</span></span></div>
-        </a>
-        <a href="demos/experimentation_demo.html" class="svc reveal">
-          <span class="svc-cartoon" aria-hidden="true"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="68" x2="108" y2="68" stroke="#c2cbd4" stroke-width="2"/><rect x="26" y="42" width="26" height="26" rx="2" fill="#9aa6af"/><rect x="70" y="22" width="26" height="46" rx="2" fill="#1F7A8C"/><line x1="26" y1="42" x2="96" y2="42" stroke="#b3543a" stroke-width="2" stroke-dasharray="4 3"/><g class="cart-lift"><line x1="100" y1="24" x2="100" y2="42" stroke="#b3543a" stroke-width="2"/><polyline points="96,30 100,24 104,30" fill="none" stroke="#b3543a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></svg></span>
-          <div class="svc-top"><span class="svc-idx">02</span><span class="svc-topic">Causal Inference &amp; Experimentation</span></div>
-          <h3>Did the new feature really move the needle?</h3>
-          <div class="svc-foot"><span class="more">Explore <span class="arr">→</span></span></div>
-        </a>
-        <a href="demos/agentic_eval_demo.html" class="svc reveal">
-          <span class="svc-cartoon" aria-hidden="true"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="24" width="42" height="32" rx="9" fill="#1F7A8C"/><circle cx="22" cy="40" r="2.4" fill="#fff"/><circle cx="30" cy="40" r="2.4" fill="#fff"/><circle cx="38" cy="40" r="2.4" fill="#fff"/><line x1="56" y1="40" x2="72" y2="40" stroke="#9aa6af" stroke-width="3"/><polyline points="66,34 74,40 66,46" fill="none" stroke="#9aa6af" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g class="cart-pop"><circle cx="98" cy="40" r="16" fill="none" stroke="#1f7a5a" stroke-width="3.5"/><path d="M90 40 l6 7 l11 -15" fill="none" stroke="#1f7a5a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g></svg></span>
-          <div class="svc-top"><span class="svc-idx">03</span><span class="svc-topic">AI &amp; Agentic Workflows</span></div>
-          <h3>Where could AI actually pay off for us?</h3>
-          <div class="svc-foot"><span class="more">Explore <span class="arr">→</span></span></div>
-        </a>
-        <a href="demos/behavioral_survey_demo.html" class="svc reveal">
-          <span class="svc-cartoon" aria-hidden="true"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><line x1="54" y1="22" x2="30" y2="52" stroke="#9aa6af" stroke-width="2" stroke-dasharray="4 3"/><line x1="66" y1="22" x2="90" y2="52" stroke="#9aa6af" stroke-width="2" stroke-dasharray="4 3"/><line x1="42" y1="56" x2="80" y2="56" stroke="#b3543a" stroke-width="3"/><polyline points="74,51 82,56 74,61" fill="none" stroke="#b3543a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="60" cy="16" r="11" fill="#9aa6af"/><circle cx="30" cy="56" r="13" fill="#1F7A8C"/><circle class="cart-pulse" cx="92" cy="56" r="13" fill="#0F2A43"/></svg></span>
-          <div class="svc-top"><span class="svc-idx">04</span><span class="svc-topic">Behavioral &amp; Survey Research</span></div>
-          <h3>What do customers truly want, and how would we know?</h3>
-          <div class="svc-foot"><span class="more">Explore <span class="arr">→</span></span></div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  
-
-  <!-- CTA -->
-  <section class="cta" id="book">
-    <div class="wrap cta-inner">
-      <h2 class="display reveal">Start with a free measurement check.</h2>
-      <div class="btns reveal">
-        <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener" class="btn btn-primary">Book Call <span class="arr">→</span></a>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="wrap foot">
-    <div>
-      <a href="#top" class="wordmark"><span class="tmark">T</span><span class="wname">Thibodeau Consulting<span class="wname-llc">, LLC</span></span></a>
-      <div class="fine">Scientific rigor · Industry speed</div>
-    </div>
-    <div class="links">
-      <a href="about.html">About</a>
-      <a href="research.html">Research</a>
-      <a href="outreach.html">Outreach</a>
-      <a href="https://www.linkedin.com/in/paulhthibodeau/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://scholar.google.com/citations?user=VA5iX4AAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-      <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener">Book Call</a>
-    </div>
-  </div>
-</footer>
+  </footer>
 
 </body>
 </html>
