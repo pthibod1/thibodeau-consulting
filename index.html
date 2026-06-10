@@ -148,6 +148,7 @@
     .creds-inner{padding-top:30px;padding-bottom:34px}
     .statrow{grid-template-columns:1fr 1fr;gap:12px}
     .stat{padding:20px;border-left:none;background:var(--surface);border:1px solid var(--line-2);border-radius:8px;justify-content:flex-start}
+    .stat:first-child{padding-left:20px;border-left:1px solid var(--line-2)}
     .stat .num,.stat .num-stanford{font-size:1.8rem;min-height:0;white-space:normal;align-items:flex-start}
     .stat .lbl{margin-top:8px;font-size:.9rem}
     .stat .logos-row{margin-top:auto;padding-top:18px;justify-content:flex-start}
@@ -320,7 +321,7 @@
 
   /* CTA band */
   .cta{background:#f4f8fc;color:#1f3a52}
-  .cta-inner{padding-top:84px;padding-bottom:84px;text-align:center}
+  .cta .cta-inner{padding-top:clamp(68px,11vw,104px);padding-bottom:clamp(68px,11vw,104px);text-align:center}
   .cta h2{color:#0F2A43}
   .cta p{color:#3a5670;font-size:1.1rem;margin:16px auto 0;max-width:30em}
   .cta .btns{justify-content:center;margin-top:34px}
