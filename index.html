@@ -191,14 +191,6 @@
   .svc:hover .more{color:var(--gold)}
   .svc:hover .more .arr{transform:translateX(5px)}
   .svc:hover .svc-foot{border-top-color:var(--accent)}
-  @keyframes arrowHint{0%,72%,100%{transform:translateX(0)}84%{transform:translateX(4px)}}
-  @media(prefers-reduced-motion:no-preference){
-    .svc .more .arr{animation:arrowHint 3.4s ease-in-out infinite}
-    .svc-grid .svc:nth-child(2) .more .arr{animation-delay:.45s}
-    .svc-grid .svc:nth-child(3) .more .arr{animation-delay:.9s}
-    .svc-grid .svc:nth-child(4) .more .arr{animation-delay:1.35s}
-    .svc:hover .more .arr{animation:none}
-  }
   @keyframes cartPulse{0%,55%,100%{transform:scale(1)}74%{transform:scale(1.18)}}
   @keyframes cartLift{0%,62%,100%{transform:translateY(0)}80%{transform:translateY(-3px)}}
   @keyframes cartPop{0%,60%,100%{transform:scale(1)}78%{transform:scale(1.12)}}
@@ -333,7 +325,7 @@
   footer .wordmark{color:#eef4fb}
   .foot{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
   .foot .links{display:flex;gap:22px;font-size:.9rem;color:#c4d2e2}
-  .foot .links a{text-decoration:none;padding:.3rem 0}
+  .foot .links a{text-decoration:none;padding:.5rem 0;display:inline-flex;align-items:center;min-height:40px}
   .foot .links a:hover{color:#ffffff}
   .foot .fine{font-size:.78rem;color:#93a6ba;margin-top:10px}
 
@@ -351,7 +343,7 @@
     .nav{height:60px}
     .wordmark{font-size:1.04rem}
     .brand .wordmark{font-size:1.02rem}
-    header .btn-sm{font-size:.8rem;padding:.5em .8em}
+    header .btn-sm{font-size:.8rem;padding:.5em .9em;min-height:40px}
     h1.display{font-size:clamp(2.05rem,8vw,2.7rem)}
     .hero{padding:54px 0 48px}
   }
@@ -403,10 +395,10 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow reveal">Scientific rigor · Industry speed</span>
+        <span class="eyebrow reveal">Evidence, not opinions · Industry speed</span>
         <h1 class="display reveal">The science of what actually <span style="color:var(--gold)">works</span>.</h1>
         <p class="hero-sub reveal">Marketing-mix modeling, experimentation, behavioral research, and AI systems for digital-health, consumer, and growth teams that need numbers they can trust.</p>
-        <div class="btns reveal" style="justify-content:center">
+        <div class="btns reveal">
           <a href="https://calendly.com/paul-thibodeau/30min" target="_blank" rel="noopener" class="btn btn-primary">Book Call <span class="arr">→</span></a>
         </div>
       </div>
@@ -507,7 +499,7 @@
     <div class="wrap">
       <div class="block-head reveal">
         <span class="eyebrow">Services</span>
-        <p class="svc-intro">Click the cards below to see project examples and interactive demos</p>
+        <p class="svc-intro">Click the cards below to see project examples and interactive demos.</p>
       </div>
 
       <div class="svc-grid">
