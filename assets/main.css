@@ -137,13 +137,13 @@
   .stat .lbl{margin-top:12px;font-size:.86rem;color:var(--ink-2);line-height:1.4}
   .stat .num-stanford{font-size:clamp(1.7rem,2.6vw,2.25rem);white-space:nowrap}
   @media(max-width:720px){
-    .creds-inner{padding-top:30px;padding-bottom:34px}
-    .statrow{grid-template-columns:1fr 1fr;gap:18px}
-    .stat{padding:20px;border-left:none;background:#ffffff;border:1px solid var(--line-2);border-radius:8px;justify-content:flex-start}
-    .stat:first-child{padding-left:20px;border-left:1px solid var(--line-2)}
+    .creds-inner{padding-top:40px;padding-bottom:40px}
+    .statrow{grid-template-columns:1fr 1fr;gap:16px}
+    .stat{padding:24px 20px;border-left:none;background:#ffffff;border:1px solid var(--line-2);border-radius:8px;justify-content:flex-start}
+    .stat:first-child{padding:24px 20px;border-left:1px solid var(--line-2)}
     .stat .num,.stat .num-stanford{font-size:1.8rem;min-height:0;white-space:normal;align-items:flex-start}
-    .stat .lbl{margin-top:8px;font-size:.9rem}
-    .stat .logos-row{margin-top:auto;padding-top:18px;justify-content:flex-start}
+    .stat .lbl{margin-top:10px;font-size:.9rem}
+    .stat .logos-row{margin-top:auto;padding-top:20px;justify-content:flex-start}
     .stat .logos-row img{height:16px}
     .stat .stanford-row{justify-content:flex-end}
     .stat .stanford-row img{height:30px}
@@ -334,7 +334,7 @@
 
   /* ---- mobile sizing fixes ---- */
   @media(max-width:600px){
-    .wrap{padding:0 18px}
+    .wrap{padding-left:18px;padding-right:18px}
     .nav{height:60px}
     .wordmark{font-size:1.04rem}
     .brand .wordmark{font-size:1.02rem}
