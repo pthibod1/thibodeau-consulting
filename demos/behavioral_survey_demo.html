@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>What do customers truly want, and how would we know? · Thibodeau Consulting</title>
+<meta name="description" content="Interactive demo: how confounding fools surveys, and how randomized framing experiments isolate what customers actually respond to.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
@@ -125,7 +126,7 @@ footer a{color:var(--teal)}
   <section class="step" id="confound">
     <h2><span class="step-num">2</span>Why you can't just compare the groups you find</h2>
     <p class="sub">Suppose you skipped the experiment and compared people who <em>naturally</em> talk about crime as a beast vs. a virus. Political leaning drives both which metaphor someone favors <strong>and</strong> how punitive they are, so the difference you measure is part metaphor, part politics. That's confounding. Slide how lopsided the groups are by party.</p>
-    <div class="dag"><canvas id="cDag2" width="540" height="150" style="max-width:540px;width:100%"></canvas></div>
+    <div class="dag"><canvas id="cDag2" width="540" height="150" style="max-width:540px;width:100%" aria-hidden="true"></canvas></div>
     <div class="card">
       <div class="controls">
         <div class="control">
@@ -133,7 +134,7 @@ footer a{color:var(--teal)}
           <input type="range" id="skew" min="0.5" max="0.92" step="0.01" value="0.82">
         </div>
       </div>
-      <div class="canvas-wrap"><canvas id="cConf" height="300"></canvas></div>
+      <div class="canvas-wrap"><canvas id="cConf" height="300" role="img" aria-label="Bar chart of the share choosing enforcement in self-selected beast and virus groups, stacked by party, with a dashed line marking the true plus 18 point causal effect"></canvas></div>
       <div class="legend">
         <span><span class="swatch" style="background:var(--con)"></span>Conservatives</span>
         <span><span class="swatch" style="background:var(--lib)"></span>Liberals</span>
@@ -147,8 +148,8 @@ footer a{color:var(--teal)}
 <section class="band band-alt"><div class="wrap">
   <section class="step" id="randomize">
     <h2><span class="step-num">3</span>Randomization, the move that earns the claim</h2>
-    <p class="sub">Assign the frame by a coin flip and the confounder loses its grip: liberals and conservatives end up split roughly evenly across both arms, so the two groups are alike in every way <em>except</em> the metaphor. Now any difference in their choices is caused by the wording. Randomize the sample and watch the party mix balance out, and steady as the sample grows.</p>
-    <div class="dag"><canvas id="cDag3" width="540" height="150" style="max-width:540px;width:100%"></canvas></div>
+    <p class="sub">Assign the frame by a coin flip and the confounder loses its grip: liberals and conservatives end up split roughly evenly across both arms, so the two groups are alike in every way <em>except</em> the metaphor. Now any difference in their choices is caused by the wording. Randomize the sample and watch the party mix balance out — and steady — as the sample grows.</p>
+    <div class="dag"><canvas id="cDag3" width="540" height="150" style="max-width:540px;width:100%" aria-hidden="true"></canvas></div>
     <div class="card">
       <div class="controls">
         <div class="control">
@@ -159,7 +160,7 @@ footer a{color:var(--teal)}
           <button class="btn ghost" id="reshuffle">↺ Re-randomize</button>
         </div>
       </div>
-      <div class="canvas-wrap"><canvas id="cRand" height="280"></canvas></div>
+      <div class="canvas-wrap"><canvas id="cRand" height="280" role="img" aria-label="Stacked bar chart of the conservative and liberal mix within the randomized beast and virus arms, with a dashed 50 percent reference line showing the arms balance"></canvas></div>
       <div class="legend">
         <span><span class="swatch" style="background:var(--con)"></span>Conservatives</span>
         <span><span class="swatch" style="background:var(--lib)"></span>Liberals</span>
@@ -181,7 +182,7 @@ footer a{color:var(--teal)}
         </div>
       </div>
       <p class="headline-stat" id="effHeadline"></p>
-      <div class="canvas-wrap"><canvas id="cEffect" height="220"></canvas></div>
+      <div class="canvas-wrap"><canvas id="cEffect" height="220" role="img" aria-label="Estimated framing effect with its 95 percent confidence interval on a number line, compared to a no-effect line at zero and a marker for the partisan gap"></canvas></div>
       <div class="takeaway" id="effTake"></div>
     </div>
   </section>
@@ -238,7 +239,7 @@ const M={l:54,r:18,t:18,b:34};
 function axes(ctx,w,h,xmin,xmax,ymin,ymax,opt={}){
   const px=x=>M.l+(x-xmin)/(xmax-xmin)*(w-M.l-M.r);
   const py=y=>h-M.b-(y-ymin)/(ymax-ymin)*(h-M.t-M.b);
-  ctx.strokeStyle="#eceae3";ctx.lineWidth=1;ctx.fillStyle="#9aa6af";ctx.font="11px Inter, sans-serif";ctx.textBaseline="middle";
+  ctx.strokeStyle="#eceae3";ctx.lineWidth=1;ctx.fillStyle="#5a6b78";ctx.font="11px Inter, sans-serif";ctx.textBaseline="middle";
   const yt=opt.yticks||5;
   for(let i=0;i<=yt;i++){const yv=ymin+(ymax-ymin)*i/yt;const Y=py(yv);
     ctx.beginPath();ctx.moveTo(M.l,Y);ctx.lineTo(w-M.r,Y);ctx.stroke();
@@ -275,7 +276,7 @@ function dag(cv,cut){
   node(cx-30,40,"Political leaning","#8c4a3f");
   node(cx-150,118,"Metaphor frame", cut?"#1F7A8C":"#B9822F");
   node(cx+150,118,"Policy choice","#0F2A43");
-  ctx.fillStyle="#9aa6af";ctx.font="11px Inter";ctx.textAlign="center";ctx.textBaseline="middle";
+  ctx.fillStyle="#5a6b78";ctx.font="11px Inter";ctx.textAlign="center";ctx.textBaseline="middle";
   ctx.fillText(cut?"random assignment cuts this link":"confounding",cx-95,(cut?92:78));
 }
 
@@ -333,7 +334,11 @@ function drawConf(){
     ctx.fillStyle="#0F2A43";ctx.font="600 13px Inter";ctx.textAlign="center";ctx.fillText(pct(g.mean),cx,py(g.mean)-10);
     ctx.fillStyle="#5a6b78";ctx.font="12px Inter";ctx.fillText(g.lab,cx,h-M.b+14);
   });
-  // true effect reference: place a dashed bracket showing 18pp above virus mean
+  // true effect reference: dashed line 18pp above the virus mean
+  const trueLvl=virusMean+0.18;
+  ctx.strokeStyle="#b3543a";ctx.setLineDash([5,4]);ctx.lineWidth=1.4;
+  ctx.beginPath();ctx.moveTo(M.l,py(trueLvl));ctx.lineTo(w-M.r,py(trueLvl));ctx.stroke();ctx.setLineDash([]);
+  ctx.fillStyle="#b3543a";ctx.font="11px Inter";ctx.textAlign="right";ctx.fillText("virus + 18 pts (true effect)",w-M.r-4,py(trueLvl)-6);
   document.getElementById("skewV").textContent=Math.round(skew*100)+"% vs "+Math.round((1-skew)*100)+"%";
   document.getElementById("confTake").innerHTML=
     `Naive difference = <strong>${Math.round(naive*100)} pts</strong>, but the true causal effect is only <strong>+18 pts</strong>. `+
@@ -390,17 +395,18 @@ function drawEffect(){
   const L=M.l,R=w-M.r,Y=120;
   const X=v=>L+(v-xmin)/(xmax-xmin)*(R-L);
   ctx.strokeStyle="#d8d3c8";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(L,Y);ctx.lineTo(R,Y);ctx.stroke();
-  ctx.fillStyle="#9aa6af";ctx.font="11px Inter";ctx.textAlign="center";ctx.textBaseline="top";
-  for(let v=0;v<=0.4;v+=0.1){const xx=X(v);ctx.strokeStyle="#eceae3";ctx.beginPath();ctx.moveTo(xx,Y-6);ctx.lineTo(xx,Y+6);ctx.stroke();ctx.fillStyle="#9aa6af";ctx.fillText(Math.round(v*100)+" pts",xx,Y+12);}
+  ctx.fillStyle="#5a6b78";ctx.font="11px Inter";ctx.textAlign="center";ctx.textBaseline="top";
+  for(let v=0;v<=0.4;v+=0.1){const xx=X(v);ctx.strokeStyle="#eceae3";ctx.beginPath();ctx.moveTo(xx,Y-6);ctx.lineTo(xx,Y+6);ctx.stroke();ctx.fillStyle="#5a6b78";ctx.fillText(Math.round(v*100)+" pts",xx,Y+12);}
   // zero (no effect)
   ctx.strokeStyle="#b3543a";ctx.setLineDash([5,4]);ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(X(0),Y-46);ctx.lineTo(X(0),Y+30);ctx.stroke();ctx.setLineDash([]);
   ctx.fillStyle="#b3543a";ctx.textBaseline="bottom";ctx.fillText("no effect",X(0),Y-48);
   // party gap reference
   ctx.fillStyle="#9aa6af";ctx.beginPath();ctx.arc(X(PARTYGAP),Y,4,0,7);ctx.fill();
-  ctx.fillText("partisan gap",X(PARTYGAP),Y-10);
-  // CI bar
-  ctx.strokeStyle="#1F7A8C";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(X(est-ci),Y);ctx.lineTo(X(est+ci),Y);ctx.stroke();
-  ctx.beginPath();ctx.moveTo(X(est-ci),Y-8);ctx.lineTo(X(est-ci),Y+8);ctx.moveTo(X(est+ci),Y-8);ctx.lineTo(X(est+ci),Y+8);ctx.stroke();
+  ctx.fillStyle="#5a6b78";ctx.fillText("partisan gap",X(PARTYGAP),Y-10);
+  // CI bar (clamped to the visible axis range)
+  const ciLo=Math.max(est-ci,xmin), ciHi=Math.min(est+ci,xmax);
+  ctx.strokeStyle="#1F7A8C";ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(X(ciLo),Y);ctx.lineTo(X(ciHi),Y);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(X(ciLo),Y-8);ctx.lineTo(X(ciLo),Y+8);ctx.moveTo(X(ciHi),Y-8);ctx.lineTo(X(ciHi),Y+8);ctx.stroke();
   // point estimate
   ctx.fillStyle="#0F2A43";ctx.beginPath();ctx.arc(X(est),Y,7,0,7);ctx.fill();ctx.strokeStyle="#fff";ctx.lineWidth=2;ctx.stroke();
   const sig=(est-ci)>0;
@@ -429,7 +435,7 @@ drawAll();
   <div><a href="../index.html" class="tc-wordmark"><span class="tmark">T</span><span class="wname">Thibodeau Consulting, LLC</span></a><div class="tc-fine">Scientific rigor · Industry speed</div></div>
   <nav class="tc-links">
     <a href="../index.html">Home</a>
-    <a href="index.html">Demos</a>
+    <a href="../index.html#work">Demos</a>
     <a href="https://www.linkedin.com/in/paulhthibodeau/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://calendly.com/paul-consult-thib/30min" target="_blank" rel="noopener">Book Call</a>
   </nav>
