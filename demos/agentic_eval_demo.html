@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Where could AI actually pay off for us? · Thibodeau Consulting</title>
+<title>Is this AI agent ready to ship? · Thibodeau Consulting</title>
+<meta name="description" content="Interactive demo: why multi-step AI agents fail far more than their parts suggest, and how to decide when one is safe to ship. Watch errors compound, add checkpoints, then tune the guardrails behind a ship/no-ship call.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
@@ -20,7 +21,19 @@ header.hero{padding:4rem 0 2.2rem;border-bottom:1px solid var(--line)}
 .eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin:0 0 1rem}
 h1{font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:2.5rem;line-height:1.14;color:var(--navy);margin:0 0 1rem;letter-spacing:.005em}
 .lede{font-size:1.12rem;color:var(--muted);max-width:43rem;margin:0}
-.layout{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;padding:2.6rem 0 0}
+.cite{font-size:.86rem;color:var(--muted);margin:1.1rem 0 0;font-style:italic}
+/* steps */
+.step{padding:3rem 0}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:2rem;height:2rem;border-radius:999px;background:var(--navy);color:#fff;font-weight:600;font-size:.95rem;font-family:"Newsreader",serif;margin-right:.7rem;flex:none}
+.step h2{font-family:"Newsreader",serif;font-weight:600;font-size:1.7rem;color:var(--navy);margin:0;display:flex;align-items:center}
+.step .sub{color:var(--muted);margin:.6rem 0 1.4rem;max-width:45rem}
+.takeaway{margin-top:1.3rem;padding:.9rem 1.1rem;background:#f4f1ea;border-left:4px solid var(--accent);border-radius:0 8px 8px 0;font-size:.95rem}
+.takeaway strong{color:var(--navy)}
+.ctrlrow{display:flex;flex-wrap:wrap;gap:1rem 2rem;margin-bottom:1.2rem}
+.ctrlrow .ctrl{flex:1;min-width:220px;margin-bottom:0}
+.funnel-wrap{width:100%}
+.funnel-wrap canvas{width:100%;display:block}
+.layout{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;padding:1rem 0 0}
 @media(max-width:780px){.layout{grid-template-columns:minmax(0,1fr)}}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.5rem;box-shadow:0 1px 2px rgba(15,42,67,.04)}
 .qtitle{font-family:"Newsreader",serif;font-size:1.15rem;color:var(--navy);margin:0 0 1.2rem}
@@ -30,7 +43,9 @@ h1{font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:2.5rem;line-
 .ctrl .lab{font-size:.9rem;font-weight:600;color:var(--navy);display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;margin-bottom:.5rem}
 .ctrl .lab .val{font-family:"Newsreader",serif;font-size:1.05rem;color:var(--teal)}
 .ctrl .hint{font-size:.82rem;color:var(--muted);margin:.5rem 0 0}
-input[type=range]{width:100%;accent-color:var(--navy);height:22px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:5px;background:var(--line);outline:none;margin:8px 0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--teal);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--teal);cursor:pointer;border:2px solid #fff}
 .seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
 .seg button{flex:1;border:none;background:#fff;padding:.55rem .4rem;font:inherit;font-size:.85rem;font-weight:600;color:var(--muted);cursor:pointer;border-left:1px solid var(--line)}
 .seg button:first-child{border-left:none}
@@ -69,6 +84,7 @@ input[type=range]{width:100%;accent-color:var(--navy);height:22px}
 .disclaimer{font-size:.82rem;color:var(--muted);margin-top:.9rem}
 footer{padding:1rem 0 4rem;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
 footer a{color:var(--teal)}
+@media(max-width:640px){h1{font-size:2rem}.step h2{font-size:1.4rem}}
 </style>
 <link rel="stylesheet" href="site.css">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
@@ -91,8 +107,9 @@ footer a{color:var(--teal)}
     <div class="hero-grid">
       <div class="hero-copy">
         <p class="eyebrow">AI &amp; Agentic Workflows</p>
-        <h1>Where could AI actually pay off for us?</h1>
-        <p class="lede">Most AI demos look great and fail quietly in production. This is the other half of the work: evaluating an agent like any other intervention. Picture a support agent that drafts replies to customers. Tune the guardrails below and watch what they do to accuracy, hallucinations, and the ship decision. Runs entirely in your browser on illustrative data.</p>
+        <h1>Is this AI agent ready to ship?</h1>
+        <p class="lede">Most AI demos look great and fail quietly in production. The reason is rarely the model, it's arithmetic: an agent is a chain of steps, and reliability multiplies. This walks through the two questions a real evaluation answers: why agents fail more than their parts suggest, and how to decide when one is safe to ship. Runs entirely in your browser on illustrative data.</p>
+        <p class="cite">Gartner predicts over 40% of agentic-AI projects will be canceled by the end of 2027, citing cost overruns, unclear value, and inadequate risk controls.</p>
       </div>
       <div class="hero-cartoon" aria-hidden="true">
         <svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
@@ -109,6 +126,46 @@ footer a{color:var(--teal)}
 </div></section>
 
 <section class="band band-alt"><div class="wrap">
+  <section class="step" id="compound">
+    <h2><span class="step-num">1</span>Errors compound, a 95% step is a 54% workflow</h2>
+    <p class="sub">An agent that handles a refund touches a dozen steps: read the ticket, pull the order, check the policy, draft the reply, file the credit&hellip; If each step succeeds 95% of the time, twelve steps succeed 0.95<sup>12</sup> &asymp; 54% of the time, a coin flip with extra steps. The fix isn't a smarter model, it's the harness: checkpoints that verify the work so far and retry a failed segment before the damage spreads.</p>
+    <div class="card">
+      <div class="ctrlrow">
+        <div class="ctrl">
+          <div class="lab"><span>Per-step success rate</span><span class="val" id="relVal">95%</span></div>
+          <input type="range" id="rel" min="90" max="99.9" step="0.1" value="95" aria-label="Per-step success rate">
+        </div>
+        <div class="ctrl">
+          <div class="lab"><span>Steps in the workflow</span><span class="val" id="nstepsVal">12</span></div>
+          <input type="range" id="nsteps" min="2" max="25" step="1" value="12" aria-label="Number of steps in the workflow">
+        </div>
+        <div class="ctrl">
+          <div class="lab"><span>Verification checkpoints</span></div>
+          <div class="seg" id="chkSeg">
+            <button data-c="0" class="active">Off</button>
+            <button data-c="1">Every 5 steps</button>
+          </div>
+        </div>
+      </div>
+      <div class="funnel-wrap"><canvas id="funnel" width="840" height="300" role="img" aria-label="Line chart of how many of 1,000 tasks are still on track after each step of the workflow. The raw chain decays toward a dashed coin-flip line at 50 percent; with verification checkpoints the curve recovers at each checkpoint and ends much higher."></canvas></div>
+      <div class="legend" id="funnelLegend">
+        <span><i style="background:#b3543a"></i>Raw chain</span>
+        <span id="lgChk" style="display:none"><i style="background:#1F7A8C"></i>With checkpoints</span>
+        <span><i style="background:#c3cdd6"></i>Coin flip (50%)</span>
+      </div>
+      <div class="metrics" style="margin-top:1.2rem">
+        <div class="metric"><div class="m-val" id="mChain"></div><div class="m-lab">End-to-end success</div></div>
+        <div class="metric"><div class="m-val" id="mDone"></div><div class="m-lab">Of 1,000 tasks, completed</div></div>
+      </div>
+      <div class="takeaway" id="compTake"></div>
+    </div>
+  </section>
+</div></section>
+
+<section class="band"><div class="wrap">
+  <section class="step" id="ship">
+    <h2><span class="step-num">2</span>Now judge the riskiest step: should it auto-send?</h2>
+    <p class="sub">Zoom into one link in the chain: a support agent drafting replies to customers. When do you let it send without a human? The agent's <em>stated</em> confidence isn't its <em>real</em> accuracy, and that gap is exactly what an eval measures. Tune the guardrails and watch the ship decision respond.</p>
   <div class="layout">
     <!-- LEFT: controls -->
     <div class="card">
@@ -117,7 +174,7 @@ footer a{color:var(--teal)}
       <div class="ctrl">
         <div class="lab"><span>Auto-send only when the agent's confidence is at least</span><span class="val" id="thrVal">50%</span></div>
         <input type="range" id="thr" min="20" max="95" step="5" value="50" aria-label="Confidence threshold to auto-send">
-        <p class="hint">Below the bar, the answer is escalated to a human instead of sent automatically. Raise it and the agent sends less, but what it does send is righter.</p>
+        <p class="hint">Below the bar, the answer is escalated to a human instead of sent automatically. Raise it and the agent sends less, but what it does send is right more often.</p>
       </div>
 
       <div class="ctrl">
@@ -172,9 +229,10 @@ footer a{color:var(--teal)}
       </div>
     </div>
   </div>
+  </section>
 </div></section>
 
-<section class="engage">
+<section class="engage band-alt">
     <div class="engage-inner">
       <div class="engage-card">
         <h2>Work together: AI &amp; agentic workflows</h2>
@@ -209,6 +267,110 @@ footer a{color:var(--teal)}
   </footer></div>
 
 <script>
+/* ---------- STEP 1: compounding errors ---------- */
+// An agent is a chain of steps; end-to-end success is per-step success ^ n.
+// A verification checkpoint every 5 steps catches a failed segment and retries it once:
+// segment success s -> 1-(1-s)^2.
+let rel=0.95, nSteps=12, chk=false;
+const CHK_EVERY=5;
+
+function chainTrace(p,n,useChk){
+  const out=[1]; let segStart=1, segLen=0;
+  for(let i=1;i<=n;i++){
+    segLen++;
+    let v=segStart*Math.pow(p,segLen);
+    if(useChk && i%CHK_EVERY===0){
+      const s=Math.pow(p,segLen);
+      v=segStart*(1-(1-s)*(1-s));   // one retry of the failed segment
+      segStart=v; segLen=0;
+    }
+    out.push(v);
+  }
+  return out;
+}
+
+function drawFunnel(){
+  const cv=document.getElementById("funnel");
+  const dpr=window.devicePixelRatio||1;
+  const W=cv.clientWidth||840, H=300;
+  cv.width=W*dpr; cv.height=H*dpr; cv.style.height=H+"px";
+  const ctx=cv.getContext("2d"); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
+  const L=52,R=16,T=14,B=44, pw=W-L-R, ph=H-T-B;
+  const x=i=>L+i/nSteps*pw, y=v=>T+(1-v)*ph;
+  // grid + y labels (share of 1,000 tasks still on track)
+  ctx.font="11px Inter,sans-serif";
+  for(let g=0;g<=1.0001;g+=0.25){
+    ctx.strokeStyle="#eee7da";ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(L,y(g));ctx.lineTo(W-R,y(g));ctx.stroke();
+    ctx.fillStyle="#5a6b78";ctx.textAlign="right";ctx.textBaseline="middle";
+    ctx.fillText(Math.round(g*1000),L-8,y(g));
+  }
+  // x ticks
+  const tick=Math.max(1,Math.ceil(nSteps/8));
+  ctx.fillStyle="#5a6b78";ctx.textAlign="center";ctx.textBaseline="top";
+  for(let i=0;i<=nSteps;i+=tick){ctx.fillText(i,x(i),y(0)+8);}
+  ctx.font="600 10px Inter,sans-serif";
+  ctx.fillText("STEPS COMPLETED",L+pw/2,H-12);
+  ctx.save();ctx.translate(12,T+ph/2);ctx.rotate(-Math.PI/2);ctx.textBaseline="middle";ctx.fillText("TASKS STILL ON TRACK (OF 1,000)",0,0);ctx.restore();
+  // coin-flip reference
+  ctx.strokeStyle="#9aa6af";ctx.setLineDash([5,4]);ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(L,y(.5));ctx.lineTo(W-R,y(.5));ctx.stroke();ctx.setLineDash([]);
+  ctx.fillStyle="#5a6b78";ctx.font="600 9px Inter,sans-serif";ctx.textAlign="left";ctx.textBaseline="bottom";
+  ctx.fillText("COIN FLIP",L+6,y(.5)-3);
+  // raw chain
+  const raw=chainTrace(rel,nSteps,false);
+  ctx.strokeStyle="#b3543a";ctx.lineWidth=2.5;ctx.beginPath();
+  raw.forEach((v,i)=>{i?ctx.lineTo(x(i),y(v)):ctx.moveTo(x(0),y(v));});ctx.stroke();
+  ctx.fillStyle="#b3543a";ctx.beginPath();ctx.arc(x(nSteps),y(raw[nSteps]),4,0,7);ctx.fill();
+  // with checkpoints
+  if(chk){
+    const c=chainTrace(rel,nSteps,true);
+    ctx.strokeStyle="#1F7A8C";ctx.lineWidth=2.5;ctx.beginPath();
+    c.forEach((v,i)=>{i?ctx.lineTo(x(i),y(v)):ctx.moveTo(x(0),y(v));});ctx.stroke();
+    ctx.fillStyle="#1F7A8C";
+    for(let i=CHK_EVERY;i<=nSteps;i+=CHK_EVERY){ctx.beginPath();ctx.arc(x(i),y(c[i]),3.5,0,7);ctx.fill();}
+    ctx.beginPath();ctx.arc(x(nSteps),y(c[nSteps]),4,0,7);ctx.fill();
+  }
+}
+
+function renderComp(){
+  const rawEnd=Math.pow(rel,nSteps);
+  const chkEnd=chainTrace(rel,nSteps,true)[nSteps];
+  const active=chk?chkEnd:rawEnd;
+  const doneRaw=Math.round(rawEnd*1000), doneChk=Math.round(chkEnd*1000);
+  document.getElementById("mChain").textContent=(active*100).toFixed(0)+"%";
+  document.getElementById("mDone").textContent=Math.round(active*1000);
+  document.getElementById("lgChk").style.display=chk?"":"none";
+  const take=document.getElementById("compTake");
+  if(!chk){
+    take.innerHTML = rawEnd>=0.9
+      ? `At <strong>${(+(rel*100).toFixed(1))}% per step</strong> over <strong>${nSteps} steps</strong>, the chain still completes ${doneRaw} of 1,000 tasks. Now stretch the workflow longer, or nudge reliability down a point, and watch how fast that holds up.`
+      : `At <strong>${(+(rel*100).toFixed(1))}% per step</strong> over <strong>${nSteps} steps</strong>, only <strong>${doneRaw} of 1,000</strong> tasks finish; the other ${1000-doneRaw} fail somewhere mid-chain and still burn tokens, time, and goodwill. The model isn't broken, multiplication is. Turn on checkpoints to see the harness rescue it.`;
+  }else{
+    take.innerHTML=`Checkpoints don't make any step smarter. They catch a failed segment early and retry it, lifting completion from <strong>${doneRaw}</strong> to <strong>${doneChk} of 1,000</strong>. <strong>The lever is the harness around the model, not a better model.</strong>`;
+  }
+  drawFunnel();
+}
+
+document.getElementById("rel").addEventListener("input",e=>{
+  rel=+e.target.value/100;
+  document.getElementById("relVal").textContent=(+(+e.target.value).toFixed(1))+"%";
+  renderComp();
+});
+document.getElementById("nsteps").addEventListener("input",e=>{
+  nSteps=+e.target.value;
+  document.getElementById("nstepsVal").textContent=e.target.value;
+  renderComp();
+});
+document.getElementById("chkSeg").querySelectorAll("button").forEach(b=>{
+  b.addEventListener("click",()=>{
+    chk=b.dataset.c==="1";
+    b.parentNode.querySelectorAll("button").forEach(x=>x.classList.remove("active"));b.classList.add("active");
+    renderComp();
+  });
+});
+
+/* ---------- STEP 2: ship decision for one risky step ---------- */
 // Illustrative eval of a customer-support drafting agent.
 // 10 confidence bins (stated-confidence midpoints), with the volume that lands in each,
 // the TRUE accuracy there, and the hallucination rate -- raw vs. with a verification pass.
@@ -259,7 +421,7 @@ function drawCal(){
   const L=46,R=14,T=12,B=36, pw=W-L-R, ph=H-T-B;
   const x=c=>L+c*pw, y=a=>T+(1-a)*ph;
   // grid
-  ctx.strokeStyle="#eee7da";ctx.lineWidth=1;ctx.fillStyle="#9aa6af";ctx.font="10px Inter,sans-serif";
+  ctx.strokeStyle="#eee7da";ctx.lineWidth=1;ctx.fillStyle="#5a6b78";ctx.font="10px Inter,sans-serif";
   for(let g=0;g<=1.0001;g+=0.25){
     ctx.beginPath();ctx.moveTo(x(0),y(g));ctx.lineTo(x(1),y(g));ctx.stroke();
     ctx.textAlign="right";ctx.textBaseline="middle";ctx.fillText((g*100)+"%",L-8,y(g));
@@ -326,14 +488,15 @@ document.getElementById("verifySeg").querySelectorAll("button").forEach(b=>{
   });
 });
 render();
-window.addEventListener("resize",()=>setTimeout(drawCal,80));
+renderComp();
+window.addEventListener("resize",()=>{clearTimeout(window._rt);window._rt=setTimeout(()=>{drawCal();drawFunnel();},80);});
 </script>
 
 <footer class="tc-footer"><div class="tc-foot">
   <div><a href="../index.html" class="tc-wordmark"><span class="tmark">T</span><span class="wname">Thibodeau Consulting, LLC</span></a><div class="tc-fine">Scientific rigor · Industry speed</div></div>
   <nav class="tc-links">
     <a href="../index.html">Home</a>
-    <a href="index.html">Demos</a>
+    <a href="../index.html#work">Demos</a>
     <a href="https://www.linkedin.com/in/paulhthibodeau/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://calendly.com/paul-consult-thib/30min" target="_blank" rel="noopener">Book Call</a>
   </nav>
