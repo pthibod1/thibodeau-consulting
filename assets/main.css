@@ -345,7 +345,7 @@
 
   /* T monogram logo */
   .wordmark,.tc-wordmark{display:inline-flex;align-items:center;gap:.5em}
-  .tmark{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:600;font-size:1.9em;line-height:.85;color:#b3543a;flex:none;display:inline-block;margin-right:.04em}
+  .tmark{display:inline-flex;align-items:center;justify-content:center;width:2rem;height:2rem;flex:none;border-radius:7px;background:#0F2A43;border:1.5px solid #b3543a;font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:600;font-size:1.3rem;line-height:1;color:#b3543a}
   @media(max-width:600px){.tc-header .wname{display:none}.wname-llc{display:none}}
 
 
