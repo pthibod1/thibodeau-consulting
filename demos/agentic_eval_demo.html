@@ -62,7 +62,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .seg button.active{background:var(--navy);color:#fff}
 /* case bar */
 .casebar-wrap{margin-top:1.6rem}
-.casebar-wrap h4,.metrics-head{font-size:.74rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:0 0 .6rem;font-weight:700}
+.casebar-wrap h3,.metrics-head{font-size:.74rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:0 0 .6rem;font-weight:700}
 .casebar{display:flex;height:30px;border-radius:7px;overflow:hidden;border:1px solid var(--line)}
 .casebar span{display:block;height:100%;transition:width .35s ease}
 .cb-ok{background:#2f9e7a}.cb-bad{background:#c0654a}.cb-esc{background:#c3cdd6}
@@ -83,7 +83,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .verdict .vmain{font-family:"Newsreader",serif;font-size:1.45rem;margin:0;line-height:1.15}
 .verdict.is-good .vmain{color:var(--good)}
 .verdict.is-warn .vmain{color:var(--warn)}
-.verdict.is-bad .vmain{color:var(--bad)}
+.verdict.is-bad .vmain{color:#8f3a2a}
 .verdict .vsub{margin:.4rem 0 0;font-size:.9rem;color:var(--ink)}
 /* metrics */
 .metrics{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
@@ -112,6 +112,7 @@ footer a{color:var(--teal)}
   </nav>
   <a href="https://calendly.com/paul-consult-thib/30min" target="_blank" rel="noopener" class="tc-btn">Book Call <span class="arr">&rarr;</span></a>
 </div></header>
+<main>
 <section class="band"><div class="wrap">
   <header class="hero">
     <div class="hero-grid">
@@ -197,7 +198,7 @@ footer a{color:var(--teal)}
       </div>
 
       <div class="casebar-wrap">
-        <h4>What happens to 1,000 incoming questions</h4>
+        <h3>What happens to 1,000 incoming questions</h3>
         <div class="casebar">
           <span class="cb-ok" id="barOk"></span>
           <span class="cb-bad" id="barBad"></span>
@@ -247,7 +248,8 @@ footer a{color:var(--teal)}
   <a class="btn" href="https://calendly.com/paul-consult-thib/30min" target="_blank" rel="noopener">Book Call →</a>
 </div></section>
 
-  <div class="wrap"><footer>
+  </main>
+<div class="wrap"><footer>
     <p>Built by <strong>Paul Thibodeau</strong>.</p>
   </footer></div>
 

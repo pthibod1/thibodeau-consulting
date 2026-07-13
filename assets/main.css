@@ -364,6 +364,7 @@
 
   /* credibility strip: muted logo cluster */
   .logos-row{display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 12px;margin-top:auto;padding-top:16px}
+  .logos-cap{flex-basis:100%;font-family:var(--font-body);font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);line-height:1;margin-bottom:3px}
   .logos-row img{height:22px;width:auto;display:block}
   .stanford-row{justify-content:flex-end}
   .stanford-row img{height:46px}

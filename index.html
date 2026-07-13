@@ -18,7 +18,7 @@
 <meta name="twitter:image" content="https://www.consult-thib.com/assets/headshot-casual.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Spectral:wght@400;500;600&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600;700&family=EB+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/main.css?v=3">
 <script type="application/ld+json">
 {
@@ -76,7 +76,11 @@
         </div>
       </div>
       <figure class="portrait reveal">
-        <img class="portrait-img" src="assets/headshot-casual.jpg?v=4" alt="Paul Thibodeau, PhD" style="object-position:50% 20%">
+        <picture>
+          <source type="image/avif" srcset="assets/headshot-casual-400.avif 400w, assets/headshot-casual-800.avif 800w" sizes="(max-width:880px) 360px, 400px">
+          <source type="image/webp" srcset="assets/headshot-casual-400.webp 400w, assets/headshot-casual-800.webp 800w" sizes="(max-width:880px) 360px, 400px">
+          <img class="portrait-img" src="assets/headshot-casual-800.jpg" width="800" height="1066" alt="Paul Thibodeau, PhD" fetchpriority="high" style="object-position:50% 20%">
+        </picture>
         <figcaption><span>Paul Thibodeau, PhD</span></figcaption>
       </figure>
     </div>
@@ -89,6 +93,7 @@
           <div class="num">20 years</div>
           <div class="lbl">in industry and academia</div>
           <div class="logos-row">
+            <span class="logos-cap">Experience includes</span>
             <img src="assets/logo-espark.png" alt="eSpark">
             <img src="assets/logo-oberlin.png" alt="Oberlin College">
             <img src="assets/logo-swarthmore.png" alt="Swarthmore">
