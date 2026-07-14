@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>How good is a forecast, really? · Thibodeau Consulting</title>
-<meta name="description" content="A live, public example of forecasting done honestly: my World Cup model is graded match by match against the betting market and commercial services — and beats most of them.">
+<meta name="description" content="A live, public example of forecasting done honestly: my World Cup model is graded match by match against the betting market and commercial services, and beats most of them.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="How good is a forecast, really? · Thibodeau Consulting">
-<meta property="og:description" content="Forecasting done honestly: a World Cup model graded in public against the betting market and commercial services — and beating most of them.">
+<meta property="og:description" content="Forecasting done honestly: a World Cup model graded in public against the betting market and commercial services, and beating most of them.">
 <meta property="og:url" content="https://www.consult-thib.com/demos/forecasting_demo.html">
 <link rel="canonical" href="https://www.consult-thib.com/demos/forecasting_demo.html">
 <meta property="og:image" content="https://www.consult-thib.com/assets/headshot-casual.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="How good is a forecast, really? · Thibodeau Consulting">
-<meta name="twitter:description" content="Forecasting done honestly: a World Cup model graded in public against the betting market and commercial services — and beating most of them.">
+<meta name="twitter:description" content="Forecasting done honestly: a World Cup model graded in public against the betting market and commercial services, and beating most of them.">
 <meta name="twitter:image" content="https://www.consult-thib.com/assets/headshot-casual.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -95,8 +95,8 @@ footer a{color:var(--teal)}
       <div class="hero-copy">
         <p class="eyebrow">Analytics &amp; Forecasting</p>
         <h1>How do you know a forecast is any good?</h1>
-        <p class="lede">Anyone can publish a prediction. The only honest test is to grade it — in public, against a fair benchmark, over many events. So I built one out in the open: a model for the 2026 World Cup, scored match by match against the betting market and the big commercial forecasters.</p>
-        <p class="cite">Data Sciencing the World Cup — expected goals, match simulations, and honest predictions, updated live.</p>
+        <p class="lede">Anyone can publish a prediction. The only honest test is whether it holds up when you grade it in public, against a fair benchmark, over a lot of events. So I built one in the open: a model for the 2026 World Cup, scored match by match against the betting market and the big commercial forecasters.</p>
+        <p class="cite">Data Sciencing the World Cup: expected goals, match simulations, and honest predictions, updated live.</p>
       </div>
       <div class="hero-cartoon" aria-hidden="true">
         <svg viewBox="0 0 340 210" xmlns="http://www.w3.org/2000/svg">
@@ -115,7 +115,7 @@ footer a{color:var(--teal)}
 <section class="band band-alt"><div class="wrap">
   <section class="step">
     <h2>The honest scoreboard</h2>
-    <p class="sub">Every match, each forecaster's probability is scored by <strong>Brier score</strong> — lower means sharper and better calibrated. Here's where my model (DSWC Pro) sits against the betting market and the commercial services, after 28 graded games.</p>
+    <p class="sub">Every match, each forecaster's probability gets a <strong>Brier score</strong>, where lower means sharper and better calibrated. Here's where my model (DSWC Pro) sits against the betting market and the commercial services after 28 graded games.</p>
     <div class="card">
       <div class="board-head"><span class="t">Forecaster accuracy · Brier score</span><span class="g">28 games graded · lower is better</span></div>
       <div class="brow"><span class="rk">1</span><span class="nm">PELE</span><span class="barwrap"><span class="bar" style="width:100%"></span></span><span class="sc">.482</span></div>
@@ -124,9 +124,9 @@ footer a{color:var(--teal)}
       <div class="brow"><span class="rk">4</span><span class="nm">Kalshi</span><span class="barwrap"><span class="bar" style="width:67%"></span></span><span class="sc">.488</span></div>
       <div class="brow"><span class="rk">5</span><span class="nm">Dimers</span><span class="barwrap"><span class="bar" style="width:56%"></span></span><span class="sc">.490</span></div>
       <div class="brow mkt"><span class="rk">6</span><span class="nm">Betting market</span><span class="barwrap"><span class="bar" style="width:39%"></span></span><span class="sc">.493</span></div>
-      <p class="board-note">Snapshot from the live board. A single model landing above the betting market <em>and</em> two commercial forecasters — and running step for step with the sharpest models in the world — is the whole point: the ranking is earned on graded results, not asserted.</p>
+      <p class="board-note">Snapshot from the live board. My model lands above the betting market <em>and</em> two commercial services, and runs close to the sharpest models in the world. The ranking is earned on graded results, not asserted, and that's the part that matters.</p>
     </div>
-    <div class="takeaway">Beating the market isn't a headline here, it's a <strong>measured, reproducible result</strong> anyone can check. That's the standard I hold every forecast to — including the ones I build for clients.</div>
+    <div class="takeaway">Beating the market here isn't a headline, it's a <strong>measured, reproducible result</strong> anyone can check. That's the standard I hold every forecast to, including the ones I build for clients.</div>
     <div class="btnrow">
       <a class="btn2" href="https://worldcupdata.pages.dev/" target="_blank" rel="noopener">See the live dashboard <span aria-hidden="true">&#8599;</span></a>
       <a class="btn2 ghost" href="https://worldcupdata.substack.com/" target="_blank" rel="noopener">Read the analysis <span aria-hidden="true">&#8599;</span></a>
@@ -137,11 +137,11 @@ footer a{color:var(--teal)}
 <section class="band"><div class="wrap">
   <section class="step">
     <h2>What's under the hood</h2>
-    <p class="sub">The dashboard is the visible tip of a full forecasting pipeline — the same shape of system I build for teams that need to predict demand, churn, or revenue.</p>
+    <p class="sub">The dashboard is the visible tip of a full forecasting pipeline, the same kind of system I build for teams that need to predict demand, churn, or revenue.</p>
     <ul class="feat">
       <li><b>Expected goals &amp; team strength</b> from match data, not vibes</li>
       <li><b>Monte Carlo match simulations</b> that roll up to bracket and tournament odds</li>
-      <li><b>Calibrated probabilities</b> — a stated 40% wins about 40% of the time</li>
+      <li><b>Calibrated probabilities</b>, so a stated 40% wins about 40% of the time</li>
       <li><b>Live benchmarking</b> against the market, Kalshi, Opta, Dimers and more</li>
       <li><b>Automatic grading</b> every match, so the model can't hide from its misses</li>
       <li><b>A decision-ready dashboard</b> that turns the model into something you can read at a glance</li>
@@ -149,22 +149,14 @@ footer a{color:var(--teal)}
   </section>
 </div></section>
 
-<section class="band band-alt"><div class="wrap">
-  <section class="step">
-    <h2>Why a World Cup model is a business résumé</h2>
-    <p class="sub">Swap "France beats Spain" for "this account churns," "this region hits plan," or "this campaign pays back," and it's the same job: build a model, benchmark it honestly, and ship it as a decision people actually trust.</p>
-    <div class="takeaway">Most forecasts in business are never scored, so no one knows if they work. I bring the discipline you see here — fair benchmarks, calibration, honest grading — to the numbers your team bets budget and roadmap on.</div>
-  </section>
-</div></section>
-
 <section class="band-alt cta-band"><div class="wrap">
-  <h2>Bring this rigor to the forecasts you bet on.</h2>
+  <h2>Bring this rigor to the forecasts you rely on.</h2>
   <a class="btn" href="https://calendly.com/paul-consult-thib/30min" target="_blank" rel="noopener">Book Call →</a>
 </div></section>
 
   </main>
 <div class="wrap"><footer>
-  <p>The World Cup project is a public sandbox for a serious idea: a forecast you can't grade is just an opinion. Live dashboard at <a href="https://worldcupdata.pages.dev/" target="_blank" rel="noopener">worldcupdata.pages.dev</a>, write-ups on <a href="https://worldcupdata.substack.com/" target="_blank" rel="noopener">Substack</a>. Built by <strong>Paul Thibodeau</strong>.</p>
+  <p>The World Cup project is where I keep myself honest: a forecast you can't grade is just an opinion. Live dashboard at <a href="https://worldcupdata.pages.dev/" target="_blank" rel="noopener">worldcupdata.pages.dev</a>, write-ups on <a href="https://worldcupdata.substack.com/" target="_blank" rel="noopener">Substack</a>. Built by <strong>Paul Thibodeau</strong>.</p>
 </footer></div>
 
 <footer class="tc-footer"><div class="tc-foot">
