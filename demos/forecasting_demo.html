@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How good is a forecast, really? · Thibodeau Consulting</title>
+<meta name="description" content="A live, public example of forecasting done honestly: my World Cup model is graded match by match against the betting market and commercial services — and beats most of them.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="How good is a forecast, really? · Thibodeau Consulting">
+<meta property="og:description" content="Forecasting done honestly: a World Cup model graded in public against the betting market and commercial services — and beating most of them.">
+<meta property="og:url" content="https://www.consult-thib.com/demos/forecasting_demo.html">
+<link rel="canonical" href="https://www.consult-thib.com/demos/forecasting_demo.html">
+<meta property="og:image" content="https://www.consult-thib.com/assets/headshot-casual.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How good is a forecast, really? · Thibodeau Consulting">
+<meta name="twitter:description" content="Forecasting done honestly: a World Cup model graded in public against the betting market and commercial services — and beating most of them.">
+<meta name="twitter:image" content="https://www.consult-thib.com/assets/headshot-casual.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0F2A43; --teal:#1F7A8C; --accent:#B9822F; --bg:#FBFAF7;
+  --ink:#1c2733; --muted:#5a6b78; --line:#e6e1d8; --card:#ffffff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 1.4rem}
+header.hero{padding:4rem 0 2.4rem;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin:0 0 1rem}
+h1{font-family:"Newsreader",Georgia,serif;font-weight:600;font-size:2.5rem;line-height:1.14;color:var(--navy);margin:0 0 1rem;letter-spacing:.005em}
+.lede{font-size:1.12rem;color:var(--muted);max-width:43rem;margin:0}
+.cite{font-size:.86rem;color:var(--muted);margin:1.1rem 0 0;font-style:italic}
+.step{padding:3rem 0}
+.step h2{font-family:"Newsreader",serif;font-weight:600;font-size:1.7rem;color:var(--navy);margin:0 0 .5rem}
+.step .sub{color:var(--muted);margin:.4rem 0 1.5rem;max-width:45rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:1.5rem 1.5rem 1.3rem;box-shadow:0 1px 2px rgba(15,42,67,.04)}
+/* honest scoreboard */
+.board-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin:0 0 1rem}
+.board-head .t{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.board-head .g{font-size:.82rem;color:var(--muted)}
+.brow{display:grid;grid-template-columns:1.2rem 5.2rem 1fr 3rem;align-items:center;gap:.7rem;padding:.42rem 0}
+.brow + .brow{border-top:1px solid #f0ece3}
+.brow .rk{font-family:"Newsreader",serif;font-size:.95rem;color:var(--muted);text-align:center}
+.brow .nm{font-weight:600;font-size:.92rem;color:var(--ink)}
+.brow .barwrap{height:12px;background:#f0ece3;border-radius:6px;overflow:hidden}
+.brow .bar{height:100%;background:#c2cbd4;border-radius:6px}
+.brow .sc{font-family:"Newsreader",serif;font-size:1rem;color:var(--navy);text-align:right;font-variant-numeric:tabular-nums}
+.brow.mine{background:linear-gradient(90deg,rgba(185,130,47,.10),transparent);border-radius:8px;margin:0 -.6rem;padding-left:.6rem;padding-right:.6rem}
+.brow.mine .nm{color:var(--navy)}
+.brow.mine .bar{background:var(--teal)}
+.brow.mine .nm::after{content:"you";font:600 .6rem/1 "Inter",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--accent);border-radius:3px;padding:.15em .4em;margin-left:.5em;vertical-align:middle}
+.brow.mkt .bar{background:#b3543a}
+.board-note{margin:1.1rem 0 0;font-size:.85rem;color:var(--muted);line-height:1.5}
+.takeaway{margin-top:1.3rem;padding:.9rem 1.1rem;background:#f4f1ea;border-left:4px solid var(--accent);border-radius:0 8px 8px 0;font-size:.95rem}
+.takeaway strong{color:var(--navy)}
+.feat{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.9rem 1.6rem}
+.feat li{font-size:.95rem;color:var(--ink);padding-left:1.4rem;position:relative;line-height:1.5}
+.feat li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--teal)}
+.feat li b{color:var(--navy)}
+.btnrow{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.6rem}
+.btn2{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--navy);background:var(--navy);color:#fff;font-weight:600;font-size:.92rem;padding:.62rem 1.15rem;border-radius:3px;text-decoration:none;transition:background .18s ease,border-color .18s ease}
+.btn2:hover{background:#08192b;border-color:#08192b}
+.btn2.ghost{background:#fff;color:var(--navy)}
+.btn2.ghost:hover{background:#f4f1ea}
+.hero-grid{display:grid;grid-template-columns:1.4fr .9fr;gap:2.2rem;align-items:center}
+.hero-cartoon{justify-self:end}
+.hero-cartoon svg{display:block;width:100%;height:auto;max-width:340px}
+footer{padding:2.6rem 0 4rem;color:var(--muted);font-size:.9rem}
+footer a{color:var(--teal)}
+@media(max-width:760px){.hero-grid{grid-template-columns:1fr}.hero-cartoon{display:none}}
+@media(max-width:640px){h1{font-size:2rem}.step h2{font-size:1.4rem}.feat{grid-template-columns:1fr}.brow{grid-template-columns:1.1rem 4.6rem 1fr 2.8rem;gap:.5rem}}
+</style>
+<link rel="stylesheet" href="site.css">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+<body>
+<header class="tc-header"><div class="tc-nav">
+  <button class="tc-navtoggle" aria-label="Menu" aria-expanded="false" aria-controls="tcmenu"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+  <a href="../index.html" class="tc-wordmark"><span class="tmark">T</span><span class="wname">Thibodeau Consulting</span></a>
+  <nav class="tc-navlinks" id="tcmenu">
+    <a href="../index.html" class="hideable">Home</a>
+    <a href="../about.html" class="hideable">About</a>
+    <a href="../index.html#work" class="hideable">Services</a>
+    <a href="../research.html" class="hideable">Research</a>
+    <a href="../press.html" class="hideable">Press</a>
+  </nav>
+  <a href="https://calendly.com/paul-consult-thib/30min" target="_blank" rel="noopener" class="tc-btn">Book Call <span class="arr">&rarr;</span></a>
+</div></header>
+<main>
+<section class="band"><div class="wrap">
+  <header class="hero">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Analytics &amp; Forecasting</p>
+        <h1>How do you know a forecast is any good?</h1>
+        <p class="lede">Anyone can publish a prediction. The only honest test is to grade it — in public, against a fair benchmark, over many events. So I built one out in the open: a model for the 2026 World Cup, scored match by match against the betting market and the big commercial forecasters.</p>
+        <p class="cite">Data Sciencing the World Cup — expected goals, match simulations, and honest predictions, updated live.</p>
+      </div>
+      <div class="hero-cartoon" aria-hidden="true">
+        <svg viewBox="0 0 340 210" xmlns="http://www.w3.org/2000/svg">
+          <line x1="16" y1="184" x2="326" y2="184" stroke="#c2cbd4" stroke-width="2"/>
+          <path d="M20 150 C 70 120, 110 150, 150 110 S 250 60, 322 44" fill="none" stroke="#1F7A8C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20 150 C 70 138, 110 150, 150 132 S 250 108, 322 96" fill="none" stroke="#9aa6af" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 5"/>
+          <circle cx="322" cy="44" r="6" fill="#1F7A8C"/>
+          <circle cx="322" cy="96" r="4.5" fill="#9aa6af"/>
+          <text x="20" y="40" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="#5a6b78">WIN PROBABILITY</text>
+        </svg>
+      </div>
+    </div>
+  </header>
+</div></section>
+
+<section class="band band-alt"><div class="wrap">
+  <section class="step">
+    <h2>The honest scoreboard</h2>
+    <p class="sub">Every match, each forecaster's probability is scored by <strong>Brier score</strong> — lower means sharper and better calibrated. Here's where my model (DSWC Pro) sits against the betting market and the commercial services, after 28 graded games.</p>
+    <div class="card">
+      <div class="board-head"><span class="t">Forecaster accuracy · Brier score</span><span class="g">28 games graded · lower is better</span></div>
+      <div class="brow"><span class="rk">1</span><span class="nm">PELE</span><span class="barwrap"><span class="bar" style="width:100%"></span></span><span class="sc">.482</span></div>
+      <div class="brow"><span class="rk">2</span><span class="nm">Opta</span><span class="barwrap"><span class="bar" style="width:100%"></span></span><span class="sc">.482</span></div>
+      <div class="brow mine"><span class="rk">3</span><span class="nm">DSWC Pro</span><span class="barwrap"><span class="bar" style="width:78%"></span></span><span class="sc">.486</span></div>
+      <div class="brow"><span class="rk">4</span><span class="nm">Kalshi</span><span class="barwrap"><span class="bar" style="width:67%"></span></span><span class="sc">.488</span></div>
+      <div class="brow"><span class="rk">5</span><span class="nm">Dimers</span><span class="barwrap"><span class="bar" style="width:56%"></span></span><span class="sc">.490</span></div>
+      <div class="brow mkt"><span class="rk">6</span><span class="nm">Betting market</span><span class="barwrap"><span class="bar" style="width:39%"></span></span><span class="sc">.493</span></div>
+      <p class="board-note">Snapshot from the live board. A single model landing above the betting market <em>and</em> two commercial forecasters — and running step for step with the sharpest models in the world — is the whole point: the ranking is earned on graded results, not asserted.</p>
+    </div>
+    <div class="takeaway">Beating the market isn't a headline here, it's a <strong>measured, reproducible result</strong> anyone can check. That's the standard I hold every forecast to — including the ones I build for clients.</div>
+    <div class="btnrow">
+      <a class="btn2" href="https://worldcupdata.pages.dev/" target="_blank" rel="noopener">See the live dashboard <span aria-hidden="true">&#8599;</span></a>
+      <a class="btn2 ghost" href="https://worldcupdata.substack.com/" target="_blank" rel="noopener">Read the analysis <span aria-hidden="true">&#8599;</span></a>
+    </div>
+  </section>
+</div></section>
+
+<section class="band"><div class="wrap">
+  <section class="step">
+    <h2>What's under the hood</h2>
+    <p class="sub">The dashboard is the visible tip of a full forecasting pipeline — the same shape of system I build for teams that need to predict demand, churn, or revenue.</p>
+    <ul class="feat">
+      <li><b>Expected goals &amp; team strength</b> from match data, not vibes</li>
+      <li><b>Monte Carlo match simulations</b> that roll up to bracket and tournament odds</li>
+      <li><b>Calibrated probabilities</b> — a stated 40% wins about 40% of the time</li>
+      <li><b>Live benchmarking</b> against the market, Kalshi, Opta, Dimers and more</li>
+      <li><b>Automatic grading</b> every match, so the model can't hide from its misses</li>
+      <li><b>A decision-ready dashboard</b> that turns the model into something you can read at a glance</li>
+    </ul>
+  </section>
+</div></section>
+
+<section class="band band-alt"><div class="wrap">
+  <section class="step">
+    <h2>Why a World Cup model is a business résumé</h2>
+    <p class="sub">Swap "France beats Spain" for "this account churns," "this region hits plan," or "this campaign pays back," and it's the same job: build a model, benchmark it honestly, and ship it as a decision people actually trust.</p>
+    <div class="takeaway">Most forecasts in business are never scored, so no one knows if they work. I bring the discipline you see here — fair benchmarks, calibration, honest grading — to the numbers your team bets budget and roadmap on.</div>
+  </section>
+</div></section>
+
+<section class="band-alt cta-band"><div class="wrap">
+  <h2>Bring this rigor to the forecasts you bet on.</h2>
+  <a class="btn" href="https://calendly.com/paul-consult-thib/30min" target="_blank" rel="noopener">Book Call →</a>
+</div></section>
+
+  </main>
+<div class="wrap"><footer>
+  <p>The World Cup project is a public sandbox for a serious idea: a forecast you can't grade is just an opinion. Live dashboard at <a href="https://worldcupdata.pages.dev/" target="_blank" rel="noopener">worldcupdata.pages.dev</a>, write-ups on <a href="https://worldcupdata.substack.com/" target="_blank" rel="noopener">Substack</a>. Built by <strong>Paul Thibodeau</strong>.</p>
+</footer></div>
+
+<footer class="tc-footer"><div class="tc-foot">
+  <div><a href="../index.html" class="tc-wordmark"><span class="tmark">T</span><span class="wname">Thibodeau Consulting, LLC</span></a><div class="tc-fine">Scientific rigor · Industry speed</div></div>
+  <nav class="tc-links">
+    <a href="../index.html">Home</a>
+    <a href="../index.html#work">Demos</a>
+    <a href="https://www.linkedin.com/in/paulhthibodeau/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://calendly.com/paul-consult-thib/30min" target="_blank" rel="noopener">Book Call</a>
+  </nav>
+</div></footer>
+<script>
+(function(){var t=document.querySelector('.tc-navtoggle'),h=document.querySelector('.tc-header');if(!t||!h)return;function c(){t.setAttribute('aria-expanded','false');h.classList.remove('nav-open');}t.addEventListener('click',function(e){e.stopPropagation();var o=t.getAttribute('aria-expanded')==='true';t.setAttribute('aria-expanded',String(!o));h.classList.toggle('nav-open',!o);});h.querySelectorAll('.tc-navlinks a').forEach(function(a){a.addEventListener('click',c);});document.addEventListener('click',function(e){if(!h.contains(e.target))c();});document.addEventListener('keydown',function(e){if(e.key==='Escape')c();});})();
+</script>
+</body>
+</html>
