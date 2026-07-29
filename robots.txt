@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.consult-thib.com/sitemap.xml
+Sitemap: https://www.phthibodeau.com/sitemap.xml

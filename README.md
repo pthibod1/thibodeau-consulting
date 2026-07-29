@@ -7,7 +7,7 @@ Static marketing site (plain HTML/CSS, no build step) + interactive demos under 
 - `demos/` — four interactive demos (MMM, experimentation, behavioral/survey, advisory maturity) + gallery
 
 ## Deploy
-Hosted on Vercel (framework preset: **Other**, no build command, output = repo root). Custom domain: consult-thib.com.
+Hosted on GitHub Pages. Custom domain: phthibodeau.com.
 
 ## TODO before launch
 - Swap the placeholder booking link (`calendly.com/paul-thibodeau/30min`) for the real Calendly/Cal.com URL.
